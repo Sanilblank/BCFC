@@ -22,7 +22,7 @@ class SettingTableSeeder extends Seeder
             'footerImage'=>'footer.png',
             'facebook'=>'https://www.facebook.com/',
             'linkedin'=>'https://www.linkedin.com/',
-            'youtube'=>'https://www.youtube.com/',
+            'twitter'=>'https://www.twitter.com/',
             'instagram'=>'https://www.instagram.com/',
             'aboutus'=>'Biratnagar City FC',
             'address'=>'Ravi Bhawan-15, Kathmandu',

@@ -131,11 +131,11 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <label for="youtube">Youtube</label>
+                                            <label for="twitter">Twitter</label>
                                         </div>
                                         <div class="col-md-10">
-                                            <input type="text" name="youtube" class="form-control"
-                                                value="{{ $setting->youtube }}">
+                                            <input type="text" name="twitter" class="form-control"
+                                                value="{{ $setting->twitter }}">
                                         </div>
                                     </div>
                                 </div>

@@ -110,7 +110,7 @@ class SettingController extends Controller
             'footerImage' => $footerimage,
             'facebook' => $request['facebook'],
             'linkedin' => $request['linkedin'],
-            'youtube' => $request['youtube'],
+            'twitter' => $request['twitter'],
             'instagram' => $request['instagram'],
             'aboutus' => $data['aboutus'],
             'address' => $data['address'],

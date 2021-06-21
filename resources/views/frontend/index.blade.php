@@ -1,112 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('frontend.layouts.app')
+@push('styles')
 
-<head>
-  <title>Biratnagar City FC</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@endpush
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
-  <link rel="stylesheet" href="{{asset('frontend/fonts/icomoon/style.css')}}">
-
-  <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
-  <link rel="stylesheet" href="{{asset('frontend/css/magnific-popup.css')}}">
-  <link rel="stylesheet" href="{{asset('frontend/css/jquery-ui.css')}}">
-  <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.min.css')}}">
-  <link rel="stylesheet" href="{{asset('frontend/css/owl.theme.default.min.css')}}">
-
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,300;1,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{asset('frontend/css/aos.css')}}">
-
-  <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
-
-</head>
-
-<body>
+@section('content')
 
   <div class="site-wrap">
-
-    <div class="site-mobile-menu">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-logo">
-          <a href="#"><img src="{{asset('frontend/images/logo.png')}}" alt="Image" style="max-height:120px;"></a>
-        </div>
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div>
-
-    <header class="site-navbar absolute transparent" role="banner">
-      <div class="pb-3 ">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-6 col-md-3">
-              <a href="#" class="text-secondary px-2 pl-0"><span class="icon-facebook"></span></a>
-              <a href="#" class="text-secondary px-2"><span class="icon-instagram"></span></a>
-              <a href="#" class="text-secondary px-2"><span class="icon-twitter"></span></a>
-              <a href="#" class="text-secondary px-2"><span class="icon-linkedin"></span></a>
-            </div>
-            <div class="col-6 col-md-9 text-right">
-              <div class="d-inline-block"><a href="#" class="text-secondary p-2 d-flex align-items-center"><span
-                    class="icon-envelope mr-3"></span> <span class="d-none d-md-block">youremail@domain.com</span></a>
-              </div>
-              <div class="d-inline-block"><a href="#" class="text-secondary p-2 d-flex align-items-center"><span
-                    class="icon-phone mr-0 mr-md-3"></span> <span class="d-none d-md-block">+1 232 3532 321</span></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <nav class="site-navigation position-relative text-right text-md-right" role="navigation">
-        <div class="container position-relative">
-          <div class="site-logo">
-            <a href="index.html"><img src="{{asset('frontend/images/logo.png')}}" alt="" style="max-height: 120px;"></a>
-          </div>
-
-          <div class="d-inline-block d-md-none ml-md-0 mr-auto py-3"><a href="#"
-              class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
-
-          <ul class="site-menu js-clone-nav d-none d-md-block">
-            <li class="has-children active">
-              <a href="index.html">Home</a>
-              <ul class="dropdown arrow-top">
-                <li><a href="#">Menu One</a></li>
-                <li><a href="#">Menu Two</a></li>
-                <li><a href="#">Menu Three</a></li>
-                <li class="has-children">
-                  <a href="#">Sub Menu</a>
-                  <ul class="dropdown">
-                    <li><a href="#">Menu One</a></li>
-                    <li><a href="#">Menu Two</a></li>
-                    <li><a href="#">Menu Three</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li class="has-children">
-              <a href="news.html">News</a>
-              <ul class="dropdown arrow-top">
-                <li><a href="#">Menu One</a></li>
-                <li><a href="#">Menu Two</a></li>
-                <li><a href="#">Menu Three</a></li>
-              </ul>
-            </li>
-            <li><a href="matches.html">Matches</a></li>
-            <li><a href="team.html">Team</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-
-
-
     <div class="slide-one-item home-slider owl-carousel">
       <div class="site-blocks-cover overlay" style="background-image: url(frontend/images/hero_bg_2.jpg);" data-aos="fade"
         data-stellar-background-ratio="0.5">
@@ -1032,108 +931,11 @@
 
 
 
-    <footer class="site-footer bg-blue">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="mb-5">
-              <h3 class="footer-heading mb-4">About Biratnagar City FC</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe pariatur reprehenderit vero atque,
-                consequatur id ratione, et non dignissimos culpa? Ut veritatis, quos illum totam quis blanditiis, minima
-                minus odio!</p>
-            </div>
 
-            <div class="mb-5">
-              <h3 class="footer-heading mb-4">Follow Us</h3>
-
-              <div>
-                <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-              </div>
-
-            </div>
-
-          </div>
-          <div class="col-lg-4 mb-5 mb-lg-0">
-            <div class="row mb-5">
-              <div class="col-md-12">
-                <h3 class="footer-heading mb-4">Quick Menu</h3>
-              </div>
-              <div class="col-md-6 col-lg-6">
-                <ul class="list-unstyled">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Matches</a></li>
-                  <li><a href="#">News</a></li>
-                  <li><a href="#">Team</a></li>
-                </ul>
-              </div>
-              <div class="col-md-6 col-lg-6">
-                <ul class="list-unstyled">
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Privacy Policy</a></li>
-                  <li><a href="#">Contact Us</a></li>
-                  <li><a href="#">Membership</a></li>
-                </ul>
-              </div>
-            </div>
-
-
-          </div>
-
-          <div class="col-lg-4 mb-5 mb-lg-0">
-
-
-            <div class="mb-5">
-              <h3 class="footer-heading mb-2">Subscribe Newsletter</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit minima minus odio.</p>
-
-              <form action="#" method="post">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control border-secondary text-white bg-transparent"
-                    placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
-                  <div class="input-group-append">
-                    <button class="btn btn-primary" type="button" id="button-addon2">Send</button>
-                  </div>
-                </div>
-              </form>
-
-            </div>
-
-          </div>
-
-        </div>
-        <div class="row pt-5 mt-5 text-center">
-          <div class="col-md-12">
-            <p>
-
-              Copyright &copy;
-              <script data-cfasync="false"
-                src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-              <script>document.write(new Date().getFullYear());</script> All rights reserved
-
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </footer>
   </div>
+@endsection
+@push('scripts')
 
-  <script src="{{asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
-  <script src="{{asset('frontend/js/jquery-migrate-3.0.1.min.js')}}"></script>
-  <script src="{{asset('frontend/js/jquery-ui.js')}}"></script>
-  <script src="{{asset('frontend/js/popper.min.js')}}"></script>
-  <script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
-  <script src="{{asset('frontend/js/owl.carousel.min.js')}}"></script>
-  <script src="{{asset('frontend/js/jquery.stellar.min.js')}}"></script>
-  <script src="{{asset('frontend/js/jquery.countdown.min.js')}}"></script>
-  <script src="{{asset('frontend/js/jquery.magnific-popup.min.js')}}"></script>
-  <script src="{{asset('frontend/js/aos.js')}}"></script>
+@endpush
 
-  <script src="{{asset('frontend/js/main.js')}}"></script>
 
-</body>
-
-</html>
