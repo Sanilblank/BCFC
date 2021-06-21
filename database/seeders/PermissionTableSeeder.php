@@ -36,29 +36,15 @@ class PermissionTableSeeder extends Seeder
                 'updated_at' => date("Y-m-d H:i:s"),
             ],
             [
-                'name' => 'Manage Category',
-                'slug' => Str::slug('Manage Category'),
+                'name' => 'Manage Setting',
+                'slug' => Str::slug('Manage Setting'),
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ],
-            [
-                'name' => 'Manage Subcategory',
-                'slug' => Str::slug('Manage Subcategory'),
-                'created_at' => date("Y-m-d H:i:s"),
-                'updated_at' => date("Y-m-d H:i:s"),
-            ],
-            [
-                'name' => 'Manage Vendor',
-                'slug' => Str::slug('Manage Vendor'),
-                'created_at' => date("Y-m-d H:i:s"),
-                'updated_at' => date("Y-m-d H:i:s"),
-            ],
-            [
-                'name' => 'Manage Product',
-                'slug' => Str::slug('Manage Product'),
-                'created_at' => date("Y-m-d H:i:s"),
-                'updated_at' => date("Y-m-d H:i:s"),
-            ],
+
+
+
+
         ]);
     }
 }
