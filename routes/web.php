@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\PermissionController;
@@ -37,6 +38,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     // Route::resource('subcategory', SubcategoryController::class);
     // Route::resource('vendor', VendorController::class);
     // Route::resource('product', ProductController::class);
+
+    //Blogs
+    Route::resource('blog', BlogController::class);
 
     //Settings
     Route::resource('setting', SettingController::class);

@@ -5,6 +5,7 @@
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="images/favicon.ico" type="image/ico" />
 
@@ -78,6 +79,13 @@
                     <ul class="nav child_menu">
                       <li><a href="{{route('role.index')}}">View Roles</a></li>
                       <li><a href="{{route('role.create')}}">Create Role</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-rss-square"></i>Blogs <span
+                    class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('blog.index') }}">Our Blogs</a></li>
+                        <li><a href="{{ route('blog.create') }}">Create Blog</a></li>
                     </ul>
                   </li>
                 </ul>
