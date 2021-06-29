@@ -11,4 +11,14 @@ class FrontController extends Controller
     {
         return view('frontend.index');
     }
+
+    public function getnews()
+    {
+        return view('frontend.news');
+    }
+
+    public function newsdetails($id, $slug)
+    {
+        return view('frontend.news-details');
+    }
 }

@@ -34,7 +34,7 @@
     <nav class="site-navigation position-relative text-right text-md-right" role="navigation">
       <div class="container position-relative">
         <div class="site-logo">
-          <a href="index.html"><img src="{{asset('frontend/images/logo.png')}}" alt="" style="max-height: 120px;"></a>
+          <a href="{{route('index')}}"><img src="{{asset('frontend/images/logo.png')}}" alt="" style="max-height: 120px;"></a>
         </div>
 
         <div class="d-inline-block d-md-none ml-md-0 mr-auto py-3"><a href="#"
@@ -42,7 +42,7 @@
 
         <ul class="site-menu js-clone-nav d-none d-md-block">
           <li class="has-children active">
-            <a href="index.html">Home</a>
+            <a href="{{route('index')}}">Home</a>
             <ul class="dropdown arrow-top">
               <li><a href="#">Menu One</a></li>
               <li><a href="#">Menu Two</a></li>
@@ -58,7 +58,7 @@
             </ul>
           </li>
           <li class="has-children">
-            <a href="news.html">News</a>
+            <a href="{{route('getnews')}}">News</a>
             <ul class="dropdown arrow-top">
               <li><a href="#">Menu One</a></li>
               <li><a href="#">Menu Two</a></li>

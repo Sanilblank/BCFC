@@ -25,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [FrontController::class, 'index'])->name('index');
+Route::get('/getnews', [FrontController::class, 'getnews'])->name('getnews');
+Route::get('/newsdetails/{id}/{slug}', [FrontController::class, 'newsdetails'])->name('newsdetails');
 
 Auth::routes();
 
