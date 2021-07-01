@@ -13,7 +13,7 @@
             <div class="row">
               <div class="col-xl-12">
                 <div class="hero-cap hero-cap2 pt-70">
-                  <h2>News/Blogs</h2>
+                  <h2>News/Blogs with tag {{$selectedtag->name}}</h2>
                 </div>
               </div>
             </div>
@@ -78,20 +78,20 @@
                   </div>
                 </article> --}}
                 @if (count($blogs) == 0)
-                    <h3>No news/blogs.</h3>
+                    <h3>No news/blogs with this tag.</h3>
                 @endif
                 @foreach ($blogs as $blog)
                     <article class="blog_item" onclick="location.href='{{route('newsdetails', [$blog->id, Str::slug($blog->title)])}}'" style="cursor: pointer">
                         <div class="blog_item_img">
-                            <img
-                                class="card-img rounded-0"
-                                src="{{Storage::disk('uploads')->url($blog->image)}}"
-                                alt=""
-                            />
-                            <a href="#" class="blog_item_date">
-                                <p>{{date('F d, Y h:i a', strtotime($blog->date))}}</p>
+                        <img
+                            class="card-img rounded-0"
+                            src="{{Storage::disk('uploads')->url($blog->image)}}"
+                            alt=""
+                        />
+                        <a href="#" class="blog_item_date">
+                            <p>{{date('F d, Y h:i a', strtotime($blog->date))}}</p>
 
-                            </a>
+                        </a>
                         </div>
                         <div class="blog_details">
                         <a class="d-inline-block" href="#">
@@ -156,27 +156,27 @@
             <div class="col-lg-4">
               <div class="blog_right_sidebar">
                 <aside class="single_sidebar_widget search_widget">
-                  <form action="{{route('page.search')}}" method="GET">
-                    @csrf
-                    <div class="form-group">
-                      <div class="input-group mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Search Keyword"
-                          onfocus="this.placeholder = ''"
-                          onblur="this.placeholder = 'Search Keyword'"
-                          name="word"
-                        />
-                        <div class="input-group-append">
-                          <button class="btns" type="submit">
-                            <i class="fa fa-search"></i>
-                          </button>
+                    <form action="{{route('page.search')}}" method="GET">
+                      @csrf
+                      <div class="form-group">
+                        <div class="input-group mb-3">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Search Keyword"
+                            onfocus="this.placeholder = ''"
+                            onblur="this.placeholder = 'Search Keyword'"
+                            name="word"
+                          />
+                          <div class="input-group-append">
+                            <button class="btns" type="submit">
+                              <i class="fa fa-search"></i>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </form>
-                </aside>
+                    </form>
+                  </aside>
 
                 <aside class="single_sidebar_widget tag_cloud_widget">
                   <h4 class="widget_title" style="color: #2d2d2d">Latest Tags</h4>

@@ -22,8 +22,8 @@
                 </div>
             </div>
         @endif
-        <h1 class="mt-3">Create Blog <a href="{{ route('blog.index') }}" class="btn btn-primary btn-sm"> <i
-                    class="fa fa-eye" aria-hidden="true"></i> View Blogs</a></h1>
+        <h1 class="mt-3">Create News/Blog <a href="{{ route('blog.index') }}" class="btn btn-primary btn-sm"> <i
+                    class="fa fa-eye" aria-hidden="true"></i> View News/Blogs</a></h1>
                             <div class="card mt-3">
                                 <form action="{{route('blog.store')}}" method="POST" class="bg-light p-3" enctype="multipart/form-data">
                                     @csrf
@@ -31,8 +31,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="name">Blog Title: </label>
-                                                <input type="text" name="title" class="form-control" value="{{@old('title')}}" placeholder="Blog Title">
+                                                <label for="name">Title: </label>
+                                                <input type="text" name="title" class="form-control" value="{{@old('title')}}" placeholder="Enter Title">
                                                 @error('title')
                                                     <p class="text-danger">{{$message}}</p>
                                                 @enderror
@@ -136,7 +136,7 @@
         $(function () {
 
             $('#description').summernote({
-                placeholder: "Blog Contents...",
+                placeholder: "News/Blog Contents...",
                 height: 300,
                 callbacks: {
                     onImageUpload: function(files) {

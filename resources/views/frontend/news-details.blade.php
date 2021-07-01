@@ -12,7 +12,7 @@
             <div class="row">
               <div class="col-xl-12">
                 <div class="hero-cap hero-cap2 pt-70">
-                  <h2>News Title</h2>
+                  <h2>{{$selectedblog->title}}</h2>
                 </div>
               </div>
             </div>
@@ -27,39 +27,33 @@
             <div class="col-lg-8 posts-list">
               <div class="single-post">
                 <div class="feature-img">
-                  <img class="img-fluid" src="{{asset('frontend/images/hero_bg_1.jpg')}}" alt="" />
+                  <img class="img-fluid" src="{{Storage::disk('uploads')->url($selectedblog->image)}}" alt="" />
                 </div>
                 <div class="blog_details px-3">
-                  <h2 style="color: #2d2d2d">
+                  {{-- <h2 style="color: #2d2d2d">
                     Second divided from form fish beast made every of seas all
                     gathered us saying he our
-                  </h2>
+                  </h2> --}}
                   <ul class="blog-info-link mt-3 mb-4">
                     <li>
-                      <a href="#"
-                        ><i class="fa fa-user"></i> Travel, Lifestyle</a
-                      >
+                        <i class="fa fa-user"></i>
+                        @foreach ($selectedblog->tag as $tagid)
+                        @php
+                            $tagitem = DB::table('blog_tags')->where('id', $tagid)->first();
+
+                        @endphp
+                            <a href="{{route('gettagnews', [$tagitem->id, $tagitem->slug])}}"> {{$tagitem->name}} ,</a>
+                        @endforeach
                     </li>
                     <li>
                       <a href="#"><i class="fa fa-comments"></i> 03 Comments</a>
                     </li>
                   </ul>
-                  <p class="excert">
-                    MCSE boot camps have its supporters and its detractors. Some
-                    people do not understand why you should have to spend money
-                    on boot camp when you can get the MCSE study materials
-                    yourself at a fraction of the camp price. However, who has
-                    the willpower
-                  </p>
+
                   <p>
-                    MCSE boot camps have its supporters and its detractors. Some
-                    people do not understand why you should have to spend money
-                    on boot camp when you can get the MCSE study materials
-                    yourself at a fraction of the camp price. However, who has
-                    the willpower to actually sit through a self-imposed MCSE
-                    training. who has the willpower to actually
+                    {!! $selectedblog->details !!}
                   </p>
-                  <div class="quote-wrapper">
+                  {{-- <div class="quote-wrapper">
                     <div class="quotes">
                       MCSE boot camps have its supporters and its detractors.
                       Some people do not understand why you should have to spend
@@ -68,36 +62,23 @@
                       However, who has the willpower to actually sit through a
                       self-imposed MCSE training.
                     </div>
-                  </div>
-                  <p>
-                    MCSE boot camps have its supporters and its detractors. Some
-                    people do not understand why you should have to spend money
-                    on boot camp when you can get the MCSE study materials
-                    yourself at a fraction of the camp price. However, who has
-                    the willpower
-                  </p>
-                  <p>
-                    MCSE boot camps have its supporters and its detractors. Some
-                    people do not understand why you should have to spend money
-                    on boot camp when you can get the MCSE study materials
-                    yourself at a fraction of the camp price. However, who has
-                    the willpower to actually sit through a self-imposed MCSE
-                    training. who has the willpower to actually
-                  </p>
+                  </div> --}}
+
+
                 </div>
               </div>
               <div class="navigation-top">
                 <div class="d-sm-flex justify-content-between text-center">
-                  <p class="like-info">
+                  {{-- <p class="like-info">
                     <span class="align-middle"
                       ><i class="fa fa-heart"></i
                     ></span>
                     Lily and 4 people like this
-                  </p>
-                  <div class="col-sm-4 text-center my-2 my-sm-0">
+                  </p> --}}
+                  {{-- <div class="col-sm-4 text-center my-2 my-sm-0"> --}}
                     <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
-                  </div>
-                  <ul class="social-icons">
+                  {{-- </div> --}}
+                  {{-- <ul class="social-icons">
                     <li>
                       <a href="https://www.facebook.com/sai4ull"
                         ><i class="fab fa-facebook-f"></i
@@ -112,88 +93,75 @@
                     <li>
                       <a href="#"><i class="fab fa-behance"></i></a>
                     </li>
-                  </ul>
+                  </ul> --}}
                 </div>
                 <div class="navigation-area">
                   <div class="row">
-                    <div
-                      class="
-                        col-lg-6 col-md-6 col-12
-                        nav-left
-                        flex-row
-                        d-flex
-                        justify-content-start
-                        align-items-center
-                      "
-                    >
-                      <div class="thumb">
-                        <a href="#">
-                          <img
-                            class="img-fluid"
-                            src="{{asset('frontend/images/img_1.jpg')}}"
-                            alt=""
-                          />
-                        </a>
+
+                        <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                            @if ($previousblog)
+                            <div class="thumb">
+                            <a href="{{route('newsdetails', [$previousblog->id, Str::slug($previousblog->title)])}}">
+                                <img class="img-fluid" src="{{Storage::disk('uploads')->url($previousblog->image)}}" alt=""/>
+                            </a>
+                            </div>
+                            <div class="arrow">
+                            <a href="#">
+                                <span class="lnr text-white ti-arrow-left"></span>
+                            </a>
+                            </div>
+                            <div class="detials">
+                            <p>Prev Post</p>
+                            <a href="{{route('newsdetails', [$previousblog->id, Str::slug($previousblog->title)])}}">
+                                {{-- <h4 style="color: #2d2d2d">
+                                Space The Final Frontier
+                                </h4> --}}
+                            </a>
+                            </div>
+                            @endif
+
+                        </div>
+                      <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                        @if ($nextblog)
+
+                        <div class="detials">
+                          <p>Next Post</p>
+                          <a href="{{route('newsdetails', [$nextblog->id, Str::slug($nextblog->title)])}}">
+                            {{-- <h4 style="color: #2d2d2d">Telescopes 101</h4> --}}
+                          </a>
+                        </div>
+                        <div class="arrow">
+                          <a href="#">
+                            <span class="lnr text-white ti-arrow-right"></span>
+                          </a>
+                        </div>
+                        <div class="thumb">
+                          <a href="{{route('newsdetails', [$nextblog->id, Str::slug($nextblog->title)])}}">
+                            <img
+                              class="img-fluid"
+                              src="{{Storage::disk('uploads')->url($nextblog->image)}}"
+                              alt=""
+                            />
+                          </a>
+                        </div>
+                        @endif
+
                       </div>
-                      <div class="arrow">
-                        <a href="#">
-                          <span class="lnr text-white ti-arrow-left"></span>
-                        </a>
-                      </div>
-                      <div class="detials">
-                        <p>Prev Post</p>
-                        <a href="#">
-                          <h4 style="color: #2d2d2d">
-                            Space The Final Frontier
-                          </h4>
-                        </a>
-                      </div>
-                    </div>
-                    <div
-                      class="
-                        col-lg-6 col-md-6 col-12
-                        nav-right
-                        flex-row
-                        d-flex
-                        justify-content-end
-                        align-items-center
-                      "
-                    >
-                      <div class="detials">
-                        <p>Next Post</p>
-                        <a href="#">
-                          <h4 style="color: #2d2d2d">Telescopes 101</h4>
-                        </a>
-                      </div>
-                      <div class="arrow">
-                        <a href="#">
-                          <span class="lnr text-white ti-arrow-right"></span>
-                        </a>
-                      </div>
-                      <div class="thumb">
-                        <a href="#">
-                          <img
-                            class="img-fluid"
-                            src="{{asset('frontend/images/img_3.jpg')}}"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                    </div>
+
                   </div>
                 </div>
               </div>
               <div class="blog-author">
                 <div class="media align-items-center">
-                  <img src="{{asset('frontend/images/man1.png')}}" alt="" />
+                  <img src="{{Storage::disk('uploads')->url($selectedblog->authorimage)}}" alt="" />
                   <div class="media-body">
-                    <a href="#">
-                      <h4>Harvard milan</h4>
+                    <a href="{{route('getauthornews', $selectedblog->authorname)}}">
+                      <h4>{{$selectedblog->authorname}}</h4>
                     </a>
                     <p>
-                      Second divided from form fish beast made. Every of seas
-                      all gathered use saying you're, he our dominion twon
-                      Second divided from
+                        <a href="{{route('getauthornews', $selectedblog->authorname)}}">
+                            Click to view all posts made by the author.
+                        </a>
                     </p>
                   </div>
                 </div>
@@ -359,96 +327,39 @@
             <div class="col-lg-4">
               <div class="blog_right_sidebar">
                 <aside class="single_sidebar_widget search_widget">
-                  <form action="#">
-                    <div class="form-group">
-                      <div class="input-group mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Search Keyword"
-                          onfocus="this.placeholder = ''"
-                          onblur="this.placeholder = 'Search Keyword'"
-                        />
-                        <div class="input-group-append">
-                          <button class="btns" type="button">
-                            <i class="fa fa-search"></i>
-                          </button>
+                    <form action="{{route('page.search')}}" method="GET">
+                      @csrf
+                      <div class="form-group">
+                        <div class="input-group mb-3">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Search Keyword"
+                            onfocus="this.placeholder = ''"
+                            onblur="this.placeholder = 'Search Keyword'"
+                            name="word"
+                          />
+                          <div class="input-group-append">
+                            <button class="btns" type="submit">
+                              <i class="fa fa-search"></i>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </form>
-                </aside>
-                <aside class="single_sidebar_widget post_category_widget">
-                  <h4 class="widget_title" style="color: #2d2d2d">Category</h4>
-                  <ul class="list cat-list">
-                    <li>
-                      <a href="#" class="d-flex">
-                        <p>Resaurant food</p>
-                        <p>(37)</p>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" class="d-flex">
-                        <p>Travel news</p>
-                        <p>(10)</p>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" class="d-flex">
-                        <p>Modern technology</p>
-                        <p>(03)</p>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" class="d-flex">
-                        <p>Product</p>
-                        <p>(11)</p>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" class="d-flex">
-                        <p>Inspiration</p>
-                        <p>21</p>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" class="d-flex">
-                        <p>Health Care (21)</p>
-                        <p>09</p>
-                      </a>
-                    </li>
-                  </ul>
-                </aside>
+                    </form>
+                  </aside>
 
                 <aside class="single_sidebar_widget tag_cloud_widget">
-                  <h4 class="widget_title" style="color: #2d2d2d">Tags</h4>
-                  <ul class="list">
-                    <li>
-                      <a href="#">project</a>
-                    </li>
-                    <li>
-                      <a href="#">love</a>
-                    </li>
-                    <li>
-                      <a href="#">technology</a>
-                    </li>
-                    <li>
-                      <a href="#">travel</a>
-                    </li>
-                    <li>
-                      <a href="#">restaurant</a>
-                    </li>
-                    <li>
-                      <a href="#">life style</a>
-                    </li>
-                    <li>
-                      <a href="#">design</a>
-                    </li>
-                    <li>
-                      <a href="#">illustration</a>
-                    </li>
-                  </ul>
-                </aside>
+                    <h4 class="widget_title" style="color: #2d2d2d">Latest Tags</h4>
+                    <ul class="list">
+                      @foreach ($latesttags as $latesttag)
+                        <li>
+                          <a href="{{route('gettagnews', [$latesttag->id, $latesttag->slug])}}">{{$latesttag->name}}</a>
+                        </li>
+                      @endforeach
+
+                    </ul>
+                  </aside>
 
                 <aside class="single_sidebar_widget newsletter_widget">
                   <h4 class="widget_title" style="color: #2d2d2d">
@@ -559,7 +470,7 @@
         <div class="container-fluid">
           <div class="row pb-5">
             <div class="widget-title2 text-black">
-              <h3 class="text-black">LATEST NEWS</h3>
+              <h3 class="text-black">LATEST NEWS/BLOGS</h3>
             </div>
           </div>
 
@@ -567,374 +478,32 @@
 
           <div class="row pt-5 px-3">
             <div class="nonloop-block-13 owl-carousel">
-              <div class="item">
-                <!-- uses .block-12 -->
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
+                @foreach ($latestblogs as $item)
+                <div class="item" onclick="location.href='{{route('newsdetails', [$item->id, Str::slug($item->title)])}}'" style="cursor: pointer">
+                    <!-- uses .block-12 -->
+                    <div class="block-12">
+                      <figure>
+                        <img src="{{Storage::disk('uploads')->url($item->image)}}" alt="Image" class="img-fluid" />
+                      </figure>
+                      <div class="text">
+                        <span class="meta">{{date('F d, Y', strtotime($item->date))}}</span>
+                        <div class="text-inner">
+                          <h2 class="heading mb-3">
+                            <a href="#" class="text-black"
+                              >{{$item->title}}</a
+                            >
+                          </h2>
+                          {{-- <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Ad culpa, consectetur! Eligendi illo, repellat
+                            repudiandae cumque fugiat optio!
+                          </p> --}}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                @endforeach
 
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <!-- uses .block-12 -->
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <!-- uses .block-12 -->
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <!-- uses .block-12 -->
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

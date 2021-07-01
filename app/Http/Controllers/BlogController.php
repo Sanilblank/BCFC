@@ -162,7 +162,7 @@ class BlogController extends Controller
             foreach($tags as $tag)
             {
                 $puttag = BlogTag::where('name', $tag)->first();
-                $blogtags[] = $puttag->id;
+                $blogtags[] = "$puttag->id";
             }
 
             $imagename = '';
@@ -312,7 +312,7 @@ class BlogController extends Controller
             foreach($tags as $tag)
             {
                 $puttag = BlogTag::where('name', $tag)->first();
-                $blogtags[] = $puttag->id;
+                $blogtags[] = "$puttag->id";
             }
 
                 $image_name = '';

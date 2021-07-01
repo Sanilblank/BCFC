@@ -14,8 +14,8 @@
                 </div>
             </div>
         @endif
-        <h1 class="mt-3">Show Blog <a href="{{ route('blog.index') }}" class="btn btn-primary btn-sm"> <i
-                    class="fa fa-eye" aria-hidden="true"></i> View Blogs</a></h1>
+        <h1 class="mt-3">Show News/Blog <a href="{{ route('blog.index') }}" class="btn btn-primary btn-sm"> <i
+                    class="fa fa-eye" aria-hidden="true"></i> View News</a></h1>
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <div class="card">

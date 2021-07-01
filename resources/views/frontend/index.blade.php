@@ -54,7 +54,7 @@
 
           <!-- <div class="col-md-6 col-lg-4" >
             </div> -->
-          <div class="col-md-6 col-lg-6">
+          {{-- <div class="col-md-6 col-lg-6">
             <div class="custom-media d-flex">
               <div class="img mr-4">
                 <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid">
@@ -66,8 +66,8 @@
                 <p><a href="#">Read more</a></p>
               </div>
             </div>
-          </div>
-          <div class="col-md-6 col-lg-6">
+          </div> --}}
+          {{-- <div class="col-md-6 col-lg-6">
             <div class="custom-media d-flex">
               <div class="img mr-4">
                 <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid">
@@ -79,7 +79,7 @@
                 <p><a href="#">Read more</a></p>
               </div>
             </div>
-          </div>
+          </div> --}}
         </div>
       </div>
     </div>
@@ -396,13 +396,13 @@
         </div>
         <div class="row mt-5 ">
           <div class="col-md-6 col-lg-7">
-            <div class="site-blocks-cover overlay" style="background-image: url(frontend/images/hero_bg_2.jpg); height: 466px;">
+            <div class="site-blocks-cover overlay" style="background-image: url({{Storage::disk('uploads')->url($latestblog->image)}}); height: 466px;">
               <div class="container">
                 <div class="row align-items-center justify-content-start" style='height: auto;'>
                   <div class="col-md-6 text-center text-md-left" data-aos="fade-up" data-aos-delay="400">
-                    <p><a href="#" class="btn btn-primary btn-sm rounded-0 px-3">Hero Section</a></p>
-                    <h1 class="">Player of the Week</h1>
-                    <p><a href="#" class="border-bottom border-primary" style="color:white;">Read More</a></p>
+                    {{-- <p><a href="#" class="btn btn-primary btn-sm rounded-0 px-3">Hero Section</a></p> --}}
+                    <h1 class="">{{$latestblog->title}}</h1>
+                    <p><a href="{{route('newsdetails', [$latestblog->id, Str::slug($latestblog->title)])}}" class="border-bottom border-primary" style="color:white;">Read More</a></p>
                   </div>
                 </div>
               </div>
@@ -441,42 +441,26 @@
 
               <!-- <div class="col-md-6 col-lg-4" >
                 </div> -->
-              <div class="col-md-6 col-lg-12 mb-2">
-                <div class="custom-media-2 d-lg-flex d-md-flex">
-                  <div class="cat"><a href="#" class="btn btn-primary btn-sm rounded-0 px-3">Goal!</a></div>
+                @foreach ($latestthreeblogs as $blog)
+                  <div class="col-md-6 col-lg-12 mb-2" style="cursor: pointer" onclick="location.href='{{route('newsdetails', [$blog->id, Str::slug($blog->title)])}}'">
+                    <div class="custom-media-2 d-lg-flex d-md-flex">
+                      {{-- <div class="cat"><a href="#" class="btn btn-primary btn-sm rounded-0 px-3">Goal!</a></div> --}}
 
-                  <div class="img mr-4">
-                    <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="">
+                      <div class="img mr-4">
+                        <img src="{{Storage::disk('uploads')->url($blog->image)}}" alt="Image" class="">
 
+                      </div>
+                      <div class="text">
+                        <span class="meta">{{date('F d, Y', strtotime($blog->date))}}</span>
+                        <h3 class="mb-4"><a href="{{route('newsdetails', [$blog->id, Str::slug($blog->title)])}}">{{$blog->title}}</a></h3>
+                        {{-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
+                          repellat repudiandae cumque fugiat optio!</p> --}}
+
+                          <a href="{{route('newsdetails', [$blog->id, Str::slug($blog->title)])}}" class="border-bottom border-primary">Read More</a>
+                      </div>
+                    </div>
                   </div>
-                  <div class="text">
-                    <span class="meta">May 20, 2020</span>
-                    <h3 class="mb-4"><a href="#">Ronaldo to stay at Real Madrid?</a></h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
-
-                    <button class="read">Read More</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-12 mb-2">
-                <div class="custom-media-2 d-lg-flex d-md-flex">
-                  <div class="cat"><a href="#" class="btn btn-primary btn-sm rounded-0 px-3">A Win</a></div>
-
-                  <div class="img mr-4">
-                    <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="">
-                  </div>
-                  <div class="text">
-                    <span class="meta">May 20, 2020</span>
-                    <h3 class="mb-4"><a href="#">Lukaku Man of the Match?</a></h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
-
-                    <button class="read">Read More</button>
-
-                  </div>
-                </div>
-              </div>
+                @endforeach
 
             </div>
 
@@ -499,272 +483,28 @@
 
         <div class="row pt-5 px-3">
           <div class="nonloop-block-13 owl-carousel">
-            <div class="item">
-              <!-- uses .block-12 -->
-              <div class="block-12">
-                <figure>
-                  <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid">
-                </figure>
-                <div class="text">
-                  <span class="meta">May 20th 2018</span>
-                  <div class="text-inner">
-                    <h2 class="heading mb-3"><a href="#" class="text-black">Nepal Cup Championship</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
+              @foreach ($latestblogs as $latestblog)
+              <div class="item" style="cursor: pointer" onclick="location.href='{{route('newsdetails', [$blog->id, Str::slug($blog->title)])}}'">
+                <!-- uses .block-12 -->
+                <div class="block-12">
+                  <figure>
+                    <img src="{{Storage::disk('uploads')->url($latestblog->image)}}" alt="Image" class="img-fluid">
+                  </figure>
+                  <div class="text">
+                    <span class="meta">{{date('F d, Y', strtotime($latestblog->date))}}</span>
+                    <div class="text-inner">
+                      <h2 class="heading mb-3"><a href="{{route('newsdetails', [$latestblog->id, Str::slug($latestblog->title)])}}" class="text-black">{{$latestblog->title}}</a></h2>
+                      {{-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
+                        repellat repudiandae cumque fugiat optio!</p> --}}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+              @endforeach
 
-            <div class="item">
-              <div class="block-12">
-                <figure>
-                  <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid">
-                </figure>
-                <div class="text">
-                  <span class="meta">May 20th 2018</span>
-                  <div class="text-inner">
-                    <h2 class="heading mb-3"><a href="#" class="text-black">Nepal Cup Championship</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="block-12">
-                <figure>
-                  <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid">
-                </figure>
-                <div class="text">
-                  <span class="meta">May 20th 2018</span>
-                  <div class="text-inner">
-                    <h2 class="heading mb-3"><a href="#" class="text-black">Nepal Cup Championship</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="block-12">
-                <figure>
-                  <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid">
-                </figure>
-                <div class="text">
-                  <span class="meta">May 20th 2018</span>
-                  <div class="text-inner">
-                    <h2 class="heading mb-3"><a href="#" class="text-black">Nepal Cup Championship</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <!-- uses .block-12 -->
-              <div class="block-12">
-                <figure>
-                  <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid">
-                </figure>
-                <div class="text">
-                  <span class="meta">May 20th 2018</span>
-                  <div class="text-inner">
-                    <h2 class="heading mb-3"><a href="#" class="text-black">Nepal Cup Championship</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="block-12">
-                <figure>
-                  <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid">
-                </figure>
-                <div class="text">
-                  <span class="meta">May 20th 2018</span>
-                  <div class="text-inner">
-                    <h2 class="heading mb-3"><a href="#" class="text-black">Nepal Cup Championship</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="block-12">
-                <figure>
-                  <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid">
-                </figure>
-                <div class="text">
-                  <span class="meta">May 20th 2018</span>
-                  <div class="text-inner">
-                    <h2 class="heading mb-3"><a href="#" class="text-black">Nepal Cup Championship</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="block-12">
-                <figure>
-                  <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid">
-                </figure>
-                <div class="text">
-                  <span class="meta">May 20th 2018</span>
-                  <div class="text-inner">
-                    <h2 class="heading mb-3"><a href="#" class="text-black">Nepal Cup Championship</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <!-- uses .block-12 -->
-              <div class="block-12">
-                <figure>
-                  <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid">
-                </figure>
-                <div class="text">
-                  <span class="meta">May 20th 2018</span>
-                  <div class="text-inner">
-                    <h2 class="heading mb-3"><a href="#" class="text-black">Nepal Cup Championship</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="block-12">
-                <figure>
-                  <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid">
-                </figure>
-                <div class="text">
-                  <span class="meta">May 20th 2018</span>
-                  <div class="text-inner">
-                    <h2 class="heading mb-3"><a href="#" class="text-black">Nepal Cup Championship</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="block-12">
-                <figure>
-                  <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid">
-                </figure>
-                <div class="text">
-                  <span class="meta">May 20th 2018</span>
-                  <div class="text-inner">
-                    <h2 class="heading mb-3"><a href="#" class="text-black">Nepal Cup Championship</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="block-12">
-                <figure>
-                  <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid">
-                </figure>
-                <div class="text">
-                  <span class="meta">May 20th 2018</span>
-                  <div class="text-inner">
-                    <h2 class="heading mb-3"><a href="#" class="text-black">Nepal Cup Championship</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <!-- uses .block-12 -->
-              <div class="block-12">
-                <figure>
-                  <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid">
-                </figure>
-                <div class="text">
-                  <span class="meta">May 20th 2018</span>
-                  <div class="text-inner">
-                    <h2 class="heading mb-3"><a href="#" class="text-black">Nepal Cup Championship</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="block-12">
-                <figure>
-                  <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid">
-                </figure>
-                <div class="text">
-                  <span class="meta">May 20th 2018</span>
-                  <div class="text-inner">
-                    <h2 class="heading mb-3"><a href="#" class="text-black">Nepal Cup Championship</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="block-12">
-                <figure>
-                  <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid">
-                </figure>
-                <div class="text">
-                  <span class="meta">May 20th 2018</span>
-                  <div class="text-inner">
-                    <h2 class="heading mb-3"><a href="#" class="text-black">Nepal Cup Championship</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="block-12">
-                <figure>
-                  <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid">
-                </figure>
-                <div class="text">
-                  <span class="meta">May 20th 2018</span>
-                  <div class="text-inner">
-                    <h2 class="heading mb-3"><a href="#" class="text-black">Nepal Cup Championship</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                      repellat repudiandae cumque fugiat optio!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
 
           </div>
         </div>
-
-
-
-
-
-
-
 
       </div>
     </div>

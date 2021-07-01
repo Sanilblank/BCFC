@@ -28,7 +28,7 @@
     @endif
 
 
-    <h1 class="mt-3">View Blogs <a href="{{route('blog.create')}}" class="btn btn-primary btn-sm"> <i class="fa fa-plus" aria-hidden="true"></i> Create Blog</a></h1>
+    <h1 class="mt-3">View News/Blog <a href="{{route('blog.create')}}" class="btn btn-primary btn-sm"> <i class="fa fa-plus" aria-hidden="true"></i> Create News/Blog</a></h1>
     <div class="card mt-3">
         <div class="card-body table-responsive">
             <table class="table table-bordered yajra-datatable text-center">
