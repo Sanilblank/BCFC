@@ -30,10 +30,9 @@
                   <img class="img-fluid" src="{{Storage::disk('uploads')->url($selectedblog->image)}}" alt="" />
                 </div>
                 <div class="blog_details px-3">
-                  {{-- <h2 style="color: #2d2d2d">
-                    Second divided from form fish beast made every of seas all
-                    gathered us saying he our
-                  </h2> --}}
+                  <h2 style="color: #2d2d2d">
+                    {{$selectedblog->smalldesc}}
+                  </h2>
                   <ul class="blog-info-link mt-3 mb-4">
                     <li>
                         <i class="fa fa-user"></i>
@@ -493,11 +492,9 @@
                               >{{$item->title}}</a
                             >
                           </h2>
-                          {{-- <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Ad culpa, consectetur! Eligendi illo, repellat
-                            repudiandae cumque fugiat optio!
-                          </p> --}}
+                          <p>
+                            {{$item->smalldesc}}
+                          </p>
                         </div>
                       </div>
                     </div>

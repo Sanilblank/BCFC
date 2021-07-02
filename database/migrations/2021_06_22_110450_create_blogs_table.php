@@ -19,6 +19,7 @@ class CreateBlogsTable extends Migration
             $table->string('image');
             $table->json('tag');
             $table->string('date');
+            $table->longText('smalldesc');
             $table->longText('details');
             $table->integer('view_count')->default(0);
             $table->string('authorname');

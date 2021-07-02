@@ -92,6 +92,17 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
+                                                <label for="smalldesc">Small Description:</label>
+                                                <textarea name="smalldesc" class="form-control" cols="20" rows="3" placeholder="Something to give info about the post"></textarea>
+                                                @error('smalldesc')
+                                                    <p class="text-danger">{{$message}}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
                                                 <label for="details">Description:</label>
                                                 <textarea name="details" id="description" class="form-control" cols="30" rows="10" placeholder="Write something about the brand..."></textarea>
                                                 @error('details')

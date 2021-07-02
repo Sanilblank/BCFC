@@ -78,7 +78,7 @@
                   </div>
                 </article> --}}
                 @if (count($blogs) == 0)
-                    <h3>No news/blogs with this tag.</h3>
+                    <h3>No news/blogs found.</h3>
                 @endif
                 @foreach ($blogs as $blog)
                     <article class="blog_item" onclick="location.href='{{route('newsdetails', [$blog->id, Str::slug($blog->title)])}}'" style="cursor: pointer">
@@ -99,11 +99,9 @@
                             {{$blog->title}}
                             </h2>
                         </a>
-                        {{-- <p>
-                            That dominion stars lights dominion divide years for
-                            fourth have don't stars is that he earth it first without
-                            heaven in place seed it second morning saying.
-                        </p> --}}
+                        <p>
+                            {{$blog->smalldesc}}
+                        </p>
                         <ul class="blog-info-link">
 
                             <li>
@@ -321,11 +319,9 @@
                               >{{$item->title}}</a
                             >
                           </h2>
-                          {{-- <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Ad culpa, consectetur! Eligendi illo, repellat
-                            repudiandae cumque fugiat optio!
-                          </p> --}}
+                          <p>
+                            {{$item->smalldesc}}
+                          </p>
                         </div>
                       </div>
                     </div>

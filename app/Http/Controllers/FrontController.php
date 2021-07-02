@@ -68,7 +68,7 @@ class FrontController extends Controller
         ]);
 
         $searchword = $request['word'];
-        $blogs = Blog::where('status', 1)
+        $blogs = Blog::latest()->where('status', 1)
         ->where(function ($query) use ($searchword) {
             $query->where('title', 'LIKE', '%' . $searchword . '%')
                   ->orWhere('details', 'LIKE', '%' . $searchword . '%');

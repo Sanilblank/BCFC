@@ -396,12 +396,13 @@
         </div>
         <div class="row mt-5 ">
           <div class="col-md-6 col-lg-7">
-            <div class="site-blocks-cover overlay" style="background-image: url({{Storage::disk('uploads')->url($latestblog->image)}}); height: 466px;">
+            <div class="site-blocks-cover overlay" style="background-image: url({{Storage::disk('uploads')->url($latestblog->image)}}); height: 466px; cursor: pointer;" onclick="location.href='{{route('newsdetails', [$latestblog->id, Str::slug($latestblog->title)])}}'">
               <div class="container">
                 <div class="row align-items-center justify-content-start" style='height: auto;'>
                   <div class="col-md-6 text-center text-md-left" data-aos="fade-up" data-aos-delay="400">
                     {{-- <p><a href="#" class="btn btn-primary btn-sm rounded-0 px-3">Hero Section</a></p> --}}
                     <h1 class="">{{$latestblog->title}}</h1>
+                    <p>{{$latestblog->smalldesc}}</p>
                     <p><a href="{{route('newsdetails', [$latestblog->id, Str::slug($latestblog->title)])}}" class="border-bottom border-primary" style="color:white;">Read More</a></p>
                   </div>
                 </div>
@@ -453,8 +454,7 @@
                       <div class="text">
                         <span class="meta">{{date('F d, Y', strtotime($blog->date))}}</span>
                         <h3 class="mb-4"><a href="{{route('newsdetails', [$blog->id, Str::slug($blog->title)])}}">{{$blog->title}}</a></h3>
-                        {{-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad culpa, consectetur! Eligendi illo,
-                          repellat repudiandae cumque fugiat optio!</p> --}}
+                        <p>{{$blog->smalldesc}}</p>
 
                           <a href="{{route('newsdetails', [$blog->id, Str::slug($blog->title)])}}" class="border-bottom border-primary">Read More</a>
                       </div>
