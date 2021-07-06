@@ -11,17 +11,17 @@ class FrontController extends Controller
     //
     public function index()
     {
-        $latestblog = Blog::latest()->where('status', 1)->first();
-        $latestthreeblogs = Blog::latest()->where('status', 1)->where('id', '!=', $latestblog->id)->take(2)->get();
-        $latestblogs = Blog::latest()->where('status', 1)->skip(3)->take(16)->get();
+        $latestblog = Blog::latest()->where('status', 1)->where('draft', 0)->first();
+        $latestthreeblogs = Blog::latest()->where('status', 1)->where('id', '!=', $latestblog->id)->where('draft', 0)->take(2)->get();
+        $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->skip(3)->take(16)->get();
         return view('frontend.index', compact('latestthreeblogs', 'latestblogs', 'latestblog'));
     }
 
     public function getnews()
     {
-        $blogs = Blog::latest()->where('status', 1)->simplePaginate(5);
+        $blogs = Blog::latest()->where('status', 1)->where('draft', 0)->simplePaginate(5);
         $latesttags = BlogTag::latest()->take(10)->get();
-        $latestblogs = Blog::latest()->where('status', 1)->take(16)->get();
+        $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
 
         return view('frontend.news', compact('blogs', 'latesttags', 'latestblogs'));
     }
@@ -29,9 +29,9 @@ class FrontController extends Controller
     public function gettagnews($id, $slug)
     {
         $selectedtag = BlogTag::findorfail($id);
-        $blogs = Blog::latest()->where('status', 1)->whereJsonContains('tag', $id)->simplePaginate(5);
+        $blogs = Blog::latest()->where('status', 1)->where('draft', 0)->whereJsonContains('tag', $id)->simplePaginate(5);
         $latesttags = BlogTag::latest()->take(10)->get();
-        $latestblogs = Blog::latest()->where('status', 1)->take(16)->get();
+        $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
 
         return view('frontend.tagnews', compact('blogs', 'latesttags', 'selectedtag', 'latestblogs'));
     }
@@ -49,14 +49,14 @@ class FrontController extends Controller
     {
         $selectedblog = Blog::findorfail($id);
         $latesttags = BlogTag::latest()->take(10)->get();
-        $previousblog = Blog::where('id', '<', $id)->first();
-        $nextblog = Blog::where('id', '>', $id)->first();
+        $previousblog = Blog::where('id', '<', $id)->orderBy('id', 'DESC')->where('status', 1)->where('draft', 0)->first();
+        $nextblog = Blog::where('id', '>', $id)->orderBy('id', 'ASC')->where('status', 1)->where('draft', 0)->first();
 
         $selectedblog->update([
             'view_count' => $selectedblog->view_count + 1,
         ]);
 
-        $latestblogs = Blog::latest()->where('status', 1)->take(16)->get();
+        $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
 
         return view('frontend.news-details', compact('selectedblog', 'latesttags', 'previousblog', 'nextblog', 'latestblogs'));
     }
@@ -68,7 +68,7 @@ class FrontController extends Controller
         ]);
 
         $searchword = $request['word'];
-        $blogs = Blog::latest()->where('status', 1)
+        $blogs = Blog::latest()->where('status', 1)->where('draft', 0)
         ->where(function ($query) use ($searchword) {
             $query->where('title', 'LIKE', '%' . $searchword . '%')
                   ->orWhere('details', 'LIKE', '%' . $searchword . '%');
@@ -76,7 +76,7 @@ class FrontController extends Controller
         ->simplePaginate(5);
 
         $latesttags = BlogTag::latest()->take(10)->get();
-        $latestblogs = Blog::latest()->where('status', 1)->take(16)->get();
+        $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
 
         return view('frontend.searchednews', compact('blogs', 'latesttags', 'searchword', 'latestblogs'));
     }

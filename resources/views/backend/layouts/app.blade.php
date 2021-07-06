@@ -81,11 +81,12 @@
                       <li><a href="{{route('role.create')}}">Create Role</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-rss-square"></i>Blogs <span
+                  <li><a><i class="fa fa-rss-square"></i>News/Blogs <span
                     class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{ route('blog.index') }}">Our Blogs</a></li>
-                        <li><a href="{{ route('blog.create') }}">Create Blog</a></li>
+                        <li><a href="{{ route('blog.create') }}">Create News/Blog</a></li>
+                        <li><a href="{{ route('blog.index') }}">View News/Blogs</a></li>
+                        <li><a href="{{ route('draftblog.index') }}">View Drafts</a></li>
                     </ul>
                   </li>
                 </ul>

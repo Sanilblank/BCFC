@@ -13,5 +13,5 @@ class Blog extends Model
         'tag'=>'array',
     ];
 
-    protected $fillable = ['title', 'image', 'tag', 'date', 'smalldesc', 'details', 'view_count', 'authorname', 'authorimage', 'status'];
+    protected $fillable = ['title', 'image', 'tag', 'date', 'smalldesc', 'details', 'view_count', 'authorname', 'authorimage', 'status', 'draft'];
 }

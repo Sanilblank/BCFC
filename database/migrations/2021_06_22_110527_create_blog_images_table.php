@@ -18,7 +18,7 @@ class CreateBlogImagesTable extends Migration
             $table->string('location');
             $table->integer('blog_id');
             $table->integer('user_id');
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->timestamps();
         });
     }

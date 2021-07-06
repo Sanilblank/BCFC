@@ -46,6 +46,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
     //Blogs
     Route::resource('blog', BlogController::class);
+    Route::get('draftblog', [BlogController::class, 'draftblog'])->name('draftblog.index');
+    Route::get('draftblog/{id}/edit', [BlogController::class, 'draftblogedit'])->name('draftblog.edit');
+    Route::put('draftblog/{id}/update', [BlogController::class, 'draftblogupdate'])->name('draftblog.update');
+    Route::delete('draftblog/{id}/delete', [BlogController::class, 'draftblogdestroy'])->name('draftblog.destroy');
 
     //Settings
     Route::resource('setting', SettingController::class);

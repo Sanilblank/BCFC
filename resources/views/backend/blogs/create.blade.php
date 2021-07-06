@@ -119,6 +119,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <button type="submit" name="draft" class="btn btn-secondary">Create Draft</button>
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </form>
                             </div>
