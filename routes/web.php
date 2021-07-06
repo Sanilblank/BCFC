@@ -30,6 +30,8 @@ Route::get('/gettagnews/{id}/{slug}', [FrontController::class, 'gettagnews'])->n
 Route::get('/getauthornews/{name}', [FrontController::class, 'getauthornews'])->name('getauthornews');
 Route::get('/newsdetails/{id}/{slug}', [FrontController::class, 'newsdetails'])->name('newsdetails');
 Route::get('/search', [FrontController::class, 'pageSearch'])->name('page.search');
+Route::get('/aboutus', [FrontController::class, 'aboutus'])->name('aboutus');
+Route::get('/teaminfo', [FrontController::class, 'teaminfo'])->name('teaminfo');
 
 Auth::routes();
 

@@ -80,4 +80,14 @@ class FrontController extends Controller
 
         return view('frontend.searchednews', compact('blogs', 'latesttags', 'searchword', 'latestblogs'));
     }
+
+    public function aboutus()
+    {
+        return view('frontend.aboutus');
+    }
+
+    public function teaminfo()
+    {
+        return view('frontend.team');
+    }
 }

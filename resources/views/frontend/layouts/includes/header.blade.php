@@ -66,8 +66,8 @@
             </ul>
           </li>
           <li><a href="matches.html">Matches</a></li>
-          <li><a href="team.html">Team</a></li>
-          <li><a href="about.html">About</a></li>
+          <li><a href="{{route('teaminfo')}}">Team</a></li>
+          <li><a href="{{route('aboutus')}}">About</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>

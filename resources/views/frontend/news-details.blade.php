@@ -510,7 +510,7 @@
 
       <div
         class="site-section block-13 bg-primary fixed overlay-primary bg-image"
-        style="background-image: url('images/hero_bg_3.jpg')"
+        style="background-image: url('frontend/images/hero_bg_3.jpg')"
         data-stellar-background-ratio="0.5"
       >
         <div class="container-fluid">
