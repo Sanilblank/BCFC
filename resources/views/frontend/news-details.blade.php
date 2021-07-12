@@ -169,94 +169,75 @@
                 <h4>05 Comments</h4>
                 <div class="comment-list">
                   <div class="single-comment justify-content-between d-flex">
-                    <div class="user justify-content-between d-flex">
-                      <div class="thumb">
-                        <img src="{{asset('frontend/images/person_1.jpg')}}" alt="" />
-                      </div>
-                      <div class="desc">
-                        <p class="comment">
-                          Multiply sea night grass fourth day sea lesser rule
-                          open subdue female fill which them Blessed, give fill
-                          lesser bearing multiply sea night grass fourth day sea
-                          lesser
-                        </p>
-                        <div class="d-flex justify-content-between">
-                          <div class="d-flex align-items-center">
-                            <h5>
-                              <a href="#">Emilly Blunt</a>
-                            </h5>
-                            <p class="date">December 4, 2017 at 3:12 pm</p>
+                    <div class="row">
+                      <div class="user justify-content-between d-flex">
+                        <div class="thumb">
+                          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="" />
+                        </div>
+                        <div class="desc">
+                          <p class="comment">
+                            Multiply sea night grass fourth day sea lesser rule
+                            open subdue female fill which them Blessed, give
+                            fill lesser bearing multiply sea night grass fourth
+                            day sea lesser
+                          </p>
+                          <div class="d-flex justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <h5>
+                                <a href="#">Emilly Blunt</a>
+                              </h5>
+                              <p class="date">December 4, 2017 at 3:12 pm</p>
+                            </div>
+                            <div class="reply-btn">
+                              <a href="#" class="btn-reply text-uppercase"
+                                >reply</a
+                              >
+                            </div>
                           </div>
-                          <div class="reply-btn">
-                            <a href="#" class="btn-reply text-uppercase"
-                              >reply</a
-                            >
+                        </div>
+                      </div>
+                      <div
+                        class="
+                          user
+                          justify-content-between
+                          d-flex
+                          px-4
+                          bg-light
+                          p-3
+                        "
+                        style="margin-left: 85px"
+                      >
+                        <div class="thumb">
+                          <img src="images/person_1.jpg" alt="" />
+                        </div>
+                        <div class="desc">
+                          <p class="comment">
+                            Multiply sea night grass fourth day sea lesser rule
+                            open subdue female fill which them Blessed, give
+                            fill lesser bearing multiply sea night grass fourth
+                            day sea lesser
+                          </p>
+                          <div class="d-flex justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <h5>
+                                <a href="#">Biratnagar FC</a>
+                              </h5>
+                              <p class="date">December 4, 2017 at 3:12 pm</p>
+                            </div>
+                            <div class="reply-btn">
+                              <a href="#" class="btn-reply text-uppercase"
+                                >reply</a
+                              >
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="comment-list">
-                  <div class="single-comment justify-content-between d-flex">
-                    <div class="user justify-content-between d-flex">
-                      <div class="thumb">
-                        <img src="{{asset('frontend/images/person_3.jpg')}}" alt="" />
-                      </div>
-                      <div class="desc">
-                        <p class="comment">
-                          Multiply sea night grass fourth day sea lesser rule
-                          open subdue female fill which them Blessed, give fill
-                          lesser bearing multiply sea night grass fourth day sea
-                          lesser
-                        </p>
-                        <div class="d-flex justify-content-between">
-                          <div class="d-flex align-items-center">
-                            <h5>
-                              <a href="#">Emilly Blunt</a>
-                            </h5>
-                            <p class="date">December 4, 2017 at 3:12 pm</p>
-                          </div>
-                          <div class="reply-btn">
-                            <a href="#" class="btn-reply text-uppercase"
-                              >reply</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="comment-list">
-                  <div class="single-comment justify-content-between d-flex">
-                    <div class="user justify-content-between d-flex">
-                      <div class="thumb">
-                        <img src="{{asset('frontend/images/person_4.jpg')}}" alt="" />
-                      </div>
-                      <div class="desc">
-                        <p class="comment">
-                          Multiply sea night grass fourth day sea lesser rule
-                          open subdue female fill which them Blessed, give fill
-                          lesser bearing multiply sea night grass fourth day sea
-                          lesser
-                        </p>
-                        <div class="d-flex justify-content-between">
-                          <div class="d-flex align-items-center">
-                            <h5>
-                              <a href="#">Emilly Blunt</a>
-                            </h5>
-                            <p class="date">December 4, 2017 at 3:12 pm</p>
-                          </div>
-                          <div class="reply-btn">
-                            <a href="#" class="btn-reply text-uppercase"
-                              >reply</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
+
+
               </div>
               <div class="comment-form">
                 <h4>Leave a Reply</h4>

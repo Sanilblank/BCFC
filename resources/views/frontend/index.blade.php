@@ -6,6 +6,11 @@
 @section('content')
 
   <div class="site-wrap">
+  <div class="icon-bar">
+  <a href="#" class="facebook"><i class="fab fa-facebook"></i></a> 
+  <a href="#" class="twitter"><i class="fab fa-twitter"></i></a> 
+  <a href="#" class="google"><i class="fab fa-google"></i></a> 
+</div>
     <div class="slide-one-item home-slider owl-carousel">
       <div class="site-blocks-cover overlay" style="background-image: url(frontend/images/hero_bg_2.jpg);" data-aos="fade"
         data-stellar-background-ratio="0.5">

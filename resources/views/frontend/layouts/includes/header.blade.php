@@ -11,7 +11,7 @@
   </div>
 
   <header class="site-navbar absolute transparent" role="banner">
-    <div class="pb-3 ">
+    <!-- <div class="pb-3 ">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-6 col-md-3">
@@ -30,40 +30,24 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <nav class="site-navigation position-relative text-right text-md-right" role="navigation">
       <div class="container position-relative">
         <div class="site-logo">
-          <a href="{{route('index')}}"><img src="{{asset('frontend/images/logo.png')}}" alt="" style="max-height: 120px;"></a>
+          <a href="{{route('index')}}"><img src="{{asset('frontend/images/logo.png')}}" alt="" style="max-height: 135px;"></a>
         </div>
 
         <div class="d-inline-block d-md-none ml-md-0 mr-auto py-3"><a href="#"
             class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
-        <ul class="site-menu js-clone-nav d-none d-md-block">
+        <ul class="site-menu js-clone-nav d-none d-md-block py-2">
           <li class="has-children active">
             <a href="{{route('index')}}">Home</a>
-            <ul class="dropdown arrow-top">
-              <li><a href="#">Menu One</a></li>
-              <li><a href="#">Menu Two</a></li>
-              <li><a href="#">Menu Three</a></li>
-              <li class="has-children">
-                <a href="#">Sub Menu</a>
-                <ul class="dropdown">
-                  <li><a href="#">Menu One</a></li>
-                  <li><a href="#">Menu Two</a></li>
-                  <li><a href="#">Menu Three</a></li>
-                </ul>
-              </li>
-            </ul>
+          
           </li>
           <li class="has-children">
-            <a href="{{route('getnews')}}">News</a>
-            <ul class="dropdown arrow-top">
-              <li><a href="#">Menu One</a></li>
-              <li><a href="#">Menu Two</a></li>
-              <li><a href="#">Menu Three</a></li>
-            </ul>
+            <a href="{{route('getnews')}}">News</a>n 
+          
           </li>
           <li><a href="matches.html">Matches</a></li>
           <li><a href="{{route('teaminfo')}}">Team</a></li>
