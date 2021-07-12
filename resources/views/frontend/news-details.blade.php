@@ -166,88 +166,260 @@
                 </div>
               </div>
               <div class="comments-area">
-                <h4>05 Comments</h4>
+                <h4>{{$noofcomments}} Comments</h4>
+                @if ($noofcomments > 0)
                 <div class="comment-list">
-                  <div class="single-comment justify-content-between d-flex">
-                    <div class="row">
-                      <div class="user justify-content-between d-flex">
-                        <div class="thumb">
-                          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="" />
-                        </div>
-                        <div class="desc">
-                          <p class="comment">
-                            Multiply sea night grass fourth day sea lesser rule
-                            open subdue female fill which them Blessed, give
-                            fill lesser bearing multiply sea night grass fourth
-                            day sea lesser
-                          </p>
-                          <div class="d-flex justify-content-between">
-                            <div class="d-flex align-items-center">
-                              <h5>
-                                <a href="#">Emilly Blunt</a>
-                              </h5>
-                              <p class="date">December 4, 2017 at 3:12 pm</p>
+
+                    @foreach ($comments as $comment)
+                    <div class="single-comment justify-content-between d-flex mb-5">
+                        <div class="row">
+                          <div class="user justify-content-between d-flex">
+                            <div class="thumb">
+                              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="" />
                             </div>
-                            <div class="reply-btn">
-                              <a href="#" class="btn-reply text-uppercase"
-                                >reply</a
-                              >
+                            <div class="desc">
+                              <p class="comment">
+                                {{$comment->comment}}
+                              </p>
+                              <div class="d-flex justify-content-between">
+                                <div class="d-flex align-items-center">
+                                  <h5>
+                                    <a href="#">{{$comment->name}}</a>
+                                  </h5>
+                                  <p class="date">{{date('F d, Y', strtotime($comment->created_at))}} at {{date('h:i a', strtotime($comment->created_at))}}</p>
+                                </div>
+                                @if (count($comment->enabledreplies) > 0)
+                                  <div class="reply-btn">
+                                    <a class="btn-reply" data-toggle="collapse" href="#collapseExample{{$comment->id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{$comment->id}}">
+                                        View Replies
+                                    </a>
+                                  </div>
+                                @endif
+                                <div class="reply-btn">
+                                    <a href="#" class="btn-reply text-uppercase" data-toggle="modal" data-target="#addreplymodal{{$comment->id}}"
+                                        >reply</a
+                                    >
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="addreplymodal{{$comment->id}}" tabindex="-1" role="dialog" aria-labelledby="addreplymodalLabel{{$comment->id}}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h3 class="modal-title" id="addreplymodalLabel{{$comment->id}}">Leave a Reply</h3>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <form action="{{route('page.reply')}}" method="POST">
+                                                @csrf
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <input type="hidden" name="comment_id" value="{{$comment->id}}">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label for="name">Name: </label>
+                                                                <input type="text" name="name" class="form-control" value="{{old('name')}}">
+                                                                @error('name')
+                                                                    <p class="text-danger">{{$message}}</p>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label for="email">Email: </label>
+                                                                <input type="text" name="email" class="form-control" value="{{old('email')}}">
+                                                                @error('email')
+                                                                    <p class="text-danger">{{$message}}</p>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label for="reply">Reply: </label>
+                                                                <textarea class="form-control" rows="5" name="reply"></textarea>
+                                                                @error('reply')
+                                                                    <p class="text-danger">{{$message}}</p>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-success">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                      <div
-                        class="
-                          user
-                          justify-content-between
-                          d-flex
-                          px-4
-                          bg-light
-                          p-3
-                        "
-                        style="margin-left: 85px"
-                      >
-                        <div class="thumb">
-                          <img src="images/person_1.jpg" alt="" />
-                        </div>
-                        <div class="desc">
-                          <p class="comment">
-                            Multiply sea night grass fourth day sea lesser rule
-                            open subdue female fill which them Blessed, give
-                            fill lesser bearing multiply sea night grass fourth
-                            day sea lesser
-                          </p>
-                          <div class="d-flex justify-content-between">
-                            <div class="d-flex align-items-center">
-                              <h5>
-                                <a href="#">Biratnagar FC</a>
-                              </h5>
-                              <p class="date">December 4, 2017 at 3:12 pm</p>
-                            </div>
-                            <div class="reply-btn">
-                              <a href="#" class="btn-reply text-uppercase"
-                                >reply</a
-                              >
-                            </div>
+                          <div class="collapse user justify-content-between px-4 bg-light p-3" style="margin-left: 85px" id="collapseExample{{$comment->id}}">
+                            @foreach ($comment->enabledreplies as $reply)
+                              <div class="desc mb-3">
+                                <p class="comment">
+                                  {{$reply->reply}}
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                  <div class="d-flex align-items-center">
+                                    <h5>
+                                      <a href="#">{{$reply->name}}</a>
+                                    </h5>
+                                    <p class="date">{{date('F d, Y', strtotime($reply->created_at))}} at {{date('h:i a', strtotime($reply->created_at))}}</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr>
+                            @endforeach
+
                           </div>
+
                         </div>
-                      </div>
                     </div>
-                  </div>
+                    <hr>
+                    @endforeach
+                    @if ($othercomments != "None")
+                    <div id="othercomments" style="display: none;">
+                        @foreach ($othercomments as $comment)
+                        <div class="single-comment justify-content-between d-flex mb-5">
+                            <div class="row">
+                            <div class="user justify-content-between d-flex">
+                                <div class="thumb">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="" />
+                                </div>
+                                <div class="desc">
+                                <p class="comment">
+                                    {{$comment->comment}}
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                    <h5>
+                                        <a href="#">{{$comment->name}}</a>
+                                    </h5>
+                                    <p class="date">{{date('F d, Y', strtotime($comment->created_at))}} at {{date('h:i a', strtotime($comment->created_at))}}</p>
+                                    </div>
+                                    @if (count($comment->enabledreplies) > 0)
+                                    <div class="reply-btn">
+                                        <a class="btn-reply" data-toggle="collapse" href="#collapseExample{{$comment->id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{$comment->id}}">
+                                            View Replies
+                                        </a>
+                                    </div>
+                                    @endif
+                                    <div class="reply-btn">
+                                        <a href="#" class="btn-reply text-uppercase" data-toggle="modal" data-target="#addreplymodal{{$comment->id}}"
+                                            >reply</a
+                                        >
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="addreplymodal{{$comment->id}}" tabindex="-1" role="dialog" aria-labelledby="addreplymodalLabel{{$comment->id}}" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h3 class="modal-title" id="addreplymodalLabel{{$comment->id}}">Leave a Reply</h3>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <form action="{{route('page.reply')}}" method="POST">
+                                                    @csrf
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <input type="hidden" name="comment_id" value="{{$comment->id}}">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label for="name">Name: </label>
+                                                                    <input type="text" name="name" class="form-control" value="{{old('name')}}">
+                                                                    @error('name')
+                                                                        <p class="text-danger">{{$message}}</p>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label for="email">Email: </label>
+                                                                    <input type="text" name="email" class="form-control" value="{{old('email')}}">
+                                                                    @error('email')
+                                                                        <p class="text-danger">{{$message}}</p>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label for="reply">Reply: </label>
+                                                                    <textarea class="form-control" rows="5" name="reply"></textarea>
+                                                                    @error('reply')
+                                                                        <p class="text-danger">{{$message}}</p>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-success">Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="collapse user justify-content-between px-4 bg-light p-3" style="margin-left: 85px" id="collapseExample{{$comment->id}}">
+                                @foreach ($comment->enabledreplies as $reply)
+                                <div class="desc mb-3">
+                                    <p class="comment">
+                                    {{$reply->reply}}
+                                    </p>
+                                    <div class="d-flex justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <h5>
+                                        <a href="#">{{$reply->name}}</a>
+                                        </h5>
+                                        <p class="date">{{date('F d, Y', strtotime($reply->created_at))}} at {{date('h:i a', strtotime($reply->created_at))}}</p>
+                                    </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                @endforeach
+
+                            </div>
+
+                            </div>
+                        </div>
+                        <hr>
+                    @endforeach
+                    </div>
+
+                    @endif
+
                 </div>
+                @else
+                    <p>No Comments</p>
+                @endif
+                @if ($othercomments != "None")
+                    <div class="col-md-8">
+                        <button class="btn" id="toggle">View All Comments</button>
+                    </div>
+                @endif
+
 
 
 
               </div>
               <div class="comment-form">
-                <h4>Leave a Reply</h4>
-                <form
+                <h4>Leave a Comment</h4>
+                <form action="{{route('page.comment')}}" method="POST"
                   class="form-contact comment_form"
-                  action="#"
                   id="commentForm"
                 >
+                @csrf
                   <div class="row">
                     <div class="col-12">
+                        <input type="hidden" name="blog_id" value="{{$selectedblog->id}}">
                       <div class="form-group">
                         <textarea
                           class="form-control w-100"
@@ -257,6 +429,9 @@
                           rows="9"
                           placeholder="Write Comment"
                         ></textarea>
+                        @error('comment')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                       </div>
                     </div>
                     <div class="col-sm-6">
@@ -268,6 +443,9 @@
                           type="text"
                           placeholder="Name"
                         />
+                        @error('name')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                       </div>
                     </div>
                     <div class="col-sm-6">
@@ -279,17 +457,9 @@
                           type="email"
                           placeholder="Email"
                         />
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="form-group">
-                        <input
-                          class="form-control"
-                          name="website"
-                          id="website"
-                          type="text"
-                          placeholder="Website"
-                        />
+                        @error('email')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
                       </div>
                     </div>
                   </div>
@@ -534,5 +704,15 @@
 
 @endsection
 @push('scripts')
-
+<script>
+    const targetDiv = document.getElementById("othercomments");
+    const btn = document.getElementById("toggle");
+    btn.onclick = function () {
+    if (targetDiv.style.display !== "none") {
+        targetDiv.style.display = "none";
+    } else {
+        targetDiv.style.display = "block";
+    }
+    };
+</script>
 @endpush

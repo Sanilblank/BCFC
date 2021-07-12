@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
@@ -32,6 +33,8 @@ Route::get('/newsdetails/{id}/{slug}', [FrontController::class, 'newsdetails'])-
 Route::get('/search', [FrontController::class, 'pageSearch'])->name('page.search');
 Route::get('/aboutus', [FrontController::class, 'aboutus'])->name('aboutus');
 Route::get('/teaminfo', [FrontController::class, 'teaminfo'])->name('teaminfo');
+Route::post('/comments/add', [FrontController::class, 'addComment'])->name('page.comment');
+Route::post('/reply/add', [FrontController::class, 'addReply'])->name('page.reply');
 
 Auth::routes();
 
@@ -55,6 +58,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
     //Settings
     Route::resource('setting', SettingController::class);
+
+    //Comments
+    Route::resource('comment', CommentController::class);
+    Route::get('reply/{id}', [CommentController::class, 'viewreplies'])->name('comment.reply');
+    Route::put('disablecomment/{id}', [CommentController::class, 'disablecomment'])->name('comment.disablecomment');
+    Route::put('enablecomment/{id}', [CommentController::class, 'enablecomment'])->name('comment.enablecomment');
+    Route::put('disablereply/{id}', [CommentController::class, 'disablereply'])->name('comment.disablereply');
+    Route::put('enablereply/{id}', [CommentController::class, 'enablereply'])->name('comment.enablereply');
 
 });
 

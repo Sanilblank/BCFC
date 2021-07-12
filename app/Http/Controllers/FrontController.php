@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\BlogTag;
+use App\Models\Comment;
+use App\Models\Reply;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -58,7 +60,18 @@ class FrontController extends Controller
 
         $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
 
-        return view('frontend.news-details', compact('selectedblog', 'latesttags', 'previousblog', 'nextblog', 'latestblogs'));
+        $noofcomments = Comment::where('blog_id', $selectedblog->id)->where('status', 1)->count();
+        $comments = Comment::latest()->where('blog_id', $selectedblog->id)->where('status', 1)->with('replies', 'enabledreplies')->take(10)->get();
+        if($noofcomments > 10)
+        {
+            $othercomments = Comment::latest()->where('blog_id', $selectedblog->id)->where('status', 1)->with('replies', 'enabledreplies')->skip(1)->take($noofcomments - 10)->get();
+        }
+        else
+        {
+            $othercomments = "None";
+        }
+
+        return view('frontend.news-details', compact('selectedblog', 'latesttags', 'previousblog', 'nextblog', 'latestblogs', 'noofcomments', 'comments', 'othercomments'));
     }
 
     public function pageSearch(Request $request)
@@ -87,8 +100,52 @@ class FrontController extends Controller
         return view('frontend.aboutus', compact('latestblogs'));
     }
 
+    public function addComment(Request $request)
+    {
+        $data = $this->validate($request, [
+            'blog_id' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'comment' => 'required',
+        ]);
+
+        $comment = Comment::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'comment' => $data['comment'],
+            'status' => 1,
+            'blog_id' => $data['blog_id']
+        ]);
+
+        $comment->save();
+        return redirect()->back()->with('success', 'Comment Added.');
+    }
+
+    public function addReply(Request $request)
+    {
+        $data = $this->validate($request, [
+            'comment_id' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'reply' => 'required',
+        ]);
+
+        $reply = Reply::create([
+            'comment_id' => $data['comment_id'],
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'reply' => $data['reply'],
+            'status' => 1,
+        ]);
+
+        $reply->save();
+        return redirect()->back()->with('success', 'Reply Added.');
+    }
+
     public function teaminfo()
     {
         return view('frontend.team');
     }
+
+
 }
