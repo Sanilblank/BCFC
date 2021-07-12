@@ -83,7 +83,8 @@ class FrontController extends Controller
 
     public function aboutus()
     {
-        return view('frontend.aboutus');
+        $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
+        return view('frontend.aboutus', compact('latestblogs'));
     }
 
     public function teaminfo()

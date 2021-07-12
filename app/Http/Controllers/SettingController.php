@@ -83,6 +83,10 @@ class SettingController extends Controller
             'headerImage' => 'mimes:jpg,png,jpeg',
             'footerImage' => 'mimes:jpeg,png,jpg',
             'aboutus' => 'required',
+            'ourvalues' => 'required',
+            'wordsfromcoach' => 'required',
+            'ourvaluesimage' => 'mimes:jpg,png,jpeg',
+            'wordsfromcoachimage' => 'mimes:jpg,png,jpeg',
             'address' => 'required',
             'phone' => 'required',
             'email' => 'required|email',
@@ -104,6 +108,22 @@ class SettingController extends Controller
             $footerimage = $setting->footerImage;
         }
 
+        $ourvaluesimage = '';
+        if ($request->hasFile('ourvaluesimage')) {
+            Storage::disk('uploads')->delete($setting->ourvaluesimage);
+            $ourvaluesimage = $request->file('ourvaluesimage')->store('ourvalues_image', 'uploads');
+        } else {
+            $ourvaluesimage = $setting->ourvaluesimage;
+        }
+
+        $wordsfromcoachimage = '';
+        if ($request->hasFile('wordsfromcoachimage')) {
+            Storage::disk('uploads')->delete($setting->wordsfromcoachimage);
+            $wordsfromcoachimage = $request->file('wordsfromcoachimage')->store('wordsfromcoach_image', 'uploads');
+        } else {
+            $wordsfromcoachimage = $setting->wordsfromcoachimage;
+        }
+
         $setting->update([
             'sitename' => $data['sitename'],
             'headerImage' => $headerimage,
@@ -113,6 +133,10 @@ class SettingController extends Controller
             'twitter' => $request['twitter'],
             'instagram' => $request['instagram'],
             'aboutus' => $data['aboutus'],
+            'ourvalues' => $data['ourvalues'],
+            'wordsfromcoach' => $data['wordsfromcoach'],
+            'ourvaluesimage' => $ourvaluesimage,
+            'wordsfromcoachimage' => $wordsfromcoachimage,
             'address' => $data['address'],
             'phone' => $data['phone'],
             'email' => $data['email'],

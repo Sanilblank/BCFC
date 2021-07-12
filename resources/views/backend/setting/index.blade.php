@@ -66,6 +66,9 @@
                                         <div class="col-md-10">
                                             <input type="text" name="sitename" class="form-control"
                                                 value="{{ $setting->sitename }}">
+                                                @error('sitename')
+                                                    <p class="text-danger">{{$message}}</p>
+                                                @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -77,11 +80,15 @@
                                         </div>
                                         <div class="col-md-8">
                                             <input type="file" name="headerImage" class="form-control">
+                                            @error('headerImage')
+                                                <p class="text-danger">{{$message}}</p>
+                                            @enderror
                                         </div>
                                         <div class="col-md-2">
                                             <label for="currentimage">Current Header Image</label>
                                             <img src="{{ Storage::disk('uploads')->url($setting->headerImage) }}"
                                                 style='max-width: 100px;'>
+
                                         </div>
                                     </div>
                                 </div>
@@ -93,6 +100,9 @@
                                         </div>
                                         <div class="col-md-8">
                                             <input type="file" name="footerImage" class="form-control">
+                                            @error('footerImage')
+                                                <p class="text-danger">{{$message}}</p>
+                                            @enderror
                                         </div>
                                         <div class="col-md-2">
                                             <label for="currentlogo">Current Footer Image</label>
@@ -112,6 +122,9 @@
                                         <div class="col-md-10">
                                             <input type="text" name="facebook" class="form-control"
                                                 value="{{ $setting->facebook }}">
+                                            @error('facebook')
+                                                <p class="text-danger">{{$message}}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -124,6 +137,9 @@
                                         <div class="col-md-10">
                                             <input type="text" name="linkedin" class="form-control"
                                                 value="{{ $setting->linkedin }}">
+                                            @error('linkedin')
+                                                <p class="text-danger">{{$message}}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -136,6 +152,9 @@
                                         <div class="col-md-10">
                                             <input type="text" name="twitter" class="form-control"
                                                 value="{{ $setting->twitter }}">
+                                            @error('twitter')
+                                                <p class="text-danger">{{$message}}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -148,15 +167,92 @@
                                         <div class="col-md-10">
                                             <input type="text" name="instagram" class="form-control"
                                                 value="{{ $setting->instagram }}">
+                                            @error('instagram')
+                                                <p class="text-danger">{{$message}}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="tab-pane" id="tab_3">
-                                <div class="form-group">
-                                    <textarea name="aboutus"
-                                        id="summernote">{{ $setting->aboutus }}</textarea>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+
+                                            <h4>About Us Section:</h4>
+                                            <hr>
+                                            <textarea name="aboutus"
+                                            id="summernote">{{ $setting->aboutus }}</textarea>
+                                            @error('aboutus')
+                                                <p class="text-danger">{{$message}}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-5">
+                                    <div class="col-md-12">
+
+                                        <div class="form-group">
+
+                                            <h4>Our Values Section:</h4>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label for="ourvaluesimage">Select an Image</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="file" name="ourvaluesimage" class="form-control">
+                                                        @error('ourvaluesimage')
+                                                            <p class="text-danger">{{$message}}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <textarea name="ourvalues"
+                                                    id="summernote1">{{ $setting->ourvalues }}</textarea>
+                                                    @error('ourvalues')
+                                                        <p class="text-danger">{{$message}}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-5">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+
+                                            <h4>Words From Coach Section:</h4>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label for="wordsfromcoachimage">Select an Image</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="file" name="wordsfromcoachimage" class="form-control">
+                                                        @error('wordsfromcoachimage')
+                                                            <p class="text-danger">{{$message}}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <textarea name="wordsfromcoach"
+                                                    id="summernote2">{{ $setting->wordsfromcoach }}</textarea>
+                                                    @error('wordsfromcoach')
+                                                        <p class="text-danger">{{$message}}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -169,6 +265,9 @@
                                         <div class="col-md-10">
                                             <input type="text" name="address" class="form-control"
                                                 value="{{ $setting->address }}">
+                                            @error('address')
+                                                <p class="text-danger">{{$message}}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -181,6 +280,9 @@
                                         <div class="col-md-10">
                                             <input type="text" name="phone" class="form-control"
                                                 value="{{ $setting->phone }}">
+                                            @error('phone')
+                                                <p class="text-danger">{{$message}}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -193,6 +295,9 @@
                                         <div class="col-md-10">
                                             <input type="text" name="email" class="form-control"
                                                 value="{{ $setting->email }}">
+                                            @error('email')
+                                                <p class="text-danger">{{$message}}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -212,7 +317,41 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <script type="text/javascript">
         $('#summernote').summernote({
-            height: 300,
+            height: 200,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontname', ['fontname']],
+                ['height', ['height']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ],
+        });
+
+        $('#summernote1').summernote({
+            height: 200,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontname', ['fontname']],
+                ['height', ['height']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ],
+        });
+
+        $('#summernote2').summernote({
+            height: 200,
             toolbar: [
                 ['style', ['style']],
                 ['font', ['bold', 'underline', 'clear']],

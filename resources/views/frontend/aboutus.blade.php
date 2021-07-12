@@ -46,22 +46,15 @@
           <div class="row no-gutters">
             <div class="col-lg-6">
               <div class="about-content-img text-white pl-5">
-                <img src="{{asset('frontend/images/hero_bg_1.jpg')}}" alt="" class="img-fluid" />
+                <img src="{{Storage::disk('uploads')->url($setting->ourvaluesimage)}}" alt="" class="img-fluid" />
               </div>
             </div>
             <div class="col-lg-6 align-self-center" style="padding-left: 50px">
               <div class="about-content text-white">
                 <h2>Our Values</h2>
-                <p>
-                  Thunder Basketball Club was initially founded in 1961. The
-                  organization was created with an agreement between Delaney
-                  Michaelson and John Doe.<br />
-                  With the years we were growing and in 1992 we have started the
-                  first female basketball team. We have expanded the horizons
-                  and now we are constantly training players for junior and
-                  college leagues. Thunder Basketball Club is now one of the
-                  largest clubs in the Southeast with over 40 Teams.
-                </p>
+
+                  {!! $setting->ourvalues !!}
+
               </div>
             </div>
           </div>
@@ -146,7 +139,7 @@
                   <div class="row">
                     <div class="col-lg-12">
                       <div class="row d-flex justify-content-between">
-                   
+
                         <div class="col-lg-12 col-md-12">
                           <div class="properties__button">
                             <!--Nav Button  -->
@@ -186,8 +179,8 @@
                                   aria-selected="false"
                                   >Technical Staffs</a
                                 >
-                      
-                   
+
+
                               </div>
                             </nav>
                             <!--End Nav Button  -->
@@ -213,7 +206,7 @@
                                         <img src="{{asset('frontend/images/img_1.jpg')}}" alt="" />
                                       </div>
                                       <div class="what-cap">
-                                    
+
                                         <h4>
                                           <a href="#"
                                             >John Doe</a
@@ -229,7 +222,7 @@
                                         <img src="{{asset('frontend/images/img_1.jpg')}}" alt="" />
                                       </div>
                                       <div class="what-cap">
-                                    
+
                                         <h4>
                                           <a href="#"
                                             >John Doe</a
@@ -239,14 +232,14 @@
                                       </div>
                                     </div>
                                   </div>
-                    
+
                                 </div>
                               </div>
                             </div>
-                   
-                  
-            
-                 
+
+
+
+
                           </div>
                           <!-- End Nav Card -->
                         </div>
@@ -267,18 +260,12 @@
             <div class="col-lg-6 align-self-center">
               <div class="about-content">
                 <h2>Words from the Coach</h2>
-                <p>
-                  Thunder Basketball Club was initially founded in 1961. The
-                  organization was created with an agreement between Delaney
-                  Michaelson and John Doe.<br />
-                  With the years we were growing and in 1992 we have started the
-                  first female basketball team. We have expanded the horizons
-                </p>
+                {!! $setting->wordsfromcoach !!}
               </div>
             </div>
             <div class="col-lg-6">
               <div class="about-content-img">
-                <img src="{{asset('frontend/images/hero_bg_2.jpg')}}" class="img-fluid" alt="" />
+                <img src="{{Storage::disk('uploads')->url($setting->wordsfromcoachimage)}}" class="img-fluid" alt="" />
               </div>
             </div>
           </div>
@@ -297,374 +284,30 @@
 
           <div class="row pt-5 px-3">
             <div class="nonloop-block-13 owl-carousel">
-              <div class="item">
-                <!-- uses .block-12 -->
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
+                @foreach ($latestblogs as $item)
+                <div class="item" onclick="location.href='{{route('newsdetails', [$item->id, Str::slug($item->title)])}}'" style="cursor: pointer">
+                    <!-- uses .block-12 -->
+                    <div class="block-12">
+                      <figure>
+                        <img src="{{Storage::disk('uploads')->url($item->image)}}" alt="Image" class="img-fluid" />
+                      </figure>
+                      <div class="text">
+                        <span class="meta">{{date('F d, Y', strtotime($item->date))}}</span>
+                        <div class="text-inner">
+                          <h2 class="heading mb-3">
+                            <a href="#" class="text-black"
+                              >{{$item->title}}</a
+                            >
+                          </h2>
+                          <p>
+                            {{$item->smalldesc}}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                @endforeach
 
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <!-- uses .block-12 -->
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <!-- uses .block-12 -->
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_1.jpg')}}')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <!-- uses .block-12 -->
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_1.jpg')}}')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

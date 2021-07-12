@@ -23,6 +23,10 @@ class CreateSettingsTable extends Migration
             $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
             $table->longText('aboutus');
+            $table->longText('ourvalues');
+            $table->longText('wordsfromcoach');
+            $table->string('ourvaluesimage');
+            $table->string('wordsfromcoachimage');
             $table->string('address');
             $table->string('phone');
             $table->string('email');
