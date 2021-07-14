@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{asset('frontend/css/jquery-ui.css')}}" />
     <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.min.css')}}" />
     <link rel="stylesheet" href="{{asset('frontend/css/owl.theme.default.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('frontend/css/fancybox.min.css')}}" />
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -46,6 +47,9 @@
     />
     <link rel="stylesheet" href="{{asset('frontend/css/aos.css')}}" />
 
+
+
+
     <!-- 
     font-family: 'Anton', sans-serif;
 font-family: 'Roboto Condensed', sans-serif; -->
@@ -72,6 +76,7 @@ font-family: 'Roboto Condensed', sans-serif; -->
     <script src="{{asset('frontend/js/jquery.countdown.min.js')}}"></script>
     <script src="{{asset('frontend/js/jquery.magnific-popup.min.js')}}"></script>
     <script src="{{asset('frontend/js/aos.js')}}"></script>
+    <script src="{{asset('frontend/js/jquery.fancybox.min.js')}}"></script>
 
     <script src="{{asset('frontend/js/main.js')}}"></script>
     @stack('scripts')
