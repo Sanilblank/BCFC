@@ -89,6 +89,14 @@
                         <li><a href="{{ route('draftblog.index') }}">View Drafts</a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-futbol-o"></i>Team <span
+                    class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('teamposition.index') }}">Positions</a></li>
+                        <li><a href="{{ route('teammember.index') }}">Team Members</a></li>
+
+                    </ul>
+                  </li>
                 </ul>
               </div>
               <div class="menu_section">

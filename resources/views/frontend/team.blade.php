@@ -44,6 +44,8 @@
                                 id="nav-tab"
                                 role="tablist"
                               >
+
+                                @if (count($teampositions) > 0)
                                 <a
                                   class="nav-item nav-link active"
                                   id="nav-home-tab"
@@ -54,46 +56,32 @@
                                   aria-selected="true"
                                   >All</a
                                 >
-                                <a
-                                  class="nav-item nav-link"
-                                  id="nav-profile-tab"
-                                  data-toggle="tab"
-                                  href="#nav-profile"
-                                  role="tab"
-                                  aria-controls="nav-profile"
-                                  aria-selected="false"
-                                  >Goalkeeper</a
-                                >
-                                <a
-                                  class="nav-item nav-link"
-                                  id="nav-contact-tab"
-                                  data-toggle="tab"
-                                  href="#nav-contact"
-                                  role="tab"
-                                  aria-controls="nav-contact"
-                                  aria-selected="false"
-                                  >Defender</a
-                                >
-                                <a
-                                  class="nav-item nav-link"
-                                  id="nav-last-tab"
-                                  data-toggle="tab"
-                                  href="#nav-last"
-                                  role="tab"
-                                  aria-controls="nav-contact"
-                                  aria-selected="false"
-                                  >Midfield</a
-                                >
-                                <a
-                                  class="nav-item nav-link"
-                                  id="nav-Sports"
-                                  data-toggle="tab"
-                                  href="#nav-nav-Sport"
-                                  role="tab"
-                                  aria-controls="nav-contact"
-                                  aria-selected="false"
-                                  >Forward</a
-                                >
+                                @foreach ($teampositions as $position)
+                                    <a
+                                        class="nav-item nav-link"
+                                        id="nav-profile-tab"
+                                        data-toggle="tab"
+                                        href="#{{$position->slug}}"
+                                        role="tab"
+                                        aria-controls="nav-profile"
+                                        aria-selected="false"
+                                        >{{$position->name}}</a
+                                    >
+                                @endforeach
+                                {{-- <a
+                                class="nav-item nav-link"
+                                id="nav-profile-tab"
+                                data-toggle="tab"
+                                href="#nav-profile"
+                                role="tab"
+                                aria-controls="nav-profile"
+                                aria-selected="false"
+                                >Goalkeeper</a
+                              > --}}
+
+                                @endif
+
+
                               </div>
                             </nav>
                             <!--End Nav Button  -->
@@ -103,192 +91,109 @@
                       <div class="row">
                         <div class="col-12">
                           <!-- Nav Card -->
-                          <div class="tab-content" id="nav-tabContent">
-                            <!-- card one -->
-                            <div
-                              class="tab-pane fade show active"
-                              id="nav-home"
-                              role="tabpanel"
-                              aria-labelledby="nav-home-tab"
-                            >
-                              <div class="whats-news-caption">
-                                <div class="row">
-                                  <div class="col-lg-4 col-md-6">
-                                    <div class="single-what-news mb-4">
-                                      <div class="card-person">
-                                        <div class="imgBx">
-                                          <img
-                                            src="https://pngimg.com/uploads/football_player/football_player_PNG122.png"
-                                          />
+                          @if (count($teammembers) > 0)
+                            <div class="tab-content" id="nav-tabContent">
+                                <!-- card one -->
+                                <div
+                                class="tab-pane fade show active"
+                                id="nav-home"
+                                role="tabpanel"
+                                aria-labelledby="nav-home-tab">
+                                <div class="whats-news-caption">
+                                    <div class="row">
+                                        @foreach ($teammembers as $member)
+                                            <div class="col-lg-4 col-md-6">
+                                                <div class="single-what-news mb-4">
+                                                <div class="card-person">
+                                                    <div class="imgBx">
+                                                    <img
+                                                        src="{{Storage::disk('uploads')->url($member->photo)}}"
+                                                    />
+                                                    </div>
+                                                    <div class="contentBx">
+                                                    <h2>{{$member->name}} #{{$member->shirtno}}</h2>
+                                                    <div class="size">
+                                                        <h3>HomeTown: {{$member->hometown}}</h3>
+                                                    </div>
+                                                    <div class="color">
+                                                        <h3>Position: {{$member->teamposition->name}}</h3>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+
+
+
+                                    {{-- <div class="col-lg-4 col-md-6">
+                                        <div class="single-what-news mb-4">
+                                        <div class="card-person">
+                                            <div class="imgBx">
+                                            <img
+                                                src="https://www.footyrenders.com/render/karim-benzema-79-390x418.png"
+                                            />
+                                            </div>
+                                            <div class="contentBx">
+                                            <h2>Karim Benzema #09</h2>
+                                            <div class="size">
+                                                <h3>Country:France</h3>
+                                            </div>
+                                            <div class="color">
+                                                <h3>Position:Forward</h3>
+                                            </div>
+                                            </div>
                                         </div>
-                                        <div class="contentBx">
-                                          <h2>Mesut Ozil #10</h2>
-                                          <div class="size">
-                                            <h3>Country:Germany</h3>
-                                          </div>
-                                          <div class="color">
-                                            <h3>Position:Midfield</h3>
-                                          </div>
                                         </div>
-                                      </div>
+                                    </div> --}}
+
                                     </div>
-                                  </div>
-                                  <div class="col-lg-4 col-md-6">
-                                    <div class="single-what-news mb-4">
-                                      <div class="card-person">
-                                        <div class="imgBx">
-                                          <img src="{{asset('frontend/images/man2.png')}}" />
-                                        </div>
-                                        <div class="contentBx">
-                                          <h2>Oliver Giroud #08</h2>
-                                          <div class="size">
-                                            <h3>Country:France</h3>
-                                          </div>
-                                          <div class="color">
-                                            <h3>Position:Forward</h3>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-lg-4 col-md-6">
-                                    <div class="single-what-news mb-4">
-                                      <div class="card-person">
-                                        <div class="imgBx">
-                                          <img
-                                            src="https://www.footyrenders.com/render/karim-benzema-79-390x418.png"
-                                          />
-                                        </div>
-                                        <div class="contentBx">
-                                          <h2>Karim Benzema #09</h2>
-                                          <div class="size">
-                                            <h3>Country:France</h3>
-                                          </div>
-                                          <div class="color">
-                                            <h3>Position:Forward</h3>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-lg-4 col-md-6">
-                                    <div class="single-what-news mb-4">
-                                      <div class="card-person">
-                                        <div class="imgBx">
-                                          <img
-                                            src="https://www.footyrenders.com/render/karim-benzema-79-390x418.png"
-                                          />
-                                        </div>
-                                        <div class="contentBx">
-                                          <h2>Karim Benzema #09</h2>
-                                          <div class="size">
-                                            <h3>Country:France</h3>
-                                          </div>
-                                          <div class="color">
-                                            <h3>Position:Forward</h3>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-lg-4 col-md-6">
-                                    <div class="single-what-news mb-4">
-                                      <div class="card-person">
-                                        <div class="imgBx">
-                                          <img src="{{asset('frontend/images/man2.png')}}" />
-                                        </div>
-                                        <div class="contentBx">
-                                          <h2>Oliver Giroud #08</h2>
-                                          <div class="size">
-                                            <h3>Country:France</h3>
-                                          </div>
-                                          <div class="color">
-                                            <h3>Position:Forward</h3>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
                                 </div>
-                              </div>
-                            </div>
-                            <!-- Card two -->
-                            <div
-                              class="tab-pane fade"
-                              id="nav-profile"
-                              role="tabpanel"
-                              aria-labelledby="nav-profile-tab"
-                            >
-                              <div class="whats-news-caption">
-                                <div class="row">
-                                  <div class="col-lg-6 col-md-6">
-                                    <div class="single-what-news mb-100">
-                                      <div class="what-img">
-                                        <img src="{{asset('frontend/images/img_1.jpg')}}" alt="" />
-                                      </div>
-                                      <div class="what-cap">
-                                        <span class="color1">Night party</span>
-                                        <h4>
-                                          <a href="#"
-                                            >Welcome To The Best Model Winner
-                                            Contest</a
-                                          >
-                                        </h4>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-lg-6 col-md-6">
-                                    <div class="single-what-news mb-100">
-                                      <div class="what-img">
-                                        <img src="{{asset('frontend/images/img_1.jpg')}}" alt="" />
-                                      </div>
-                                      <div class="what-cap">
-                                        <span class="color1">Night party</span>
-                                        <h4>
-                                          <a href="#"
-                                            >Welcome To The Best Model Winner
-                                            Contest</a
-                                          >
-                                        </h4>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-lg-6 col-md-6">
-                                    <div class="single-what-news mb-100">
-                                      <div class="what-img">
-                                        <img src="{{asset('frontend/images/img_1.jpg')}}" alt="" />
-                                      </div>
-                                      <div class="what-cap">
-                                        <span class="color1">Night party</span>
-                                        <h4>
-                                          <a href="#"
-                                            >Welcome To The Best Model Winner
-                                            Contest</a
-                                          >
-                                        </h4>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-lg-6 col-md-6">
-                                    <div class="single-what-news mb-100">
-                                      <div class="what-img">
-                                        <img src="{{asset('frontend/images/img_1.jpg')}}" alt="" />
-                                      </div>
-                                      <div class="what-cap">
-                                        <span class="color1">Night party</span>
-                                        <h4>
-                                          <a href="#"
-                                            >Welcome To The Best Model Winner
-                                            Contest</a
-                                          >
-                                        </h4>
-                                      </div>
-                                    </div>
-                                  </div>
                                 </div>
-                              </div>
+                                @foreach ($teampositions as $position)
+
+                                <div
+                                    class="tab-pane fade"
+                                    id="{{$position->slug}}"
+                                    role="tabpanel"
+                                    aria-labelledby="nav-profile-tab">
+                                    <div class="whats-news-caption">
+                                        <div class="row">
+                                            @if (count($position->teammembers) > 0)
+                                                @foreach ($position->teammembers as $member)
+                                                    <div class="col-lg-4 col-md-6">
+                                                        <div class="single-what-news mb-4">
+                                                            <div class="card-person">
+                                                            <div class="imgBx">
+                                                                <img
+                                                                src="{{Storage::disk('uploads')->url($member->photo)}}"
+                                                                />
+                                                            </div>
+                                                            <div class="contentBx">
+                                                                <h2>{{$member->name}} #{{$member->shirtno}}</h2>
+                                                                <div class="size">
+                                                                <h3>HomeTown: {{$member->hometown}}</h3>
+                                                                </div>
+                                                                <div class="color">
+                                                                <h3>Position: {{$member->teamposition->name}}</h3>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @else
+                                                    None Available
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
                             </div>
-                          </div>
+                          @else
+                            <p>No Information Available.</p>
+                          @endif
+
                           <!-- End Nav Card -->
                         </div>
                       </div>
@@ -372,18 +277,12 @@
             <div class="col-lg-6 align-self-center">
               <div class="about-content">
                 <h2>Words from the Coach</h2>
-                <p>
-                  Thunder Basketball Club was initially founded in 1961. The
-                  organization was created with an agreement between Delaney
-                  Michaelson and John Doe.<br />
-                  With the years we were growing and in 1992 we have started the
-                  first female basketball team. We have expanded the horizons
-                </p>
+                {!! $setting->wordsfromcoach !!}
               </div>
             </div>
             <div class="col-lg-6">
               <div class="about-content-img">
-                <img src="{{asset('frontend/images/hero_bg_2.jpg')}}" class="img-fluid" alt="" />
+                <img src="{{Storage::disk('uploads')->url($setting->wordsfromcoachimage)}}" class="img-fluid" alt="" />
               </div>
             </div>
           </div>
@@ -402,374 +301,30 @@
 
           <div class="row pt-5 px-3">
             <div class="nonloop-block-13 owl-carousel">
-              <div class="item">
-                <!-- uses .block-12 -->
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
+                @foreach ($latestblogs as $item)
+                <div class="item" onclick="location.href='{{route('newsdetails', [$item->id, Str::slug($item->title)])}}'" style="cursor: pointer">
+                    <!-- uses .block-12 -->
+                    <div class="block-12">
+                      <figure>
+                        <img src="{{Storage::disk('uploads')->url($item->image)}}" alt="Image" class="img-fluid" />
+                      </figure>
+                      <div class="text">
+                        <span class="meta">{{date('F d, Y', strtotime($item->date))}}</span>
+                        <div class="text-inner">
+                          <h2 class="heading mb-3">
+                            <a href="#" class="text-black"
+                              >{{$item->title}}</a
+                            >
+                          </h2>
+                          <p>
+                            {{$item->smalldesc}}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                @endforeach
 
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <!-- uses .block-12 -->
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <!-- uses .block-12 -->
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <!-- uses .block-12 -->
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="block-12">
-                  <figure>
-                    <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid" />
-                  </figure>
-                  <div class="text">
-                    <span class="meta">May 20th 2018</span>
-                    <div class="text-inner">
-                      <h2 class="heading mb-3">
-                        <a href="#" class="text-black"
-                          >Nepal Cup Championship</a
-                        >
-                      </h2>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Ad culpa, consectetur! Eligendi illo, repellat
-                        repudiandae cumque fugiat optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

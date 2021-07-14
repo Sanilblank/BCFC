@@ -6,6 +6,8 @@ use App\Models\Blog;
 use App\Models\BlogTag;
 use App\Models\Comment;
 use App\Models\Reply;
+use App\Models\TeamMember;
+use App\Models\TeamPosition;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -16,7 +18,8 @@ class FrontController extends Controller
         $latestblog = Blog::latest()->where('status', 1)->where('draft', 0)->first();
         $latestthreeblogs = Blog::latest()->where('status', 1)->where('id', '!=', $latestblog->id)->where('draft', 0)->take(2)->get();
         $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->skip(3)->take(16)->get();
-        return view('frontend.index', compact('latestthreeblogs', 'latestblogs', 'latestblog'));
+        $teammembers = TeamMember::latest()->where('status', 1)->with('teamposition')->get();
+        return view('frontend.index', compact('latestthreeblogs', 'latestblogs', 'latestblog', 'teammembers'));
     }
 
     public function getnews()
@@ -144,7 +147,10 @@ class FrontController extends Controller
 
     public function teaminfo()
     {
-        return view('frontend.team');
+        $teammembers = TeamMember::latest()->where('status', 1)->with('teamposition')->get();
+        $teampositions = TeamPosition::latest()->get();
+        $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
+        return view('frontend.team', compact('teammembers', 'teampositions', 'latestblogs'));
     }
 
 

@@ -9,6 +9,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\TeamMemberController;
+use App\Http\Controllers\TeamPositionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Auth;
@@ -66,6 +68,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::put('enablecomment/{id}', [CommentController::class, 'enablecomment'])->name('comment.enablecomment');
     Route::put('disablereply/{id}', [CommentController::class, 'disablereply'])->name('comment.disablereply');
     Route::put('enablereply/{id}', [CommentController::class, 'enablereply'])->name('comment.enablereply');
+
+    //Teams
+    Route::resource('teamposition', TeamPositionController::class);
+    Route::resource('teammember', TeamMemberController::class);
 
 });
 

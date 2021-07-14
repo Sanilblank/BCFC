@@ -7,9 +7,9 @@
 
   <div class="site-wrap">
   <div class="icon-bar">
-  <a href="#" class="facebook"><i class="fab fa-facebook"></i></a> 
-  <a href="#" class="twitter"><i class="fab fa-twitter"></i></a> 
-  <a href="#" class="google"><i class="fab fa-google"></i></a> 
+  <a href="#" class="facebook"><i class="fab fa-facebook"></i></a>
+  <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+  <a href="#" class="google"><i class="fab fa-google"></i></a>
 </div>
     <div class="slide-one-item home-slider owl-carousel">
       <div class="site-blocks-cover overlay" style="background-image: url(frontend/images/hero_bg_2.jpg);" data-aos="fade"
@@ -268,66 +268,27 @@
           <h2>Players</h2>
         </div>
         <div class="owl-4-slider owl-carousel mt-5">
-          <div class="item">
-            <div class="video-media">
+            @foreach ($teammembers as $member)
+                <div class="item">
+                    <div class="video-media">
 
-              <div class="player-no">
-                <h1>12</h1>
-              </div>
-              <img src="{{asset('frontend/images/man1.png')}}" alt="Image" class="img-fluid">
-              <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
+                    <div class="player-no">
+                        <h1>{{$member->shirtno}}</h1>
+                    </div>
+                    <img src="{{Storage::disk('uploads')->url($member->photo)}}" alt="Image" class="img-fluid" style="max-width: 300px">
+                    <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
 
-                <!-- <div class="caption">
-                  <h3 class="m-0">Pogma Kai</h3>
-                </div> -->
-              </a>
-            </div>
-            <div class="caption">
-              <h3 class="m-0">Anil Gurung</h3>
-              <h2>#Defender</h2>
-            </div>
-          </div>
-          <div class="item">
-            <div class="video-media">
-              <div class="player-no">
-                <h1>05</h1>
-              </div>
-              <img src="{{asset('frontend/images/man1.png')}}" alt="Image" class="img-fluid">
-              <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
-                <!-- <span class="icon mr-3">
-                  <span class="icon-play"></span>
-                </span> -->
-                <!-- <div class="caption">
-                  <h3 class="m-0">Michael Scott</h3>
-                </div> -->
-              </a>
-            </div>
-            <div class="caption">
-              <h3 class="m-0">Animes Shahi</h3>
-              <h2>#Midfield</h2>
-            </div>
-          </div>
-          <div class="item">
-            <div class="video-media">
-              <div class="player-no">
-                <h1>10</h1>
-              </div>
-              <img src="{{asset('frontend/images/man1.png')}}" alt="Image" class="img-fluid">
-              <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
-                <!-- <div class="caption">
-                  <h3 class="m-0">Dwight</h3>
-                </div> -->
-              </a>
-
-            </div>
-            <div class="caption">
-              <h3 class="m-0">Dibya Subba</h3>
-              <h2>#Goalie</h2>
-            </div>
-
-          </div>
-
-
+                        <!-- <div class="caption">
+                        <h3 class="m-0">Pogma Kai</h3>
+                        </div> -->
+                    </a>
+                    </div>
+                    <div class="caption">
+                    <h3 class="m-0">{{$member->name}}</h3>
+                    <h2>#{{$member->teamposition->name}}</h2>
+                    </div>
+                </div>
+            @endforeach
 
 
         </div>
