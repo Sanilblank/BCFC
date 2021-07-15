@@ -27,40 +27,36 @@
           <section class="row align-items-stretch photos">
             <div class="col-12">
               <div class="row align-items-stretch">
-                <div
-                  class="col-6 col-md-6 col-lg-4"
-                  data-aos="fade-up"
-                  data-aos-delay="100"
-                >
-                  <a href="gallery.html" class="d-block photo-item">
-                    <img src="images/img_2.jpg" alt="Image" class="img-fluid" />
+                  @if (count($albums) == 0)
+                     <p style="margin-left: 25px">No Albums Present</p>
+                  @else
+                    @foreach ($albums as $album)
+                        <div
+                            class="col-6 col-md-6 col-lg-4"
+                            data-aos="fade-up"
+                            data-aos-delay="100"
+                        >
+                            <a href="{{route('viewgallery', [$album->id, Str::slug($album->title)])}}" class="d-block photo-item">
+                            <img src="{{Storage::disk('uploads')->url($album->cover_image)}}" alt="Image" class="img-fluid" />
 
-                    <div class="photo-text-more">
-                      <span class="icon icon-search"></span>
-                      <h1 class="heading">Album Name</h1>
-                      <p class="meta">2021.1.1</p>
-                    </div>
-                  </a>
-                </div>
-                <div
-                  class="col-6 col-md-6 col-lg-4"
-                  data-aos="fade-up"
-                  data-aos-delay="200"
-                >
-                  <a
-                    href="images/img_1.jpg"
-                    class="d-block photo-item"
-                    data-fancybox="gallery"
-                  >
-                    <img src="images/img_1.jpg" alt="Image" class="img-fluid" />
-                    <div class="photo-text-more">
-                      <span class="icon icon-search"></span>
-                      <h1 class="heading">Album Name</h1>
-                      <p class="meta">2021.1.1</p>
-                    </div>
-                  </a>
-                </div>
+                            <div class="photo-text-more">
+                                <span class="icon icon-search"></span>
+                                <h1 class="heading">{{$album->title}}</h1>
+                                <p class="meta">{{date('d F, Y', strtotime($album->date))}}</p>
+                            </div>
+                            </a>
+                        </div>
+                    @endforeach
+                  @endif
+
+
               </div>
+              @if (count($albums) > 0)
+                <div class="mt-5 text-center">
+                    {{ $albums->links() }}
+                </div>
+              @endif
+
             </div>
           </section>
           <!-- #section-photos -->

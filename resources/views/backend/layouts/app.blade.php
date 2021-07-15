@@ -97,6 +97,12 @@
 
                     </ul>
                   </li>
+                  <li class="nav-item">
+                    <a href="{{route('album.index')}}" class="nav-link">
+                        <i class="fa fa-picture-o nav-icon"></i> Albums
+                    </a>
+                </li>
+
                 </ul>
               </div>
               <div class="menu_section">

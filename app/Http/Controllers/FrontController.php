@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Album;
 use App\Models\Blog;
 use App\Models\BlogTag;
 use App\Models\Comment;
+use App\Models\Photo;
 use App\Models\Reply;
 use App\Models\TeamMember;
 use App\Models\TeamPosition;
@@ -154,4 +156,21 @@ class FrontController extends Controller
     }
 
 
+    public function viewalbums()
+    {
+        $albums = Album::latest()->simplePaginate(12);
+        return view('frontend.album', compact('albums'));
+    }
+
+    public function viewgallery($id, $slug)
+    {
+        $album = Album::findorfail($id);
+        $photos = Photo::latest()->where('album_id', $id)->get();
+        return view('frontend.gallery', compact('photos', 'album'));
+    }
+
+    public function viewmerch()
+    {
+        return view('frontend.merch');
+    }
 }

@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
@@ -37,6 +39,9 @@ Route::get('/aboutus', [FrontController::class, 'aboutus'])->name('aboutus');
 Route::get('/teaminfo', [FrontController::class, 'teaminfo'])->name('teaminfo');
 Route::post('/comments/add', [FrontController::class, 'addComment'])->name('page.comment');
 Route::post('/reply/add', [FrontController::class, 'addReply'])->name('page.reply');
+Route::get('/viewalbums', [FrontController::class, 'viewalbums'])->name('viewalbums');
+Route::get('/viewgallery/{id}/{slug}', [FrontController::class, 'viewgallery'])->name('viewgallery');
+Route::get('/viewmerch', [FrontController::class, 'viewmerch'])->name('viewmerch');
 
 Auth::routes();
 
@@ -72,6 +77,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     //Teams
     Route::resource('teamposition', TeamPositionController::class);
     Route::resource('teammember', TeamMemberController::class);
+
+    //Albums
+    Route::resource('album', AlbumController::class);
+    Route::resource('photo', PhotoController::class);
 
 });
 

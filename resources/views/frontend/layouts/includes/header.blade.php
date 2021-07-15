@@ -43,14 +43,16 @@
         <ul class="site-menu js-clone-nav d-none d-md-block py-2">
           <li class="has-children active">
             <a href="{{route('index')}}">Home</a>
-          
+
           </li>
           <li class="has-children">
-            <a href="{{route('getnews')}}">News</a>n 
-          
+            <a href="{{route('getnews')}}">News</a>n
+
           </li>
           <li><a href="matches.html">Matches</a></li>
           <li><a href="{{route('teaminfo')}}">Team</a></li>
+          <li><a href="{{route('viewalbums')}}">Albums</a></li>
+          <li><a href="{{route('viewmerch')}}">Merch</a></li>
           <li><a href="{{route('aboutus')}}">About</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>

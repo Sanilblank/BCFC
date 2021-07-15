@@ -1,4 +1,8 @@
-@extends('frontend.layouts.app') @push('styles') @endpush @section('content')
+@extends('frontend.layouts.app')
+@push('styles')
+
+@endpush
+@section('content')
 
 <div class="site-wrap">
     <!--? Hero Start -->
@@ -107,7 +111,7 @@
                                 <div class="product-item">
                                     <div class="pi-pic">
                                         <img
-                                            src="images/football_player_PNG122.png"
+                                            src="{{asset('frontend/images/football_player_PNG122.png')}}"
                                             alt=""
                                         />
                                         <!-- <div class="sale pp-sale">Sale</div> -->
@@ -143,7 +147,7 @@
                                 <div class="product-item">
                                     <div class="pi-pic">
                                         <img
-                                            src="images/football_player_PNG122.png"
+                                            src="{{asset('frontend/images/football_player_PNG122.png')}}"
                                             alt=""
                                         />
                                         <div class="icon">
@@ -178,7 +182,7 @@
                                 <div class="product-item">
                                     <div class="pi-pic">
                                         <img
-                                            src="images/football_player_PNG122.png"
+                                            src="{{asset('frontend/images/football_player_PNG122.png')}}"
                                             alt=""
                                         />
                                         <div class="icon">
@@ -222,4 +226,7 @@
     <!-- Product Shop Section End -->
 </div>
 
-@endsection @push('scripts') @endpush
+@endsection
+@push('scripts')
+
+@endpush

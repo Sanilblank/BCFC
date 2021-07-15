@@ -59,6 +59,12 @@ class PermissionTableSeeder extends Seeder
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ],
+            [
+                'name' => 'Manage Albums',
+                'slug' => Str::slug('Manage Album'),
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s"),
+            ],
 
         ]);
     }
