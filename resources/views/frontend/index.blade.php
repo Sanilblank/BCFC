@@ -176,7 +176,7 @@
           </div>
           <div class="col-lg-4">
 
-            <div class="widget-next-match">
+            <div class="widget-next-match" style="max-height:500px;">
               <table class="table custom-table">
                 <thead>
                   <tr>
@@ -249,7 +249,7 @@
 
 
 
-    <div class="site-blocks-cover overlay py-5" style="background-image: url(frontend/images/hero2.jpg); height:90vh; ">
+    <div class="site-blocks-cover overlay py-5" style="background-image: url(frontend/images/hero2.jpg); ">
       <div class="container">
         <!-- <div class="row">
           <div class="col-6 title-section">
@@ -410,7 +410,7 @@
                 </div> -->
                 @foreach ($latestthreeblogs as $blog)
                   <div class="col-md-6 col-lg-12 mb-2" style="cursor: pointer" onclick="location.href='{{route('newsdetails', [$blog->id, Str::slug($blog->title)])}}'">
-                    <div class="custom-media-2 d-lg-flex d-md-flex">
+                    <div class="custom-media-2 d-lg-flex">
                       {{-- <div class="cat"><a href="#" class="btn btn-primary btn-sm rounded-0 px-3">Goal!</a></div> --}}
 
                       <div class="img mr-4">
