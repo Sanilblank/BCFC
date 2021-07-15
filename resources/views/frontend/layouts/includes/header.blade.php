@@ -41,12 +41,13 @@
             class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
         <ul class="site-menu js-clone-nav d-none d-md-block py-2">
-          <li class="has-children active">
+          <!-- <li class="has-children active"> -->
+            <li>
             <a href="{{route('index')}}">Home</a>
 
           </li>
           <li class="has-children">
-            <a href="{{route('getnews')}}">News</a>n
+            <a href="{{route('getnews')}}">News</a>
 
           </li>
           <li><a href="matches.html">Matches</a></li>
