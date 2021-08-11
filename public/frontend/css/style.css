@@ -97,6 +97,9 @@ a:hover {
 .btn.btn-primary {
   font-weight: 300;
   letter-spacing: 0.2em;
+  color: #fff;
+  background-color: #d2242a;
+  border-color: #d2242a;
 }
 
 .btn:hover {
@@ -273,7 +276,7 @@ a:hover {
   margin-bottom: 0px;
   z-index: 1999;
   position: relative;
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Yantramanav', sans-serif;
 }
 
 .site-navbar.transparent {
@@ -313,7 +316,6 @@ a:hover {
 .site-navbar .site-navigation .site-menu a {
   text-decoration: none !important;
   font-size: 20px;
-
   display: inline-block;
 }
 
@@ -324,10 +326,8 @@ a:hover {
 
 .site-navbar .site-navigation .site-menu > li > a {
   padding: 10px 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
   color: #fff;
-  font-size: 20px;
+  font-size: 16px;
   text-decoration: none !important;
 }
 
@@ -498,7 +498,7 @@ a:hover {
 }
 
 .site-navbar .site-navigation .site-menu .has-children a {
-  text-transform: uppercase;
+
 }
 
 .site-navbar .site-navigation .site-menu .has-children:hover > a,
@@ -760,16 +760,16 @@ a:hover {
 }
 
 .site-blocks-cover h1 {
-  font-size: 30px;
+  font-size: 70px;
   font-weight: 400;
   color: #fff;
-  line-height: 1.5;
+  line-height: 1;
   font-family: 'Bebas Neue', cursive;
 }
 
 @media (min-width: 768px) {
   .site-blocks-cover h1 {
-    font-size: 50px;
+    font-size: 70px;
   }
 }
 
@@ -1399,12 +1399,11 @@ a:hover {
 }
 .widget-vs .vs > span {
   display: inline-block;
-  font-size: 32px;
-
-  padding: 5px 20px;
-  border-radius: 30px;
+  font-size: 25px;
+  margin: 5px 20px;
   color: #fff;
-  font-weight: 700;
+  width: 100%;
+  font-weight: 400;
 }
 
 .widget-vs-contents {
@@ -1413,7 +1412,7 @@ a:hover {
 .widget-vs-contents h4 {
   color: #ffffff7a;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 400;
 }
 .widget-vs-contents h3 {
   color: #ffffff86;
@@ -1476,19 +1475,31 @@ a:hover {
   color: #fff;
 }
 .widget-title2 {
-  position: absolute;
-  padding: 16px 20px;
   color: #fff;
-  margin-top: -37px;
-  font-family: 'Bebas Neue', cursive;
-  border-left: 39px solid #d2232a;
+  margin: 0 auto;
+  font-family: 'Bebas Neue',cursive;
 }
 .widget-title2 h3 {
-  margin: 0;
-
-  padding: 0;
-  font-size: 80px;
-  color: #fff;
+  font-size:80px;
+	letter-spacing:0.2em;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(36, 0, 83);
+  text-shadow: 
+						5px 2px #000000,
+						20px 20px #d2232900;
+            transform: skewX(351deg);
+}
+.widget-title2 h2 {
+  font-size:80px;
+	letter-spacing:0.2em;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(255, 255, 255);
+  text-shadow: 
+						5px 2px #ffffff,
+						20px 20px #d2232900;
+            transform: skewX(351deg);
 }
 
 .widget-body {
@@ -1574,6 +1585,7 @@ a:hover {
 
 .video-media {
   position: relative;
+  height: 350px;
 }
 .video-media:hover {
   transform: scale(1.1);
@@ -1640,6 +1652,13 @@ a:hover {
   font-size: 18px;
 }
 
+.video-media img{
+  max-width: 300px;
+  min-height: 350px;
+  object-fit: cover;
+}
+
+
 .section-title {
   color: white;
   position: relative;
@@ -1693,7 +1712,7 @@ a:hover {
 .owl-dots {
   position: absolute;
   width: 100%;
-  bottom: -50px;
+  bottom: 20px;
   text-align: center;
 }
 .owl-dots .owl-dot {
@@ -1712,13 +1731,13 @@ a:hover {
 
 .player-no {
   position: absolute;
-  right: 40px;
+  right: 48px;
   z-index: -1;
-  top: -50px;
+  top: 8px;
 }
 .player-no h1 {
-  font-size: 200px;
-  opacity: 50%;
+  font-size: 150px;
+  opacity: 100%;
   color: rgb(255, 255, 255);
 }
 
@@ -1728,6 +1747,7 @@ a:hover {
 /* for Blog */
 
 .custom-media-2 {
+  font-family: 'Yantramanav', sans-serif;
   background-color: #fbfbfb;
 }
 .custom-media-2:hover {
@@ -1745,7 +1765,7 @@ a:hover {
 }
 
 .custom-media-2 .text {
-  font-family: 'Bebas Neue', cursive;
+  padding: 30px;
 }
 
 .custom-media-2 .text .meta {
@@ -3190,7 +3210,7 @@ height: 100px;
   }
   
   .custom-media-2 .text {
-    font-family: 'Bebas Neue', cursive;
+   
   }
   
   .custom-media-2 .text .meta {
@@ -3248,7 +3268,7 @@ height: 100px;
     min-height: 466px;
   }
   .custom-media-2 .text {
-    font-family: 'Bebas Neue', cursive;
+
     padding:10px
   }
   

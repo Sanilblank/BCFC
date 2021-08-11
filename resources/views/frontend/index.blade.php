@@ -127,7 +127,7 @@
                 <p class="mb-5">
                   <span class="d-block">December 20th, 2020</span>
                   <span class="d-block">9:30 AM GMT+0</span>
-                  <strong class="text-white">Dashrath Rangasala</strong>
+                  <span class="d-block">Dashrath Rangasala</span>
                 </p>
 
                 <div id="date-countdown2" class="pb-1"></div>
@@ -167,7 +167,7 @@
                 <p class="mb-5">
                   <span class="d-block">December 20th, 2020</span>
                   <span class="d-block">9:30 AM GMT+0</span>
-                  <strong class="text-white">Dashrath Rangasala</strong>
+                  <span class="d-block">Dashrath Rangasala</span>
                 </p>
 
                 <div id="date-countdown2" class="pb-1"></div>
@@ -176,7 +176,7 @@
           </div>
           <div class="col-lg-4">
 
-            <div class="widget-next-match" style="max-height:500px;">
+            <div class="widget-next-match"  style="max-height: 500px; padding: 100px 50px;line-height:1;">
               <table class="table custom-table">
                 <thead>
                   <tr>
@@ -250,21 +250,8 @@
 
 
     <div class="site-blocks-cover overlay py-5" style="background-image: url(frontend/images/hero2.jpg); ">
-      <div class="container">
-        <!-- <div class="row">
-          <div class="col-6 title-section">
-            <h2 class="heading">Videos</h2>
-          </div>
-          <div class="col-6 text-right">
-            <div class="custom-nav">
-            <a href="#" class="js-custom-prev-v2"><span class="icon-keyboard_arrow_left"></span></a>
-            <span></span>
-            <a href="#" class="js-custom-next-v2"><span class="icon-keyboard_arrow_right"></span></a>
-            </div>
-          </div>
-        </div> -->
-
-        <div class="section-title pt-150">
+      <div class="container py-5">
+        <div class="widget-title2 text-center">
           <h2>Players</h2>
         </div>
         <div class="owl-4-slider owl-carousel mt-5">
@@ -353,14 +340,14 @@
 
 
 
-    <div class="site-section pb-2">
+    <div class="py-3">
       <div class="container-fluid">
-        <div class="row pb-5">
+        <div class="row">
           <div class="widget-title2 text-black">
             <h3 class="text-black">NEWS</h3>
           </div>
         </div>
-        <div class="row mt-5 ">
+        <div class="row">
           <div class="col-md-6 col-lg-7">
             <div class="site-blocks-cover overlay" style="background-image: url({{Storage::disk('uploads')->url($latestblog->image)}}); height: 466px; cursor: pointer;" onclick="location.href='{{route('newsdetails', [$latestblog->id, Str::slug($latestblog->title)])}}'">
               <div class="container">
@@ -369,7 +356,7 @@
                     {{-- <p><a href="#" class="btn btn-primary btn-sm rounded-0 px-3">Hero Section</a></p> --}}
                     <h1 class="">{{$latestblog->title}}</h1>
                     <p>{{$latestblog->smalldesc}}</p>
-                    <p><a href="{{route('newsdetails', [$latestblog->id, Str::slug($latestblog->title)])}}" class="border-bottom border-primary" style="color:white;">Read More</a></p>
+                    <!-- <p><a href="{{route('newsdetails', [$latestblog->id, Str::slug($latestblog->title)])}}" class="border-bottom border-primary" style="color:white;">Read More</a></p> -->
                   </div>
                 </div>
               </div>
@@ -420,9 +407,9 @@
                       <div class="text">
                         <span class="meta">{{date('F d, Y', strtotime($blog->date))}}</span>
                         <h3 class="mb-4"><a href="{{route('newsdetails', [$blog->id, Str::slug($blog->title)])}}">{{$blog->title}}</a></h3>
-                        <p>{{$blog->smalldesc}}</p>
+                        <!-- <p>{{$blog->smalldesc}}</p>
 
-                          <a href="{{route('newsdetails', [$blog->id, Str::slug($blog->title)])}}" class="border-bottom border-primary">Read More</a>
+                          <a href="{{route('newsdetails', [$blog->id, Str::slug($blog->title)])}}" class="border-bottom border-primary">Read More</a> -->
                       </div>
                     </div>
                   </div>
@@ -479,13 +466,13 @@
 
 <!-- gallery one -->
 
-<div class="row pb-5">
+<div class="row">
   <div class="widget-title2 text-black">
     <h3 class="text-black">Gallery</h3>
   </div>
 </div>
 
-    <div class="gallery pt-5">
+    <div class="gallery">
 
       <div class="gallery__column">
         <a href="https://unsplash.com/@jeka_fe" target="_blank" class="gallery__link">

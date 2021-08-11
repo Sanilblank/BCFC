@@ -501,7 +501,7 @@
 
                 <aside class="single_sidebar_widget tag_cloud_widget">
                     <h4 class="widget_title" style="color: #2d2d2d">Latest Tags</h4>
-                    <ul class="list">
+                    <ul class="list p-0">
                       @foreach ($latesttags as $latesttag)
                         <li>
                           <a href="{{route('gettagnews', [$latesttag->id, $latesttag->slug])}}">{{$latesttag->name}}</a>
