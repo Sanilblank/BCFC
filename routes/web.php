@@ -51,6 +51,7 @@ Route::get('/sliderinfo/{id}/{slug}', [FrontController::class, 'sliderinfo'])->n
 Route::get('/getmatches', [FrontController::class, 'getmatches'])->name('getmatches');
 Route::get('/viewStandings', [FrontController::class, 'viewStandings'])->name('viewStandings');
 Route::get('/viewPartners', [FrontController::class, 'viewPartners'])->name('viewPartners');
+Route::get('/contactus', [FrontController::class, 'contactus'])->name('contactus');
 
 Auth::routes();
 

@@ -55,7 +55,7 @@
           <li><a href="{{route('viewalbums')}}">Albums</a></li>
           <li><a href="{{route('viewmerch')}}">Merch</a></li>
           <li><a href="{{route('aboutus')}}">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="{{route('contactus')}}">Contact</a></li>
         </ul>
       </div>
     </nav>

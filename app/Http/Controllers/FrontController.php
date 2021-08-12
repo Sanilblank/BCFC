@@ -200,4 +200,10 @@ class FrontController extends Controller
         $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
         return view('frontend.partners', compact('latestblogs'));
     }
+
+    public function contactus()
+    {
+        $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
+        return view('frontend.contact', compact('latestblogs'));
+    }
 }

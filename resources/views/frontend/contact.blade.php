@@ -1,97 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Biratnagar City FC</title>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+@extends('frontend.layouts.app')
+@push('styles')
 
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"
-    />
-    <link rel="stylesheet" href="fonts/icomoon/style.css" />
+@endpush
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/magnific-popup.css" />
-    <link rel="stylesheet" href="css/jquery-ui.css" />
-    <link rel="stylesheet" href="css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="css/owl.theme.default.min.css" />
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,300;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/aos.css" />
-
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-
-  <body>
+@section('content')
     <div class="site-wrap">
-      <div class="site-mobile-menu">
-        <div class="site-mobile-menu-header">
-          <div class="site-mobile-menu-logo">
-            <a href="#"
-              ><img src="images/logo.png" alt="Image" style="max-height: 120px"
-            /></a>
-          </div>
-          <div class="site-mobile-menu-close mt-3">
-            <span class="icon-close2 js-menu-toggle"></span>
-          </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-      </div>
-
-      <header class="site-navbar absolute transparent" role="banner">
-        <nav
-          class="site-navigation position-relative text-right text-md-right"
-          role="navigation"
-        >
-          <div class="container position-relative">
-            <div class="site-logo">
-              <a href="index.html"
-                ><img src="images/logo.png" alt="" style="max-height: 120px"
-              /></a>
-            </div>
-
-            <div class="d-inline-block d-md-none ml-md-0 mr-auto py-3">
-              <a href="#" class="site-menu-toggle js-menu-toggle text-white"
-                ><span class="icon-menu h3"></span
-              ></a>
-            </div>
-
-            <ul class="site-menu js-clone-nav d-none d-md-block">
-              <li class="has-children active">
-                <a href="index.html">Home</a>
-              </li>
-              <li class="has-children">
-                <a href="news.html">News</a>
-              </li>
-              <li><a href="matches.html">Matches</a></li>
-              <li><a href="team.html">Team</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="contact.html">Contact</a></li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-
       <!--? Hero Start -->
       <div class="slider-area2 overlay">
         <div class="slider-height2 d-flex align-items-center">
@@ -149,7 +62,7 @@
                 </script>
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&amp;callback=initMap">
                 </script>
-                
+
             </div> -->
           <div class="row">
             <div class="col-12">
@@ -276,7 +189,7 @@
                   <div class="d-block d-lg-flex align-items-center">
                     <div class="image mx-auto mb-3 mb-lg-0 mr-lg-3">
                       <img
-                        src="images/logo.png"
+                        src="{{asset('frontend/images/logo.png')}}"
                         alt="Image"
                         class="img-fluid"
                       />
@@ -326,129 +239,9 @@
         </div>
       </div>
 
-      <footer class="site-footer bg-blue">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="mb-5">
-                <h3 class="footer-heading mb-4">About Biratnagar City FC</h3>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Saepe pariatur reprehenderit vero atque, consequatur id
-                  ratione, et non dignissimos culpa? Ut veritatis, quos illum
-                  totam quis blanditiis, minima minus odio!
-                </p>
-              </div>
-
-              <div class="mb-5">
-                <h3 class="footer-heading mb-4">Follow Us</h3>
-
-                <div>
-                  <a href="#" class="pl-0 pr-3"
-                    ><span class="icon-facebook"></span
-                  ></a>
-                  <a href="#" class="pl-3 pr-3"
-                    ><span class="icon-twitter"></span
-                  ></a>
-                  <a href="#" class="pl-3 pr-3"
-                    ><span class="icon-instagram"></span
-                  ></a>
-                  <a href="#" class="pl-3 pr-3"
-                    ><span class="icon-linkedin"></span
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 mb-5 mb-lg-0">
-              <div class="row mb-5">
-                <div class="col-md-12">
-                  <h3 class="footer-heading mb-4">Quick Menu</h3>
-                </div>
-                <div class="col-md-6 col-lg-6">
-                  <ul class="list-unstyled">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Matches</a></li>
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">Team</a></li>
-                  </ul>
-                </div>
-                <div class="col-md-6 col-lg-6">
-                  <ul class="list-unstyled">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Membership</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 mb-5 mb-lg-0">
-              <div class="mb-5">
-                <h3 class="footer-heading mb-2">Subscribe Newsletter</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit minima
-                  minus odio.
-                </p>
-
-                <form action="#" method="post">
-                  <div class="input-group mb-3">
-                    <input
-                      type="text"
-                      class="
-                        form-control
-                        border-secondary
-                        text-white
-                        bg-transparent
-                      "
-                      placeholder="Enter Email"
-                      aria-label="Enter Email"
-                      aria-describedby="button-addon2"
-                    />
-                    <div class="input-group-append">
-                      <button
-                        class="btn btn-primary"
-                        type="button"
-                        id="button-addon2"
-                      >
-                        Send
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="row pt-5 mt-5 text-center">
-            <div class="col-md-12">
-              <p>
-                Copyright &copy;
-                <script
-                  data-cfasync="false"
-                  src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
-                ></script>
-                <script>
-                  document.write(new Date().getFullYear());
-                </script>
-                All rights reserved
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.stellar.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/aos.js"></script>
+@endsection
+@push('scripts')
 
-    <script src="js/main.js"></script>
-  </body>
-</html>
+@endpush
