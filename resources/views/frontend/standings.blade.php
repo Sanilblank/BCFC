@@ -1,4 +1,10 @@
+@extends('frontend.layouts.app')
+@push('styles')
 
+@endpush
+
+@section('content')
+    <div class="site-wrap">
       <!--? Hero Start -->
       <div class="slider-area2 overlay">
         <div class="slider-height2 d-flex align-items-center">
@@ -6,7 +12,7 @@
             <div class="row">
               <div class="col-xl-12">
                 <div class="hero-cap hero-cap2 pt-70">
-                  <h2>Fixtures and Results</h2>
+                  <h2>Standings</h2>
                 </div>
               </div>
             </div>
@@ -16,193 +22,95 @@
 
       <!-- Hero End -->
       <!--? Blog Area Start-->
-      <section class="blog_area section-padding bg-blue">
+      <section class="blog_area bg-blue">
         <div class="container">
           <div class="row">
-            <div class="col-12 title-section d-flex justify-content-between">
-              <h2 class="heading">Upcoming Match</h2>
-              <div>
-                <!-- <i class="fa fa-calendar" aria-hidden="true"></i> -->
-
-                <select name="cars" id="cars" class="btn btn-primary">
-                  <option value="volvo">All</option>
-                  <option value="saab">August</option>
-                  <option value="mercedes">September</option>
-                  <option value="audi">October</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-lg-12 mb-4">
-              <div class="bg-light p-4 rounded">
-                <div class="widget-body">
-                  <div class="widget-vs-2">
-                    <div
-                      class="
-                        d-flex
-                        align-items-center
-                        justify-content-around justify-content-between
-                        w-100
-                      "
-                    >
-                      <div class="team-1 text-center">
-                        <img src="images/logo_1.png" alt="Image" />
-                        <h3>Football League</h3>
-                      </div>
-                      <div>
-                        <span class="vs"><span>VS</span></span>
-                      </div>
-                      <div class="team-2 text-center">
-                        <img src="images/logo_2.png" alt="Image" />
-                        <h3>Soccer</h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="text-center widget-vs-2-contents mb-4">
-                  <h4>World Cup League</h4>
-                  <p class="">
-                    <span class="d-block">December 20th, 2020</span>
-                    <span class="d-block">9:30 AM GMT+0</span>
-                    <strong class="text-primary">New Euro Arena</strong>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-12 mb-4">
-              <div class="bg-light p-4 rounded">
-                <div class="widget-body">
-                  <div class="widget-vs-2">
-                    <div
-                      class="
-                        d-flex
-                        align-items-center
-                        justify-content-around justify-content-between
-                        w-100
-                      "
-                    >
-                      <div class="team-1 text-center">
-                        <img src="images/logo_3.png" alt="Image" />
-                        <h3>Football League</h3>
-                      </div>
-                      <div>
-                        <span class="vs"><span>VS</span></span>
-                      </div>
-                      <div class="team-2 text-center">
-                        <img src="images/logo_4.png" alt="Image" />
-                        <h3>Soccer</h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="text-center widget-vs-2-contents mb-4">
-                  <h4>World Cup League</h4>
-                  <p class="">
-                    <span class="d-block">December 20th, 2020</span>
-                    <span class="d-block">9:30 AM GMT+0</span>
-                    <strong class="text-primary">New Euro Arena</strong>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-12 mb-4">
-              <div class="bg-light p-4 rounded">
-                <div class="widget-body">
-                  <div class="widget-vs-2">
-                    <div
-                      class="
-                        d-flex
-                        align-items-center
-                        justify-content-around justify-content-between
-                        w-100
-                      "
-                    >
-                      <div class="team-1 text-center">
-                        <img src="images/logo_1.png" alt="Image" />
-                        <h3>Football League</h3>
-                      </div>
-                      <div>
-                        <span class="vs"><span>VS</span></span>
-                      </div>
-                      <div class="team-2 text-center">
-                        <img src="images/logo_2.png" alt="Image" />
-                        <h3>Soccer</h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="text-center widget-vs-2-contents mb-4">
-                  <h4>World Cup League</h4>
-                  <p class="">
-                    <span class="d-block">December 20th, 2020</span>
-                    <span class="d-block">9:30 AM GMT+0</span>
-                    <strong class="text-primary">New Euro Arena</strong>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-12 mb-4">
-              <div class="bg-light p-4 rounded">
-                <div class="widget-body">
-                  <div class="widget-vs-2">
-                    <div
-                      class="
-                        d-flex
-                        align-items-center
-                        justify-content-around justify-content-between
-                        w-100
-                      "
-                    >
-                      <div class="team-1 text-center">
-                        <img src="images/logo_3.png" alt="Image" />
-                        <h3>Football League</h3>
-                      </div>
-                      <div>
-                        <span class="vs"><span>VS</span></span>
-                      </div>
-                      <div class="team-2 text-center">
-                        <img src="images/logo_4.png" alt="Image" />
-                        <h3>Soccer</h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="text-center widget-vs-2-contents mb-4">
-                  <h4>World Cup League</h4>
-                  <p class="">
-                    <span class="d-block">December 20th, 2020</span>
-                    <span class="d-block">9:30 AM GMT+0</span>
-                    <strong class="text-primary">New Euro Arena</strong>
-                  </p>
-                </div>
+            <div class="col-lg-12">
+              <div class="widget-next-match">
+                <table class="table custom-table">
+                  <thead>
+                    <tr>
+                      <th>Pos</th>
+                      <th>Team</th>
+                      <th>P</th>
+                      <th>W</th>
+                      <th>D</th>
+                      <th>L</th>
+                      <th>GF</th>
+                      <th>GA</th>
+                      <th>GD</th>
+                      <th>PTS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>
+                        <!-- <div class="team-2 text-center d-flex">
+                          <img
+                            src="images/logo_2.png"
+                            alt="Image"
+                            style="height: 50px"
+                          />
+                        </div> -->
+                        <strong class="text-white">Football League</strong>
+                      </td>
+                      <td>22</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>140</td>
+                      <td>140</td>
+                      <td>140</td>
+                      <td>140</td>
+                      <td>140</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td><strong class="text-white">Soccer</strong></td>
+                      <td>22</td>
+                      <td>3</td>
+                      <td>3</td>
+                      <td>3</td>
+                      <td>3</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>140</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td><strong class="text-white">Juvendo</strong></td>
+                      <td>22</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>140</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>
+                        <strong class="text-white"
+                          >French Football League</strong
+                        >
+                      </td>
+                      <td>22</td>
+                      <td>3</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td>140</td>
+                    </tr>
+                    \
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
-        <nav class="blog-pagination justify-content-center d-flex">
-          <ul class="pagination">
-            <li class="page-item">
-              <a href="#" class="page-link" aria-label="Previous">
-                <i class="fa fa-angle-left"></i>
-              </a>
-            </li>
-            <li class="page-item">
-              <a href="#" class="page-link">1</a>
-            </li>
-            <li class="page-item active">
-              <a href="#" class="page-link">2</a>
-            </li>
-            <li class="page-item">
-              <a href="#" class="page-link" aria-label="Next">
-                <i class="fa fa-angle-right"></i>
-              </a>
-            </li>
-          </ul>
-        </nav>
       </section>
 
       <div class="site-section pb-2">
@@ -221,7 +129,7 @@
                 <!-- uses .block-12 -->
                 <div class="block-12">
                   <figure>
-                    <img src="images/img_1.jpg" alt="Image" class="img-fluid" />
+                    <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid" />
                   </figure>
                   <div class="text">
                     <span class="meta">May 20th 2018</span>
@@ -244,7 +152,7 @@
               <div class="item">
                 <div class="block-12">
                   <figure>
-                    <img src="images/img_2.jpg" alt="Image" class="img-fluid" />
+                    <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid" />
                   </figure>
                   <div class="text">
                     <span class="meta">May 20th 2018</span>
@@ -267,7 +175,7 @@
               <div class="item">
                 <div class="block-12">
                   <figure>
-                    <img src="images/img_3.jpg" alt="Image" class="img-fluid" />
+                    <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid" />
                   </figure>
                   <div class="text">
                     <span class="meta">May 20th 2018</span>
@@ -290,7 +198,7 @@
               <div class="item">
                 <div class="block-12">
                   <figure>
-                    <img src="images/img_4.jpg" alt="Image" class="img-fluid" />
+                    <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid" />
                   </figure>
                   <div class="text">
                     <span class="meta">May 20th 2018</span>
@@ -313,7 +221,7 @@
                 <!-- uses .block-12 -->
                 <div class="block-12">
                   <figure>
-                    <img src="images/img_1.jpg" alt="Image" class="img-fluid" />
+                    <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid" />
                   </figure>
                   <div class="text">
                     <span class="meta">May 20th 2018</span>
@@ -336,7 +244,7 @@
               <div class="item">
                 <div class="block-12">
                   <figure>
-                    <img src="images/img_2.jpg" alt="Image" class="img-fluid" />
+                    <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid" />
                   </figure>
                   <div class="text">
                     <span class="meta">May 20th 2018</span>
@@ -359,7 +267,7 @@
               <div class="item">
                 <div class="block-12">
                   <figure>
-                    <img src="images/img_3.jpg" alt="Image" class="img-fluid" />
+                    <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid" />
                   </figure>
                   <div class="text">
                     <span class="meta">May 20th 2018</span>
@@ -382,7 +290,7 @@
               <div class="item">
                 <div class="block-12">
                   <figure>
-                    <img src="images/img_4.jpg" alt="Image" class="img-fluid" />
+                    <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid" />
                   </figure>
                   <div class="text">
                     <span class="meta">May 20th 2018</span>
@@ -405,7 +313,7 @@
                 <!-- uses .block-12 -->
                 <div class="block-12">
                   <figure>
-                    <img src="images/img_1.jpg" alt="Image" class="img-fluid" />
+                    <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid" />
                   </figure>
                   <div class="text">
                     <span class="meta">May 20th 2018</span>
@@ -428,7 +336,7 @@
               <div class="item">
                 <div class="block-12">
                   <figure>
-                    <img src="images/img_2.jpg" alt="Image" class="img-fluid" />
+                    <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid" />
                   </figure>
                   <div class="text">
                     <span class="meta">May 20th 2018</span>
@@ -451,7 +359,7 @@
               <div class="item">
                 <div class="block-12">
                   <figure>
-                    <img src="images/img_3.jpg" alt="Image" class="img-fluid" />
+                    <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid" />
                   </figure>
                   <div class="text">
                     <span class="meta">May 20th 2018</span>
@@ -474,7 +382,7 @@
               <div class="item">
                 <div class="block-12">
                   <figure>
-                    <img src="images/img_4.jpg" alt="Image" class="img-fluid" />
+                    <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid" />
                   </figure>
                   <div class="text">
                     <span class="meta">May 20th 2018</span>
@@ -497,7 +405,7 @@
                 <!-- uses .block-12 -->
                 <div class="block-12">
                   <figure>
-                    <img src="images/img_1.jpg" alt="Image" class="img-fluid" />
+                    <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid" />
                   </figure>
                   <div class="text">
                     <span class="meta">May 20th 2018</span>
@@ -520,7 +428,7 @@
               <div class="item">
                 <div class="block-12">
                   <figure>
-                    <img src="images/img_2.jpg" alt="Image" class="img-fluid" />
+                    <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid" />
                   </figure>
                   <div class="text">
                     <span class="meta">May 20th 2018</span>
@@ -543,7 +451,7 @@
               <div class="item">
                 <div class="block-12">
                   <figure>
-                    <img src="images/img_3.jpg" alt="Image" class="img-fluid" />
+                    <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid" />
                   </figure>
                   <div class="text">
                     <span class="meta">May 20th 2018</span>
@@ -566,7 +474,7 @@
               <div class="item">
                 <div class="block-12">
                   <figure>
-                    <img src="images/img_4.jpg" alt="Image" class="img-fluid" />
+                    <img src="{{asset('frontend/images/img_4.jpg')}}" alt="Image" class="img-fluid" />
                   </figure>
                   <div class="text">
                     <span class="meta">May 20th 2018</span>
@@ -604,27 +512,27 @@
             <div class="logo-carousel owl-carousel">
               <div class="logo-item">
                 <div class="tablecell-inner">
-                  <img src="images/logo-carousel/logo-1.png" alt="" />
+                  <img src="{{asset('frontend/images/logo-carousel/logo-1.png')}}" alt="" />
                 </div>
               </div>
               <div class="logo-item">
                 <div class="tablecell-inner">
-                  <img src="images/logo-carousel/logo-2.png" alt="" />
+                  <img src="{{asset('frontend/images/logo-carousel/logo-2.png')}}" alt="" />
                 </div>
               </div>
               <div class="logo-item">
                 <div class="tablecell-inner">
-                  <img src="images/logo-carousel/logo-3.png" alt="" />
+                  <img src="{{asset('frontend/images/logo-carousel/logo-3.png')}}" alt="" />
                 </div>
               </div>
               <div class="logo-item">
                 <div class="tablecell-inner">
-                  <img src="images/logo-carousel/logo-4.png" alt="" />
+                  <img src="{{asset('frontend/images/logo-carousel/logo-4.png')}}" alt="" />
                 </div>
               </div>
               <div class="logo-item">
                 <div class="tablecell-inner">
-                  <img src="images/logo-carousel/logo-5.png" alt="" />
+                  <img src="{{asset('frontend/images/logo-carousel/logo-5.png')}}" alt="" />
                 </div>
               </div>
             </div>
@@ -633,135 +541,9 @@
         </div>
       </div>
 
-      <footer class="site-footer bg-blue">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="mb-5">
-                <h3 class="footer-heading mb-4">About Biratnagar City FC</h3>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Saepe pariatur reprehenderit vero atque, consequatur id
-                  ratione, et non dignissimos culpa? Ut veritatis, quos illum
-                  totam quis blanditiis, minima minus odio!
-                </p>
-              </div>
-
-              <div class="mb-5">
-                <h3 class="footer-heading mb-4">Follow Us</h3>
-
-                <div>
-                  <a href="#" class="pl-0 pr-3"
-                    ><span class="icon-facebook"></span
-                  ></a>
-                  <a href="#" class="pl-3 pr-3"
-                    ><span class="icon-twitter"></span
-                  ></a>
-                  <a href="#" class="pl-3 pr-3"
-                    ><span class="icon-instagram"></span
-                  ></a>
-                  <a href="#" class="pl-3 pr-3"
-                    ><span class="icon-linkedin"></span
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 mb-5 mb-lg-0">
-              <div class="row mb-5">
-                <div class="col-md-12">
-                  <h3 class="footer-heading mb-4">Quick Menu</h3>
-                </div>
-                <div class="col-md-6 col-lg-6">
-                  <ul class="list-unstyled">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Matches</a></li>
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">Team</a></li>
-                  </ul>
-                </div>
-                <div class="col-md-6 col-lg-6">
-                  <ul class="list-unstyled">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Membership</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 mb-5 mb-lg-0">
-              <div class="mb-5">
-                <h3 class="footer-heading mb-2">Subscribe Newsletter</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit minima
-                  minus odio.
-                </p>
-
-                <form action="#" method="post">
-                  <div class="input-group mb-3">
-                    <input
-                      type="text"
-                      class="
-                        form-control
-                        border-secondary
-                        text-white
-                        bg-transparent
-                      "
-                      placeholder="Enter Email"
-                      aria-label="Enter Email"
-                      aria-describedby="button-addon2"
-                    />
-                    <div class="input-group-append">
-                      <button
-                        class="btn btn-primary"
-                        type="button"
-                        id="button-addon2"
-                      >
-                        Send
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="row pt-5 mt-5 text-center">
-            <div class="col-md-12">
-              <p>
-                Copyright &copy;
-                <script
-                  data-cfasync="false"
-                  src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
-                ></script>
-                <script>
-                  document.write(new Date().getFullYear());
-                </script>
-                All rights reserved
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
-      integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.stellar.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/aos.js"></script>
+@endsection
+@push('scripts')
 
-    <script src="js/main.js"></script>
-  </body>
-</html>
+@endpush

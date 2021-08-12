@@ -182,4 +182,22 @@ class FrontController extends Controller
     {
         return view('frontend.merch');
     }
+
+    public function getmatches()
+    {
+        $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
+        return view('frontend.matches', compact('latestblogs'));
+    }
+
+    public function viewStandings()
+    {
+        $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
+        return view('frontend.standings', compact('latestblogs'));
+    }
+
+    public function viewPartners()
+    {
+        $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
+        return view('frontend.partners', compact('latestblogs'));
+    }
 }

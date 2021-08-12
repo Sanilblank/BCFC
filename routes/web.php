@@ -44,6 +44,9 @@ Route::get('/viewalbums', [FrontController::class, 'viewalbums'])->name('viewalb
 Route::get('/viewgallery/{id}/{slug}', [FrontController::class, 'viewgallery'])->name('viewgallery');
 Route::get('/viewmerch', [FrontController::class, 'viewmerch'])->name('viewmerch');
 Route::get('/sliderinfo/{id}/{slug}', [FrontController::class, 'sliderinfo'])->name('sliderinfo');
+Route::get('/getmatches', [FrontController::class, 'getmatches'])->name('getmatches');
+Route::get('/viewStandings', [FrontController::class, 'viewStandings'])->name('viewStandings');
+Route::get('/viewPartners', [FrontController::class, 'viewPartners'])->name('viewPartners');
 
 Auth::routes();
 
