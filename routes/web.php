@@ -12,6 +12,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamMemberController;
 use App\Http\Controllers\TeamPositionController;
 use App\Http\Controllers\UserController;
@@ -80,6 +81,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::put('enablereply/{id}', [CommentController::class, 'enablereply'])->name('comment.enablereply');
 
     //Teams
+    Route::resource('team', TeamController::class);
     Route::resource('teamposition', TeamPositionController::class);
     Route::resource('teammember', TeamMemberController::class);
 

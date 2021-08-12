@@ -92,8 +92,9 @@
                   <li><a><i class="fa fa-futbol-o"></i>Team <span
                     class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                        <li><a href="{{ route('team.index') }}">All Teams</a></li>
                         <li><a href="{{ route('teamposition.index') }}">Positions</a></li>
-                        <li><a href="{{ route('teammember.index') }}">Team Members</a></li>
+                        <li><a href="{{ route('teammember.index') }}">BCFC Members</a></li>
 
                     </ul>
                   </li>
