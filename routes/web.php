@@ -5,12 +5,15 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\MatchStadiumController;
+use App\Http\Controllers\MatchTypeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\StadiumController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamMemberController;
@@ -91,6 +94,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
     //Slider
     Route::resource('slider', SliderController::class);
+
+    //Match Type and Stadium
+    Route::resource('matchtype', MatchTypeController::class);
+    Route::resource('stadium', MatchStadiumController::class);
 
 });
 

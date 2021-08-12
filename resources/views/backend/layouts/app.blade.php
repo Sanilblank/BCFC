@@ -98,6 +98,15 @@
 
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-star"></i>Matches <span
+                    class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('matchtype.index') }}">Match Types</a></li>
+                        <li><a href="#">Stadiums</a></li>
+                        <li><a href="#">View Matches</a></li>
+
+                    </ul>
+                  </li>
                   <li class="nav-item">
                     <a href="{{route('album.index')}}" class="nav-link">
                         <i class="fa fa-picture-o nav-icon"></i> Albums

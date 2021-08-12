@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Team;
+use App\Models\MatchStadium;
 use Illuminate\Http\Request;
 use DataTables;
-use Illuminate\Support\Facades\Storage;
 
-class TeamController extends Controller
+class MatchStadiumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,21 +16,16 @@ class TeamController extends Controller
     public function index(Request $request)
     {
         //
-        if($request->user()->can('manage-team')){
+        if($request->user()->can('manage-match')){
             if ($request->ajax()) {
-                $data = Team::latest()->get();
+                $data = MatchStadium::latest()->get();
                 return Datatables::of($data)
                     ->addIndexColumn()
-                    ->addColumn('logo', function($row){
-                        $src = Storage::disk('uploads')->url($row->logo);
-
-                        $image = "<img src='$src' style='max-height:100px'>";
-                        return $image;
-                    })
 
                     ->addColumn('action', function($row){
-                        $editurl = route('team.edit', $row->id);
-                        $deleteurl = route('team.destroy', $row->id);
+
+                        $editurl = route('stadium.edit', $row->id);
+                        $deleteurl = route('stadium.destroy', $row->id);
                         $csrf_token = csrf_token();
                         $btn = "
                                 <a href='$editurl' class='edit btn btn-primary btn-sm'>Edit</a>
@@ -44,10 +38,10 @@ class TeamController extends Controller
 
                                 return $btn;
                     })
-                    ->rawColumns(['logo', 'action'])
+                    ->rawColumns(['action'])
                     ->make(true);
             }
-            return view('backend.team.index');
+            return view('backend.stadium.index');
         }else{
                 return view('backend.permission.permission');
         }
@@ -61,8 +55,8 @@ class TeamController extends Controller
     public function create(Request $request)
     {
         //
-        if($request->user()->can('manage-team')){
-            return view('backend.team.create');
+        if($request->user()->can('manage-match')){
+            return view('backend.stadium.create');
         }else{
             return view('backend.permission.permission');
         }
@@ -78,34 +72,28 @@ class TeamController extends Controller
     {
         //
         $data = $this->validate($request, [
-            'name' => 'required|unique:teams,name',
-            'logo' => 'required|mimes:png,jpg,jpeg',
+            'name' => 'required|unique:match_stadia,name',
+            'location' => 'required'
         ]);
 
-        $teamlogoimage = '';
-        if($request->hasFile('logo'))
-        {
-            $photo = $request->file('logo');
-            $teamlogoimage = $photo->store('team_logo', 'uploads');
-        }
 
-        $team = Team::create([
+        $stadium = MatchStadium::create([
             'name' => $data['name'],
-            'logo' => $teamlogoimage,
+            'location' => $data['location'],
         ]);
 
-        $team->save();
+        $stadium->save();
 
-        return redirect()->route('team.index')->with('success', 'Team Created Successfully');
+        return redirect()->route('stadium.index')->with('success', 'Stadium Added Successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Team  $team
+     * @param  \App\Models\MatchStadium  $matchStadium
      * @return \Illuminate\Http\Response
      */
-    public function show(Team $team)
+    public function show(MatchStadium $matchStadium)
     {
         //
     }
@@ -113,15 +101,15 @@ class TeamController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Team  $team
+     * @param  \App\Models\MatchStadium  $matchStadium
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $id)
     {
         //
-        if($request->user()->can('manage-team')){
-            $team = Team::findorfail($id);
-            return view('backend.team.edit', compact('team'));
+        if($request->user()->can('manage-match')){
+            $stadium = MatchStadium::findorfail($id);
+            return view('backend.stadium.edit', compact('stadium'));
         }else{
             return view('backend.permission.permission');
         }
@@ -131,54 +119,42 @@ class TeamController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Team  $team
+     * @param  \App\Models\MatchStadium  $matchStadium
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
-        $team = Team::findorfail($id);
+        $stadium = MatchStadium::findorfail($id);
         $data = $this->validate($request, [
-            'name' => 'required|unique:teams,name,' . $id,
-            'logo' => 'mimes:png,jpg,jpeg',
+            'name' => 'required|unique:match_stadia,name,' . $stadium->id,
+            'location' => 'required'
         ]);
 
-        $teamlogoimage = '';
-        if($request->hasFile('logo'))
-        {
-            $photo = $request->file('logo');
-            Storage::disk('uploads')->delete($team->logo);
-            $teamlogoimage = $photo->store('team_logo', 'uploads');
-        }
-        else
-        {
-            $teamlogoimage = $team->logo;
-        }
 
-        $team->update([
+        $stadium->update([
             'name' => $data['name'],
-            'logo' => $teamlogoimage,
+            'location' => $data['location'],
         ]);
 
-        $team->save();
+        $stadium->save();
 
-        return redirect()->route('team.index')->with('success', 'Team Updated Successfully');
+        return redirect()->route('stadium.index')->with('success', 'Stadium Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Team  $team
+     * @param  \App\Models\MatchStadium  $matchStadium
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
     {
         //
-        if($request->user()->can('manage-team')){
-            $team = Team::findorfail($id);
-            Storage::disk('uploads')->delete($team->logo);
-            $team->delete();
-            return redirect()->back()->with('success', 'Team Deleted Successfully');
+        if($request->user()->can('manage-match')){
+            $stadium = MatchStadium::findorfail($id);
+            $stadium->delete();
+            return redirect()->back()->with('success', 'Stadium Deleted Successfully');
         }else{
             return view('backend.permission.permission');
         }

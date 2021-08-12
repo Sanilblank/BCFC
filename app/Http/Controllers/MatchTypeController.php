@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Team;
+use App\Models\MatchType;
 use Illuminate\Http\Request;
 use DataTables;
-use Illuminate\Support\Facades\Storage;
 
-class TeamController extends Controller
+class MatchTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,21 +16,28 @@ class TeamController extends Controller
     public function index(Request $request)
     {
         //
-        if($request->user()->can('manage-team')){
+        if($request->user()->can('manage-match')){
             if ($request->ajax()) {
-                $data = Team::latest()->get();
+                $data = MatchType::latest()->get();
                 return Datatables::of($data)
                     ->addIndexColumn()
-                    ->addColumn('logo', function($row){
-                        $src = Storage::disk('uploads')->url($row->logo);
 
-                        $image = "<img src='$src' style='max-height:100px'>";
-                        return $image;
+                    ->addColumn('status', function ($row) {
+                        if($row->status == 0)
+                        {
+                            $status = "Not Active";
+                        }
+                        else
+                        {
+                            $status = "Active";
+                        }
+
+                        return $status;
                     })
-
                     ->addColumn('action', function($row){
-                        $editurl = route('team.edit', $row->id);
-                        $deleteurl = route('team.destroy', $row->id);
+
+                        $editurl = route('matchtype.edit', $row->id);
+                        $deleteurl = route('matchtype.destroy', $row->id);
                         $csrf_token = csrf_token();
                         $btn = "
                                 <a href='$editurl' class='edit btn btn-primary btn-sm'>Edit</a>
@@ -44,10 +50,10 @@ class TeamController extends Controller
 
                                 return $btn;
                     })
-                    ->rawColumns(['logo', 'action'])
+                    ->rawColumns(['status', 'action'])
                     ->make(true);
             }
-            return view('backend.team.index');
+            return view('backend.matchtype.index');
         }else{
                 return view('backend.permission.permission');
         }
@@ -61,8 +67,8 @@ class TeamController extends Controller
     public function create(Request $request)
     {
         //
-        if($request->user()->can('manage-team')){
-            return view('backend.team.create');
+        if($request->user()->can('manage-match')){
+            return view('backend.matchtype.create');
         }else{
             return view('backend.permission.permission');
         }
@@ -78,34 +84,36 @@ class TeamController extends Controller
     {
         //
         $data = $this->validate($request, [
-            'name' => 'required|unique:teams,name',
-            'logo' => 'required|mimes:png,jpg,jpeg',
+            'name' => 'required|unique:match_types,name',
         ]);
 
-        $teamlogoimage = '';
-        if($request->hasFile('logo'))
+        if($request['status'] == null)
         {
-            $photo = $request->file('logo');
-            $teamlogoimage = $photo->store('team_logo', 'uploads');
+            $status = 0;
+        }
+        else
+        {
+            $status = 1;
         }
 
-        $team = Team::create([
+
+        $matchtype = MatchType::create([
             'name' => $data['name'],
-            'logo' => $teamlogoimage,
+            'status' => $status,
         ]);
 
-        $team->save();
+        $matchtype->save();
 
-        return redirect()->route('team.index')->with('success', 'Team Created Successfully');
+        return redirect()->route('matchtype.index')->with('success', 'Matchtype Added Successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Team  $team
+     * @param  \App\Models\MatchType  $matchType
      * @return \Illuminate\Http\Response
      */
-    public function show(Team $team)
+    public function show(MatchType $matchType)
     {
         //
     }
@@ -113,15 +121,15 @@ class TeamController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Team  $team
+     * @param  \App\Models\MatchType  $matchType
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $id)
     {
         //
-        if($request->user()->can('manage-team')){
-            $team = Team::findorfail($id);
-            return view('backend.team.edit', compact('team'));
+        if($request->user()->can('manage-match')){
+            $matchtype = MatchType::findorfail($id);
+            return view('backend.matchtype.edit', compact('matchtype'));
         }else{
             return view('backend.permission.permission');
         }
@@ -131,54 +139,50 @@ class TeamController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Team  $team
+     * @param  \App\Models\MatchType  $matchType
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
-        $team = Team::findorfail($id);
+        $matchtype = MatchType::findorfail($id);
         $data = $this->validate($request, [
-            'name' => 'required|unique:teams,name,' . $id,
-            'logo' => 'mimes:png,jpg,jpeg',
+            'name' => 'required|unique:match_types,name,' . $id,
         ]);
 
-        $teamlogoimage = '';
-        if($request->hasFile('logo'))
+        if($request['status'] == null)
         {
-            $photo = $request->file('logo');
-            Storage::disk('uploads')->delete($team->logo);
-            $teamlogoimage = $photo->store('team_logo', 'uploads');
+            $status = 0;
         }
         else
         {
-            $teamlogoimage = $team->logo;
+            $status = 1;
         }
 
-        $team->update([
+
+        $matchtype->update([
             'name' => $data['name'],
-            'logo' => $teamlogoimage,
+            'status' => $status,
         ]);
 
-        $team->save();
+        $matchtype->save();
 
-        return redirect()->route('team.index')->with('success', 'Team Updated Successfully');
+        return redirect()->route('matchtype.index')->with('success', 'Matchtype Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Team  $team
+     * @param  \App\Models\MatchType  $matchType
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
     {
         //
-        if($request->user()->can('manage-team')){
-            $team = Team::findorfail($id);
-            Storage::disk('uploads')->delete($team->logo);
-            $team->delete();
-            return redirect()->back()->with('success', 'Team Deleted Successfully');
+        if($request->user()->can('manage-match')){
+            $matchtype = MatchType::findorfail($id);
+            $matchtype->delete();
+            return redirect()->back()->with('success', 'Match Type Deleted Successfully');
         }else{
             return view('backend.permission.permission');
         }
