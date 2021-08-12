@@ -112,7 +112,7 @@
                         class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('setting.index') }}">General</a></li>
-                            <li><a href="#">Slider Settings</a></li>
+                            <li><a href="{{ route('slider.index') }}">Slider Settings</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

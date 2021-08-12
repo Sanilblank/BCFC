@@ -10,6 +10,7 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\TeamMemberController;
 use App\Http\Controllers\TeamPositionController;
@@ -42,6 +43,7 @@ Route::post('/reply/add', [FrontController::class, 'addReply'])->name('page.repl
 Route::get('/viewalbums', [FrontController::class, 'viewalbums'])->name('viewalbums');
 Route::get('/viewgallery/{id}/{slug}', [FrontController::class, 'viewgallery'])->name('viewgallery');
 Route::get('/viewmerch', [FrontController::class, 'viewmerch'])->name('viewmerch');
+Route::get('/sliderinfo/{id}/{slug}', [FrontController::class, 'sliderinfo'])->name('sliderinfo');
 
 Auth::routes();
 
@@ -81,6 +83,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     //Albums
     Route::resource('album', AlbumController::class);
     Route::resource('photo', PhotoController::class);
+
+    //Slider
+    Route::resource('slider', SliderController::class);
 
 });
 
