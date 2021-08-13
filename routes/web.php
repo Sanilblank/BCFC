@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\MatchDetailController;
 use App\Http\Controllers\MatchStadiumController;
 use App\Http\Controllers\MatchTypeController;
 use App\Http\Controllers\PermissionController;
@@ -99,6 +100,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     //Match Type and Stadium
     Route::resource('matchtype', MatchTypeController::class);
     Route::resource('stadium', MatchStadiumController::class);
-
+    Route::resource('match', MatchDetailController::class);
+    Route::get('completedmatch', [MatchDetailController::class, 'completedindex'])->name('match.completedindex');
+    Route::get('createresult/{id}', [MatchDetailController::class, 'createresult'])->name('match.createresult');
+    Route::post('storeresult', [MatchDetailController::class, 'storeresult'])->name('match.storeresult');
+    Route::get('editresult/{id}', [MatchDetailController::class, 'editresult'])->name('match.editresult');
+    Route::put('updateresult/{id}', [MatchDetailController::class, 'updateresult'])->name('match.updateresult');
 });
 

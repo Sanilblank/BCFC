@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MatchDetail;
 use App\Models\MatchType;
 use Illuminate\Http\Request;
 use DataTables;
@@ -181,6 +182,11 @@ class MatchTypeController extends Controller
         //
         if($request->user()->can('manage-match')){
             $matchtype = MatchType::findorfail($id);
+            $matchdetail = MatchDetail::where('matchtype_id', $id)->first();
+            if($matchdetail)
+            {
+                return redirect()->back()->with('failure', 'Match Type is being used in matches');
+            }
             $matchtype->delete();
             return redirect()->back()->with('success', 'Match Type Deleted Successfully');
         }else{

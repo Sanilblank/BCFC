@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MatchDetail;
 use App\Models\MatchStadium;
 use Illuminate\Http\Request;
 use DataTables;
@@ -153,6 +154,11 @@ class MatchStadiumController extends Controller
         //
         if($request->user()->can('manage-match')){
             $stadium = MatchStadium::findorfail($id);
+            $matchdetail = MatchDetail::where('stadium_id', $id)->first();
+            if($matchdetail)
+            {
+                return redirect()->back()->with('failure', 'Stadium is being used in matches');
+            }
             $stadium->delete();
             return redirect()->back()->with('success', 'Stadium Deleted Successfully');
         }else{

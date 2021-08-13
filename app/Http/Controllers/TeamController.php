@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MatchDetail;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use DataTables;
@@ -176,6 +177,11 @@ class TeamController extends Controller
         //
         if($request->user()->can('manage-team')){
             $team = Team::findorfail($id);
+            $matchdetail = MatchDetail::where('team1_id', $id)->orWhere('team2_id', $id)->first();
+            if($matchdetail)
+            {
+                return redirect()->back()->with('failure', 'Team is involved in matches');
+            }
             Storage::disk('uploads')->delete($team->logo);
             $team->delete();
             return redirect()->back()->with('success', 'Team Deleted Successfully');
