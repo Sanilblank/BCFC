@@ -7,6 +7,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\MatchDetailController;
 use App\Http\Controllers\MatchStadiumController;
+use App\Http\Controllers\MatchStandingController;
 use App\Http\Controllers\MatchTypeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PhotoController;
@@ -106,5 +107,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('storeresult', [MatchDetailController::class, 'storeresult'])->name('match.storeresult');
     Route::get('editresult/{id}', [MatchDetailController::class, 'editresult'])->name('match.editresult');
     Route::put('updateresult/{id}', [MatchDetailController::class, 'updateresult'])->name('match.updateresult');
+
+    //Standings
+    Route::get('standing', [MatchStandingController::class, 'index'])->name('standing.index');
+    Route::get('viewStanding', [MatchStandingController::class, 'viewStanding'])->name('standing.viewStanding');
+    Route::post('initialize', [MatchStandingController::class, 'initialize'])->name('standing.initialize');
+    Route::get('standing/create/{id}', [MatchStandingController::class, 'create'])->name('standing.create');
+    Route::post('standing/store', [MatchStandingController::class, 'store'])->name('standing.store');
+    Route::get('standing/edit/{id}', [MatchStandingController::class, 'edit'])->name('standing.edit');
+    Route::put('standing/update/{id}', [MatchStandingController::class, 'update'])->name('standing.update');
+    Route::delete('standing/delete/{id}', [MatchStandingController::class, 'destroy'])->name('standing.destroy');
+    Route::delete('standing/deleteall/{id}', [MatchStandingController::class, 'destroyall'])->name('standing.destroyall');
+
 });
 

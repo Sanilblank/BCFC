@@ -105,6 +105,7 @@
                         <li><a href="{{ route('stadium.index') }}">Stadiums</a></li>
                         <li><a href="{{ route('match.index') }}">View Upcoming Matches</a></li>
                         <li><a href="{{ route('match.completedindex') }}">View Completed Matches</a></li>
+                        <li><a href="{{ route('standing.index') }}">Standings</a></li>
                     </ul>
                   </li>
                   <li class="nav-item">
