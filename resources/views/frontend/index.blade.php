@@ -249,12 +249,18 @@
 
 
 
-    <div class="site-blocks-cover overlay py-5" style="background-image: url(frontend/images/hero2.jpg); ">
-      <div class="container py-5">
-        <div class="widget-title2 text-center">
-          <h2>Players</h2>
-        </div>
-        <div class="owl-4-slider owl-carousel mt-5">
+    <div class="site-blocks-cover content-wrapper" style="background-image: url(frontend/images/hero2.jpg); ">
+      <div class="container-fluid">
+      <div class="widget-title2 text-center">
+            <span class="tbg">Players</span>
+            <h4 class="">Meet the Super Team</h4>
+            <h3 class="text-black">Players</h3>
+            <p>
+              Fight Defend Win Fight Defend Win Fight Defend Win Fight Defend
+              Win Fight Defend Win
+            </p>
+          </div>
+        <div class="owl-4-slider owl-carousel mt-5" style="padding:0 100px;">
             @foreach ($teammembers as $member)
                 <div class="item">
                     <div class="video-media">
@@ -340,22 +346,28 @@
 
 
 
-    <div class="py-3">
+    <div class="content-wrapper">
       <div class="container-fluid">
         <div class="row">
-          <div class="widget-title2 text-black">
-            <h3 class="text-black">NEWS</h3>
-          </div>
+        <div class="widget-title3 text-center">
+              <span class="tbg">Latest</span>
+              <h4 class="">Let's Update</h4>
+              <h3 class="text-black">News</h3>
+              <p>
+                Fight Defend Win Fight Defend Win Fight Defend Win Fight Defend
+                Win Fight Defend Win
+              </p>
+            </div>
         </div>
-        <div class="row">
+        <div class="row section-padding">
           <div class="col-md-6 col-lg-7">
             <div class="site-blocks-cover overlay" style="background-image: url({{Storage::disk('uploads')->url($latestblog->image)}}); height: 466px; cursor: pointer;" onclick="location.href='{{route('newsdetails', [$latestblog->id, Str::slug($latestblog->title)])}}'">
               <div class="container">
                 <div class="row align-items-center justify-content-start" style='height: auto;'>
                   <div class="col-md-6 text-center text-md-left" data-aos="fade-up" data-aos-delay="400">
                     {{-- <p><a href="#" class="btn btn-primary btn-sm rounded-0 px-3">Hero Section</a></p> --}}
-                    <h1 class="">{{$latestblog->title}}</h1>
-                    <p>{{$latestblog->smalldesc}}</p>
+                    <h1 class="" style="background-color: #00000080; padding:20px 0px;">{{$latestblog->title}}</h1>
+                    <!-- <p>{{$latestblog->smalldesc}}</p> -->
                     <!-- <p><a href="{{route('newsdetails', [$latestblog->id, Str::slug($latestblog->title)])}}" class="border-bottom border-primary" style="color:white;">Read More</a></p> -->
                   </div>
                 </div>
@@ -462,111 +474,56 @@
       </div>
     </div>
 
+      <!-- gallery one -->
+      <div class="content-wrapper pt-0">
+<div class="container-fluid px-0">
+  <div class="row">
+    <div class="widget-title3 text-center">
+      <span class="tbg">Gallery</span>
+      <h4 class="">All of us candid</h4>
+      <h3 class="text-black">Gallery</h3>
+      <p>
+        Fight Defend Win Fight Defend Win Fight Defend Win Fight Defend Win
+        Fight Defend Win
+      </p>
+    </div>
+</div>
+
+<div class="row no-gutters section-padding pb-0">
+  <div class="col-9 bg-blue">
+    <div class="gallery2">
+      <!-- maximum 6 images> randomize the images -->
+      <div class="img-w">
+        <img src="https://images.unsplash.com/photo-1485766410122-1b403edb53db?dpr=1&auto=format&fit=crop&w=1500&h=846&q=80&cs=tinysrgb&crop=" alt="" />
+        <h2>Caption</h2>
+      </div>
+      <div class="img-w"><img src="https://images.unsplash.com/photo-1485793997698-baba81bf21ab?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="" />
+        <h2>Football</h2></div>
+      <div class="img-w"><img src="https://images.unsplash.com/photo-1485871800663-71856dc09ec4?dpr=1&auto=format&fit=crop&w=1500&h=2250&q=80&cs=tinysrgb&crop=" alt="" />
+      <h2>Biratnagar City FC</h2>
+      </div>
+      <div class="img-w"><img src="https://images.unsplash.com/photo-1485871882310-4ecdab8a6f94?dpr=1&auto=format&fit=crop&w=1500&h=2250&q=80&cs=tinysrgb&crop=" alt="" /></div>
+      <div class="img-w"><img src="https://images.unsplash.com/photo-1485872304698-0537e003288d?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="" /></div>
+      <div class="img-w"><img src="https://images.unsplash.com/photo-1485872325464-50f17b82075a?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="" /></div>
+      <div class="img-w"><img src="https://images.unsplash.com/photo-1470171119584-533105644520?dpr=1&auto=format&fit=crop&w=1500&h=886&q=80&cs=tinysrgb&crop=" alt="" /></div>
+    </div>
+  </div>
 
 
-<!-- gallery one -->
-
-<div class="row">
-  <div class="widget-title2 text-black">
-    <h3 class="text-black">Gallery</h3>
+  <!-- this is for ad-section -->
+  <div class="col-3 bg-primary">
+    <div class="img-ad"><img src="https://images.unsplash.com/photo-1517747614396-d21a78b850e8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1482&q=80" alt="" /></div>
   </div>
 </div>
 
-    <div class="gallery">
 
-      <div class="gallery__column">
-        <a href="https://unsplash.com/@jeka_fe" target="_blank" class="gallery__link">
-          <figure class="gallery__thumb">
-            <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80" alt="Portrait by Jessica Felicio" class="gallery__image">
-            <figcaption class="gallery__caption">Portrait by Jessica Felicio</figcaption>
-          </figure>
-        </a>
-
-        <a href="https://unsplash.com/@oladimeg" target="_blank" class="gallery__link">
-          <figure class="gallery__thumb">
-            <img src="https://images.unsplash.com/photo-1522778526097-ce0a22ceb253?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="Portrait by Oladimeji Odunsi" class="gallery__image">
-            <figcaption class="gallery__caption">Portrait by Oladimeji Odunsi</figcaption>
-          </figure>
-        </a>
-
-        <a href="https://unsplash.com/@a2eorigins" target="_blank" class="gallery__link">
-          <figure class="gallery__thumb">
-            <img src="https://images.unsplash.com/photo-1434648957308-5e6a859697e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=967&q=80" alt="Portrait by Alex Perez" class="gallery__image">
-            <figcaption class="gallery__caption">Portrait by Alex Perez</figcaption>
-          </figure>
-        </a>
-      </div>
-
-      <div class="gallery__column">
-        <a href="https://unsplash.com/@noahbuscher" target="_blank" class="gallery__link">
-          <figure class="gallery__thumb">
-            <img src="https://images.unsplash.com/photo-1486286701208-1d58e9338013?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80" alt="Portrait by Noah Buscher" class="gallery__image">
-            <figcaption class="gallery__caption">Portrait by Noah Buscher</figcaption>
-          </figure>
-        </a>
-
-        <a href="https://unsplash.com/@von_co" target="_blank" class="gallery__link">
-          <figure class="gallery__thumb">
-            <img src="https://images.unsplash.com/photo-1581187375550-48c9a182e38b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=926&q=80" alt="Portrait by Ivana Cajina" class="gallery__image">
-            <figcaption class="gallery__caption">Portrait by Ivana Cajina</figcaption>
-          </figure>
-        </a>
-
-        <a href="https://unsplash.com/@samburriss" target="_blank" class="gallery__link">
-          <figure class="gallery__thumb">
-            <img src="https://images.unsplash.com/photo-1546608235-3310a2494cdf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=582&q=80" alt="Portrait by Sam Burriss" class="gallery__image">
-            <figcaption class="gallery__caption">Portrait by Sam Burriss</figcaption>
-          </figure>
-        </a>
-      </div>
-
-      <div class="gallery__column">
-        <a href="https://unsplash.com/@marilezhava" target="_blank" class="gallery__link">
-          <figure class="gallery__thumb">
-            <img src="https://images.unsplash.com/photo-1516283250450-174387a1af6b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80" alt="Portrait by Mari Lezhava" class="gallery__image">
-            <figcaption class="gallery__caption">Portrait by Mari Lezhava</figcaption>
-          </figure>
-        </a>
-
-        <a href="https://unsplash.com/@ethanhaddox" target="_blank" class="gallery__link">
-          <figure class="gallery__thumb">
-            <img src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Portrait by Ethan Haddox" class="gallery__image">
-            <figcaption class="gallery__caption">Portrait by Ethan Haddox</figcaption>
-          </figure>
-        </a>
-
-
-      </div>
-
-      <div class="gallery__column">
-        <a href="https://unsplash.com/@frxgui" target="_blank" class="gallery__link">
-          <figure class="gallery__thumb">
-            <img src="https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1482&q=80" alt="Portrait by Guilian Fremaux" class="gallery__image">
-            <figcaption class="gallery__caption">Portrait by Guilian Fremaux</figcaption>
-          </figure>
-        </a>
-
-        <a href="https://unsplash.com/@majestical_jasmin" target="_blank" class="gallery__link">
-          <figure class="gallery__thumb">
-            <img src="https://images.unsplash.com/photo-1511426463457-0571e247d816?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=80" alt="Portrait by Jasmin Chew" class="gallery__image">
-            <figcaption class="gallery__caption">Portrait by Jasmin Chew</figcaption>
-          </figure>
-        </a>
-
-        <a href="https://unsplash.com/@dimadallacqua" target="_blank" class="gallery__link">
-          <figure class="gallery__thumb">
-            <img src="https://images.unsplash.com/photo-1420316078344-6149cb82b2c7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80" alt="Portrait by Dima DallAcqua" class="gallery__image">
-            <figcaption class="gallery__caption">Portrait by Dima DallAcqua</figcaption>
-          </figure>
-        </a>
-
-      </div>
-    </div>
+  </div>
 
 
 
+</div>
 
-    <!-- gallery two -->
+
 
 
 
