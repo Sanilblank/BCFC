@@ -50,12 +50,12 @@
             <a href="{{route('getnews')}}">News</a>
 
           </li>
-          <li><a href="matches.html">Matches</a></li>
+          <li><a href="{{route('getmatches')}}">Matches</a></li>
           <li><a href="{{route('teaminfo')}}">Team</a></li>
           <li><a href="{{route('viewalbums')}}">Albums</a></li>
           <li><a href="{{route('viewmerch')}}">Merch</a></li>
           <li><a href="{{route('aboutus')}}">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="{{route('contactus')}}">Contact</a></li>
         </ul>
       </div>
     </nav>

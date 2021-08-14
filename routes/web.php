@@ -5,12 +5,18 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\MatchDetailController;
+use App\Http\Controllers\MatchStadiumController;
+use App\Http\Controllers\MatchTypeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\StadiumController;
 use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamMemberController;
 use App\Http\Controllers\TeamPositionController;
 use App\Http\Controllers\UserController;
@@ -42,6 +48,11 @@ Route::post('/reply/add', [FrontController::class, 'addReply'])->name('page.repl
 Route::get('/viewalbums', [FrontController::class, 'viewalbums'])->name('viewalbums');
 Route::get('/viewgallery/{id}/{slug}', [FrontController::class, 'viewgallery'])->name('viewgallery');
 Route::get('/viewmerch', [FrontController::class, 'viewmerch'])->name('viewmerch');
+Route::get('/sliderinfo/{id}/{slug}', [FrontController::class, 'sliderinfo'])->name('sliderinfo');
+Route::get('/getmatches', [FrontController::class, 'getmatches'])->name('getmatches');
+Route::get('/viewStandings', [FrontController::class, 'viewStandings'])->name('viewStandings');
+Route::get('/viewPartners', [FrontController::class, 'viewPartners'])->name('viewPartners');
+Route::get('/contactus', [FrontController::class, 'contactus'])->name('contactus');
 
 Auth::routes();
 
@@ -75,6 +86,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::put('enablereply/{id}', [CommentController::class, 'enablereply'])->name('comment.enablereply');
 
     //Teams
+    Route::resource('team', TeamController::class);
     Route::resource('teamposition', TeamPositionController::class);
     Route::resource('teammember', TeamMemberController::class);
 
@@ -82,5 +94,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::resource('album', AlbumController::class);
     Route::resource('photo', PhotoController::class);
 
+    //Slider
+    Route::resource('slider', SliderController::class);
+
+    //Match Type and Stadium
+    Route::resource('matchtype', MatchTypeController::class);
+    Route::resource('stadium', MatchStadiumController::class);
+    Route::resource('match', MatchDetailController::class);
+    Route::get('completedmatch', [MatchDetailController::class, 'completedindex'])->name('match.completedindex');
+    Route::get('createresult/{id}', [MatchDetailController::class, 'createresult'])->name('match.createresult');
+    Route::post('storeresult', [MatchDetailController::class, 'storeresult'])->name('match.storeresult');
+    Route::get('editresult/{id}', [MatchDetailController::class, 'editresult'])->name('match.editresult');
+    Route::put('updateresult/{id}', [MatchDetailController::class, 'updateresult'])->name('match.updateresult');
 });
 

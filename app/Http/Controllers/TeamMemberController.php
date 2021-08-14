@@ -62,7 +62,7 @@ class TeamMemberController extends Controller
 
                                 return $btn;
                     })
-                    ->rawColumns(['photo', 'position', 'date', 'action'])
+                    ->rawColumns(['photo', 'position', 'date', 'status', 'action'])
                     ->make(true);
             }
             return view('backend.teammember.index');

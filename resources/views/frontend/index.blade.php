@@ -11,34 +11,28 @@
   <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
   <a href="#" class="google"><i class="fab fa-google"></i></a>
 </div>
+
+
     <div class="slide-one-item home-slider owl-carousel">
-      <div class="site-blocks-cover overlay" style="background-image: url(frontend/images/hero_bg_2.jpg);" data-aos="fade"
-        data-stellar-background-ratio="0.5">
-        <div class="container">
-          <div class="row align-items-center justify-content-start">
-            <div class="col-md-6 text-center text-md-left" data-aos="fade-up" data-aos-delay="400">
-              <p><a href="#" class="btn btn-primary btn-sm rounded-0 px-3">Hero Section</a></p>
-              <h1 class="">Player of the Week</h1>
-              <p><a href="#" class="border-bottom border-primary" style="color:white;">Read More</a></p>
+        @if (count($sliders) > 0)
+            @foreach ($sliders as $slider)
+            <div class="site-blocks-cover overlay" style="background-image: url({{Storage::disk('uploads')->url($slider->images)}});" data-aos="fade"
+                data-stellar-background-ratio="0.5">
+                <div class="container">
+                <div class="row align-items-center justify-content-start">
+                    <div class="col-md-6 text-center text-md-left" data-aos="fade-up" data-aos-delay="400">
+                    <p><a href="#" class="btn btn-primary btn-sm rounded-0 px-3">{{$slider->subtitle}}</a></p>
+                    <h1 class="">{{$slider->title}}</h1>
+                    <p><a href="{{route('sliderinfo', [$slider->id, Str::slug($slider->title)])}}" class="border-bottom border-primary" style="color:white;">Read More</a></p>
+                    </div>
+                </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
+            @endforeach
+        @endif
 
-      <div class="site-blocks-cover overlay" style="background-image: url(frontend/images/hero_bg_4.jpg);" data-aos="fade"
-        data-stellar-background-ratio="0.5">
-        <div class="container">
-          <div class="row align-items-center justify-content-start">
-            <div class="col-md-6 text-center text-md-left" data-aos="fade-up" data-aos-delay="400">
-              <p><a href="#" class="btn btn-primary btn-sm rounded-0 px-3">Hero Section</a></p>
-              <h1 class="">Player of the Week</h1>
-              <p><a href="#" class="border-bottom border-primary" style="color:white;">Read More</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="site-blocks-cover overlay" style="background-image: url(frontend/images/hero_bg_3.jpg);" data-aos="fade"
+      {{-- <div class="site-blocks-cover overlay" style="background-image: url(frontend/images/hero_bg_4.jpg);" data-aos="fade"
         data-stellar-background-ratio="0.5">
         <div class="container">
           <div class="row align-items-center justify-content-start">
@@ -49,7 +43,20 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
+
+      {{-- <div class="site-blocks-cover overlay" style="background-image: url(frontend/images/hero_bg_3.jpg);" data-aos="fade"
+        data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row align-items-center justify-content-start">
+            <div class="col-md-6 text-center text-md-left" data-aos="fade-up" data-aos-delay="400">
+              <p><a href="#" class="btn btn-primary btn-sm rounded-0 px-3">Hero Section</a></p>
+              <h1 class="">Player of the Week</h1>
+              <p><a href="#" class="border-bottom border-primary" style="color:white;">Read More</a></p>
+            </div>
+          </div>
+        </div>
+      </div> --}}
     </div>
 
 

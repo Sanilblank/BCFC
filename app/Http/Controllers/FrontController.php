@@ -8,6 +8,7 @@ use App\Models\BlogTag;
 use App\Models\Comment;
 use App\Models\Photo;
 use App\Models\Reply;
+use App\Models\Slider;
 use App\Models\TeamMember;
 use App\Models\TeamPosition;
 use Illuminate\Http\Request;
@@ -21,7 +22,8 @@ class FrontController extends Controller
         $latestthreeblogs = Blog::latest()->where('status', 1)->where('id', '!=', $latestblog->id)->where('draft', 0)->take(2)->get();
         $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->skip(3)->take(16)->get();
         $teammembers = TeamMember::latest()->where('status', 1)->with('teamposition')->get();
-        return view('frontend.index', compact('latestthreeblogs', 'latestblogs', 'latestblog', 'teammembers'));
+        $sliders = Slider::latest()->get();
+        return view('frontend.index', compact('latestthreeblogs', 'latestblogs', 'latestblog', 'teammembers', 'sliders'));
     }
 
     public function getnews()
@@ -169,8 +171,39 @@ class FrontController extends Controller
         return view('frontend.gallery', compact('photos', 'album'));
     }
 
+    public function sliderinfo($id, $slug)
+    {
+        $slider = Slider::findorfail($id);
+        $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
+        return view('frontend.slider', compact('slider', 'latestblogs'));
+    }
+
     public function viewmerch()
     {
         return view('frontend.merch');
+    }
+
+    public function getmatches()
+    {
+        $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
+        return view('frontend.matches', compact('latestblogs'));
+    }
+
+    public function viewStandings()
+    {
+        $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
+        return view('frontend.standings', compact('latestblogs'));
+    }
+
+    public function viewPartners()
+    {
+        $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
+        return view('frontend.partners', compact('latestblogs'));
+    }
+
+    public function contactus()
+    {
+        $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
+        return view('frontend.contact', compact('latestblogs'));
     }
 }

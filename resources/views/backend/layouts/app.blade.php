@@ -92,9 +92,19 @@
                   <li><a><i class="fa fa-futbol-o"></i>Team <span
                     class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                        <li><a href="{{ route('team.index') }}">All Teams</a></li>
                         <li><a href="{{ route('teamposition.index') }}">Positions</a></li>
-                        <li><a href="{{ route('teammember.index') }}">Team Members</a></li>
+                        <li><a href="{{ route('teammember.index') }}">BCFC Members</a></li>
 
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-star"></i>Matches <span
+                    class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{ route('matchtype.index') }}">Match Types</a></li>
+                        <li><a href="{{ route('stadium.index') }}">Stadiums</a></li>
+                        <li><a href="{{ route('match.index') }}">View Upcoming Matches</a></li>
+                        <li><a href="{{ route('match.completedindex') }}">View Completed Matches</a></li>
                     </ul>
                   </li>
                   <li class="nav-item">
@@ -112,7 +122,7 @@
                         class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('setting.index') }}">General</a></li>
-                            <li><a href="#">Slider Settings</a></li>
+                            <li><a href="{{ route('slider.index') }}">Slider Settings</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
