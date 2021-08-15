@@ -108,33 +108,33 @@
 
             <div class="widget-next-match">
               <div class="text-center widget-vs-contents">
-                <h3>Match 01</h3>
+                {{-- <h3>Match 01</h3> --}}
               </div>
 
               <div class="widget-body mb-3">
                 <div class="widget-vs">
                   <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
                     <div class="team-1 text-center">
-                      <img src="{{asset('frontend/images/logo_1.png')}}" alt="Image">
-                      <h3>Football League</h3>
+                      <img src="{{Storage::disk('uploads')->url($nextmatch->team1->logo)}}" alt="Image" style="max-width: 70px">
+                      <h3>{{$nextmatch->team1->name}}</h3>
                     </div>
                     <div>
                       <span class="vs"><span>VS</span></span>
                     </div>
                     <div class="team-2 text-center">
-                      <img src="{{asset('frontend/images/logo_2.png')}}" alt="Image">
-                      <h3>Soccer</h3>
+                      <img src="{{Storage::disk('uploads')->url($nextmatch->team2->logo)}}" alt="Image" style="max-width: 70px">
+                      <h3>{{$nextmatch->team2->name}}</h3>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div class="text-center widget-vs-contents">
-                <h4>Nepal Super League</h4>
+                <h4>{{$nextmatch->matchtype->name}}</h4>
                 <p class="mb-5">
-                  <span class="d-block">December 20th, 2020</span>
-                  <span class="d-block">9:30 AM GMT+0</span>
-                  <span class="d-block">Dashrath Rangasala</span>
+                  <span class="d-block">{{date('M d, Y', strtotime($nextmatch->datetime))}}</span>
+                  <span class="d-block">{{date('h:m a', strtotime($nextmatch->datetime))}}</span>
+                  <span class="d-block">{{$nextmatch->stadium->name}}</span>
                 </p>
 
                 <div id="date-countdown2" class="pb-1"></div>
@@ -147,7 +147,7 @@
             </div>
             <div class="widget-next-match bg-lightblue">
               <div class="text-center widget-vs-contents">
-                <h3>Match 02</h3>
+                {{-- <h3>Match 02</h3> --}}
               </div>
 
 
@@ -155,15 +155,15 @@
                 <div class="widget-vs">
                   <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
                     <div class="team-1 text-center">
-                      <img src="{{asset('frontend/images/logo_1.png')}}" alt="Image">
-                      <h3>Football League</h3>
+                      <img src="{{Storage::disk('uploads')->url($lastmatch->team1->logo)}}" alt="Image" style="max-width: 70px">
+                      <h3>{{$lastmatch->team1->name}}</h3>
                     </div>
                     <div>
                       <span class="vs"><span>4-4</span></span>
                     </div>
                     <div class="team-2 text-center">
-                      <img src="{{asset('frontend/images/logo_2.png')}}" alt="Image">
-                      <h3>Soccer</h3>
+                      <img src="{{Storage::disk('uploads')->url($lastmatch->team2->logo)}}" alt="Image" style="max-width: 70px">
+                      <h3>{{$lastmatch->team2->name}}</h3>
                     </div>
                   </div>
                 </div>
@@ -172,9 +172,9 @@
               <div class="text-center widget-vs-contents ">
                 <h4>Nepal Cup League</h4>
                 <p class="mb-5">
-                  <span class="d-block">December 20th, 2020</span>
-                  <span class="d-block">9:30 AM GMT+0</span>
-                  <span class="d-block">Dashrath Rangasala</span>
+                    <span class="d-block">{{date('M d, Y', strtotime($lastmatch->datetime))}}</span>
+                    <span class="d-block">{{date('h:m a', strtotime($lastmatch->datetime))}}</span>
+                    <span class="d-block">{{$lastmatch->stadium->name}}</span>
                 </p>
 
                 <div id="date-countdown2" class="pb-1"></div>
@@ -196,54 +196,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td><strong class="text-white">Football League</strong></td>
-                    <td>22</td>
-                    <td>3</td>
-                    <td>2</td>
-                    <td>140</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td><strong class="text-white">Soccer</strong></td>
-                    <td>22</td>
-                    <td>3</td>
-                    <td>2</td>
-                    <td>140</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td><strong class="text-white">Juvendo</strong></td>
-                    <td>22</td>
-                    <td>3</td>
-                    <td>2</td>
-                    <td>140</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td><strong class="text-white">French Football League</strong></td>
-                    <td>22</td>
-                    <td>3</td>
-                    <td>2</td>
-                    <td>140</td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td><strong class="text-white">Legia Abante</strong></td>
-                    <td>22</td>
-                    <td>3</td>
-                    <td>2</td>
-                    <td>140</td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td><strong class="text-white">Gliwice League</strong></td>
-                    <td>22</td>
-                    <td>3</td>
-                    <td>2</td>
-                    <td>140</td>
-                  </tr>
+                    @foreach ($standings as $standing)
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td><strong class="text-white">{{$standing->team->name}}</strong></td>
+                        <td>{{$standing->win}}</td>
+                        <td>{{$standing->draw}}</td>
+                        <td>{{$standing->loss}}</td>
+                        <td>{{$standing->points}}</td>
+                    </tr>
+                    @endforeach
 
                 </tbody>
               </table>
@@ -500,19 +462,14 @@
   <div class="col-9 bg-blue">
     <div class="gallery2">
       <!-- maximum 6 images> randomize the images -->
+      @foreach ($pictures as $picture)
       <div class="img-w">
-        <img src="https://images.unsplash.com/photo-1485766410122-1b403edb53db?dpr=1&auto=format&fit=crop&w=1500&h=846&q=80&cs=tinysrgb&crop=" alt="" />
-        <h2>Caption</h2>
+        <img src="{{Storage::disk('uploads')->url($picture->image)}}" alt="" />
+        <h2>{{$picture->album->title}}</h2>
       </div>
-      <div class="img-w"><img src="https://images.unsplash.com/photo-1485793997698-baba81bf21ab?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="" />
-        <h2>Football</h2></div>
-      <div class="img-w"><img src="https://images.unsplash.com/photo-1485871800663-71856dc09ec4?dpr=1&auto=format&fit=crop&w=1500&h=2250&q=80&cs=tinysrgb&crop=" alt="" />
-      <h2>Biratnagar City FC</h2>
-      </div>
-      <div class="img-w"><img src="https://images.unsplash.com/photo-1485871882310-4ecdab8a6f94?dpr=1&auto=format&fit=crop&w=1500&h=2250&q=80&cs=tinysrgb&crop=" alt="" /></div>
-      <div class="img-w"><img src="https://images.unsplash.com/photo-1485872304698-0537e003288d?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="" /></div>
-      <div class="img-w"><img src="https://images.unsplash.com/photo-1485872325464-50f17b82075a?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="" /></div>
-      <div class="img-w"><img src="https://images.unsplash.com/photo-1470171119584-533105644520?dpr=1&auto=format&fit=crop&w=1500&h=886&q=80&cs=tinysrgb&crop=" alt="" /></div>
+      @endforeach
+
+
     </div>
   </div>
 
@@ -547,12 +504,17 @@
           <!-- Partner Logo Section Begin -->
 
           <div class="logo-carousel owl-carousel">
-            <div class="logo-item">
-              <div class="tablecell-inner">
-                <img src="{{asset('frontend/images/logo-carousel/logo-1.png')}}" alt="">
-              </div>
-            </div>
-            <div class="logo-item">
+              @if (count($partners) > 0)
+                  @foreach ($partners as $partner)
+                  <div class="logo-item">
+                    <div class="tablecell-inner">
+                      <img src="{{Storage::disk('uploads')->url($partner->logo)}}" alt="">
+                    </div>
+                  </div>
+                  @endforeach
+              @endif
+
+            {{-- <div class="logo-item">
               <div class="tablecell-inner">
                 <img src="{{asset('frontend/images/logo-carousel/logo-2.png')}}" alt="">
               </div>
@@ -571,7 +533,7 @@
               <div class="tablecell-inner">
                 <img src="{{asset('frontend/images/logo-carousel/logo-5.png')}}" alt="">
               </div>
-            </div>
+            </div> --}}
           </div>
           <!-- Partner Logo Section End -->
 

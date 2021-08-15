@@ -219,7 +219,7 @@
                     </button>
                   </form>
                 </aside>
-                <aside class="single_sidebar_widget newsletter_widget">
+                {{-- <aside class="single_sidebar_widget newsletter_widget">
                   <h4 class="widget_title" style="color: #2d2d2d">Standings</h4>
                   <table class="table custom-table2" style="padding: 0px">
                     <thead>
@@ -285,7 +285,7 @@
                       </tr>
                     </tbody>
                   </table>
-                </aside>
+                </aside> --}}
               </div>
             </div>
           </div>
@@ -345,31 +345,36 @@
             <!-- Partner Logo Section Begin -->
 
             <div class="logo-carousel owl-carousel">
-              <div class="logo-item">
+                @if (count($partners) > 0)
+                    @foreach ($partners as $partner)
+                    <div class="logo-item">
+                      <div class="tablecell-inner">
+                        <img src="{{Storage::disk('uploads')->url($partner->logo)}}" alt="">
+                      </div>
+                    </div>
+                    @endforeach
+                @endif
+
+              {{-- <div class="logo-item">
                 <div class="tablecell-inner">
-                  <img src="{{asset('frontend/images/logo-carousel/logo-1.png')}}" alt="" />
+                  <img src="{{asset('frontend/images/logo-carousel/logo-2.png')}}" alt="">
                 </div>
               </div>
               <div class="logo-item">
                 <div class="tablecell-inner">
-                  <img src="{{asset('frontend/images/logo-carousel/logo-2.png')}}" alt="" />
+                  <img src="{{asset('frontend/images/logo-carousel/logo-3.png')}}" alt="">
                 </div>
               </div>
               <div class="logo-item">
                 <div class="tablecell-inner">
-                  <img src="{{asset('frontend/images/logo-carousel/logo-3.png')}}" alt="" />
+                  <img src="{{asset('frontend/images/logo-carousel/logo-4.png')}}" alt="">
                 </div>
               </div>
               <div class="logo-item">
                 <div class="tablecell-inner">
-                  <img src="{{asset('frontend/images/logo-carousel/logo-4.png')}}" alt="" />
+                  <img src="{{asset('frontend/images/logo-carousel/logo-5.png')}}" alt="">
                 </div>
-              </div>
-              <div class="logo-item">
-                <div class="tablecell-inner">
-                  <img src="{{asset('frontend/images/logo-carousel/logo-5.png')}}" alt="" />
-                </div>
-              </div>
+              </div> --}}
             </div>
             <!-- Partner Logo Section End -->
           </div>

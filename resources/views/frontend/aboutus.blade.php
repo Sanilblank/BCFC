@@ -149,6 +149,7 @@
                                 id="nav-tab"
                                 role="tablist"
                               >
+                              @if (count($teampositions) > 0)
                                 <a
                                   class="nav-item nav-link active"
                                   id="nav-home-tab"
@@ -159,26 +160,19 @@
                                   aria-selected="true"
                                   >All</a
                                 >
-                                <a
-                                  class="nav-item nav-link"
-                                  id="nav-profile-tab"
-                                  data-toggle="tab"
-                                  href="#nav-profile"
-                                  role="tab"
-                                  aria-controls="nav-profile"
-                                  aria-selected="false"
-                                  >Lifestyle</a
-                                >
-                                <a
-                                  class="nav-item nav-link"
-                                  id="nav-contact-tab"
-                                  data-toggle="tab"
-                                  href="#nav-contact"
-                                  role="tab"
-                                  aria-controls="nav-contact"
-                                  aria-selected="false"
-                                  >Technical Staffs</a
-                                >
+                                @foreach ($teampositions as $position)
+                                    <a
+                                        class="nav-item nav-link"
+                                        id="nav-profile-tab"
+                                        data-toggle="tab"
+                                        href="#{{$position->slug}}"
+                                        role="tab"
+                                        aria-controls="nav-profile"
+                                        aria-selected="false"
+                                        >{{$position->name}}</a
+                                    >
+                                @endforeach
+                                @endif
 
 
                               </div>
@@ -190,57 +184,108 @@
                       <div class="row">
                         <div class="col-12">
                           <!-- Nav Card -->
-                          <div class="tab-content" id="nav-tabContent">
-                            <!-- card one -->
-                            <div
-                              class="tab-pane fade show active"
-                              id="nav-home"
-                              role="tabpanel"
-                              aria-labelledby="nav-home-tab"
-                            >
-                              <div class="whats-news-caption">
-                                <div class="row">
-                                  <div class="col-lg-3 col-md-6">
-                                    <div class="single-what-news mb-100">
-                                      <div class="what-img">
-                                        <img src="{{asset('frontend/images/img_1.jpg')}}" alt="" />
-                                      </div>
-                                      <div class="what-cap">
+                          @if (count($teammembers) > 0)
+                            <div class="tab-content" id="nav-tabContent">
+                                <!-- card one -->
+                                <div
+                                class="tab-pane fade show active"
+                                id="nav-home"
+                                role="tabpanel"
+                                aria-labelledby="nav-home-tab">
+                                <div class="whats-news-caption">
+                                    <div class="row">
+                                        @foreach ($teammembers as $member)
+                                            <div class="col-lg-4 col-md-6">
+                                                <div class="single-what-news mb-4">
+                                                <div class="card-person">
+                                                    <div class="imgBx">
+                                                    <img
+                                                        src="{{Storage::disk('uploads')->url($member->photo)}}"
+                                                    />
+                                                    </div>
+                                                    <div class="contentBx">
+                                                    <h2>{{$member->name}} #{{$member->shirtno}}</h2>
+                                                    <div class="size">
+                                                        <h3>HomeTown: {{$member->hometown}}</h3>
+                                                    </div>
+                                                    <div class="color">
+                                                        <h3>Position: {{$member->teamposition->name}}</h3>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
 
-                                        <h4>
-                                          <a href="#"
-                                            >John Doe</a
-                                          >
-                                        </h4>
-                                        <p>Club Owner</p>
-                                      </div>
+
+
+                                    {{-- <div class="col-lg-4 col-md-6">
+                                        <div class="single-what-news mb-4">
+                                        <div class="card-person">
+                                            <div class="imgBx">
+                                            <img
+                                                src="https://www.footyrenders.com/render/karim-benzema-79-390x418.png"
+                                            />
+                                            </div>
+                                            <div class="contentBx">
+                                            <h2>Karim Benzema #09</h2>
+                                            <div class="size">
+                                                <h3>Country:France</h3>
+                                            </div>
+                                            <div class="color">
+                                                <h3>Position:Forward</h3>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div> --}}
+
                                     </div>
-                                  </div>
-                                  <div class="col-lg-3 col-md-6">
-                                    <div class="single-what-news mb-100">
-                                      <div class="what-img">
-                                        <img src="{{asset('frontend/images/img_1.jpg')}}" alt="" />
-                                      </div>
-                                      <div class="what-cap">
-
-                                        <h4>
-                                          <a href="#"
-                                            >John Doe</a
-                                          >
-                                        </h4>
-                                        <p>Club Owner</p>
-                                      </div>
-                                    </div>
-                                  </div>
-
                                 </div>
-                              </div>
+                                </div>
+                                @foreach ($teampositions as $position)
+
+                                <div
+                                    class="tab-pane fade"
+                                    id="{{$position->slug}}"
+                                    role="tabpanel"
+                                    aria-labelledby="nav-profile-tab">
+                                    <div class="whats-news-caption">
+                                        <div class="row">
+                                            @if (count($position->teammembers) > 0)
+                                                @foreach ($position->teammembers as $member)
+                                                    <div class="col-lg-4 col-md-6">
+                                                        <div class="single-what-news mb-4">
+                                                            <div class="card-person">
+                                                            <div class="imgBx">
+                                                                <img
+                                                                src="{{Storage::disk('uploads')->url($member->photo)}}"
+                                                                />
+                                                            </div>
+                                                            <div class="contentBx">
+                                                                <h2>{{$member->name}} #{{$member->shirtno}}</h2>
+                                                                <div class="size">
+                                                                <h3>HomeTown: {{$member->hometown}}</h3>
+                                                                </div>
+                                                                <div class="color">
+                                                                <h3>Position: {{$member->teamposition->name}}</h3>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @else
+                                                    None Available
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
                             </div>
-
-
-
-
-                          </div>
+                          @else
+                            <p>No Information Available.</p>
+                          @endif
                           <!-- End Nav Card -->
                         </div>
                       </div>
@@ -315,46 +360,57 @@
 
       <!-- this is the Sponsor Section -->
 
-      <div
-        class="site-section block-13 bg-primary fixed overlay-primary bg-image"
-        style="background-image: url('frontend/images/hero_bg_3.jpg')"
-        data-stellar-background-ratio="0.5"
-      >
-        <div class="container-fluid">
-          <div class="row px-5">
-            <!-- Partner Logo Section Begin -->
+      <div class="site-section block-13 bg-primary fixed overlay-primary bg-image"
+      style="background-image: url('frontend/images/hero_bg_3.jpg');" data-stellar-background-ratio="0.5">
 
-            <div class="logo-carousel owl-carousel">
-              <div class="logo-item">
-                <div class="tablecell-inner">
-                  <img src="{{asset('frontend/images/logo-carousel/logo-1.png')}}" alt="" />
-                </div>
-              </div>
-              <div class="logo-item">
-                <div class="tablecell-inner">
-                  <img src="{{asset('frontend/images/logo-carousel/logo-2.png')}}" alt="" />
-                </div>
-              </div>
-              <div class="logo-item">
-                <div class="tablecell-inner">
-                  <img src="{{asset('frontend/images/logo-carousel/logo-3.png')}}" alt="" />
-                </div>
-              </div>
-              <div class="logo-item">
-                <div class="tablecell-inner">
-                  <img src="{{asset('frontend/images/logo-carousel/logo-4.png')}}" alt="" />
-                </div>
-              </div>
-              <div class="logo-item">
-                <div class="tablecell-inner">
-                  <img src="{{asset('frontend/images/logo-carousel/logo-5.png')}}" alt="" />
-                </div>
+      <div class="container-fluid">
+
+        <div class="row px-5">
+          <!-- Partner Logo Section Begin -->
+
+          <div class="logo-carousel owl-carousel">
+              @if (count($partners) > 0)
+                  @foreach ($partners as $partner)
+                  <div class="logo-item">
+                    <div class="tablecell-inner">
+                      <img src="{{Storage::disk('uploads')->url($partner->logo)}}" alt="">
+                    </div>
+                  </div>
+                  @endforeach
+              @endif
+
+            {{-- <div class="logo-item">
+              <div class="tablecell-inner">
+                <img src="{{asset('frontend/images/logo-carousel/logo-2.png')}}" alt="">
               </div>
             </div>
-            <!-- Partner Logo Section End -->
+            <div class="logo-item">
+              <div class="tablecell-inner">
+                <img src="{{asset('frontend/images/logo-carousel/logo-3.png')}}" alt="">
+              </div>
+            </div>
+            <div class="logo-item">
+              <div class="tablecell-inner">
+                <img src="{{asset('frontend/images/logo-carousel/logo-4.png')}}" alt="">
+              </div>
+            </div>
+            <div class="logo-item">
+              <div class="tablecell-inner">
+                <img src="{{asset('frontend/images/logo-carousel/logo-5.png')}}" alt="">
+              </div>
+            </div> --}}
           </div>
+          <!-- Partner Logo Section End -->
+
+
+
+
+
+
         </div>
       </div>
+
+    </div>
 
     </div>
 @endsection

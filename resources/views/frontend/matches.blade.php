@@ -163,46 +163,57 @@
 
       <!-- this is the Sponsor Section -->
 
-      <div
-        class="site-section block-13 bg-primary fixed overlay-primary bg-image"
-        style="background-image: url('images/hero_bg_3.jpg')"
-        data-stellar-background-ratio="0.5"
-      >
-        <div class="container-fluid">
-          <div class="row px-5">
-            <!-- Partner Logo Section Begin -->
+      <div class="site-section block-13 bg-primary fixed overlay-primary bg-image"
+      style="background-image: url('frontend/images/hero_bg_3.jpg');" data-stellar-background-ratio="0.5">
 
-            <div class="logo-carousel owl-carousel">
-              <div class="logo-item">
-                <div class="tablecell-inner">
-                  <img src="{{asset('frontend/images/logo-carousel/logo-1.png')}}" alt="" />
-                </div>
-              </div>
-              <div class="logo-item">
-                <div class="tablecell-inner">
-                  <img src="{{asset('frontend/images/logo-carousel/logo-2.png')}}" alt="" />
-                </div>
-              </div>
-              <div class="logo-item">
-                <div class="tablecell-inner">
-                  <img src="{{asset('frontend/images/logo-carousel/logo-3.png')}}" alt="" />
-                </div>
-              </div>
-              <div class="logo-item">
-                <div class="tablecell-inner">
-                  <img src="{{asset('frontend/images/logo-carousel/logo-4.png')}}" alt="" />
-                </div>
-              </div>
-              <div class="logo-item">
-                <div class="tablecell-inner">
-                  <img src="{{asset('frontend/images/logo-carousel/logo-5.png')}}" alt="" />
-                </div>
+      <div class="container-fluid">
+
+        <div class="row px-5">
+          <!-- Partner Logo Section Begin -->
+
+          <div class="logo-carousel owl-carousel">
+              @if (count($partners) > 0)
+                  @foreach ($partners as $partner)
+                  <div class="logo-item">
+                    <div class="tablecell-inner">
+                      <img src="{{Storage::disk('uploads')->url($partner->logo)}}" alt="">
+                    </div>
+                  </div>
+                  @endforeach
+              @endif
+
+            {{-- <div class="logo-item">
+              <div class="tablecell-inner">
+                <img src="{{asset('frontend/images/logo-carousel/logo-2.png')}}" alt="">
               </div>
             </div>
-            <!-- Partner Logo Section End -->
+            <div class="logo-item">
+              <div class="tablecell-inner">
+                <img src="{{asset('frontend/images/logo-carousel/logo-3.png')}}" alt="">
+              </div>
+            </div>
+            <div class="logo-item">
+              <div class="tablecell-inner">
+                <img src="{{asset('frontend/images/logo-carousel/logo-4.png')}}" alt="">
+              </div>
+            </div>
+            <div class="logo-item">
+              <div class="tablecell-inner">
+                <img src="{{asset('frontend/images/logo-carousel/logo-5.png')}}" alt="">
+              </div>
+            </div> --}}
           </div>
+          <!-- Partner Logo Section End -->
+
+
+
+
+
+
         </div>
       </div>
+
+    </div>
 
 @endsection
 @push('scripts')

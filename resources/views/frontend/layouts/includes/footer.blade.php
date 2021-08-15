@@ -27,18 +27,18 @@
             </div>
             <div class="col-md-6 col-lg-6">
               <ul class="list-unstyled">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Matches</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Team</a></li>
+                <li><a href="{{route('index')}}">Home</a></li>
+                <li><a href="{{route('getmatches')}}">Matches</a></li>
+                <li><a href="{{route('getnews')}}">News</a></li>
+                <li><a href="{{route('teaminfo')}}">Team</a></li>
               </ul>
             </div>
             <div class="col-md-6 col-lg-6">
               <ul class="list-unstyled">
-                <li><a href="#">About Us</a></li>
+                <li><a href="{{route('aboutus')}}">About Us</a></li>
                 <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Membership</a></li>
+                <li><a href="{{route('contactus')}}">Contact Us</a></li>
+                <li><a href="{{route('viewmerch')}}">Merch</a></li>
               </ul>
             </div>
           </div>
@@ -51,7 +51,7 @@
 
           <div class="mb-5">
             <h3 class="footer-heading mb-2">Subscribe Newsletter</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit minima minus odio.</p>
+            <p>Get the latest updates by Email.</p>
 
             <form action="#" method="post">
               <div class="input-group mb-3">

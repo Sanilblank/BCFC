@@ -27,7 +27,13 @@ class FrontController extends Controller
         $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->skip(3)->take(16)->get();
         $teammembers = TeamMember::latest()->where('status', 1)->with('teamposition')->get();
         $sliders = Slider::latest()->get();
-        return view('frontend.index', compact('latestthreeblogs', 'latestblogs', 'latestblog', 'teammembers', 'sliders'));
+        $nextmatch = MatchDetail::where('completed', 0)->orderBy('datetime', 'asc')->with('team1', 'team2', 'matchtype', 'stadium')->first();
+        $lastmatch = MatchDetail::where('completed', 1)->orderBy('datetime', 'desc')->with('team1', 'team2', 'matchtype', 'stadium')->first();
+        $matchtype = MatchType::first();
+        $standings = MatchStanding::where('matchtype_id', $matchtype->id)->with('team', 'matchtype')->get();
+        $pictures = Photo::with('album')->inRandomOrder()->limit(6)->get();
+        $partners = Partner::latest()->get();
+        return view('frontend.index', compact('latestthreeblogs', 'latestblogs', 'latestblog', 'teammembers', 'sliders', 'nextmatch', 'lastmatch', 'standings', 'pictures', 'partners'));
     }
 
     public function getnews()
@@ -35,8 +41,9 @@ class FrontController extends Controller
         $blogs = Blog::latest()->where('status', 1)->where('draft', 0)->simplePaginate(5);
         $latesttags = BlogTag::latest()->take(10)->get();
         $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
+        $partners = Partner::latest()->get();
 
-        return view('frontend.news', compact('blogs', 'latesttags', 'latestblogs'));
+        return view('frontend.news', compact('blogs', 'latesttags', 'latestblogs', 'partners'));
     }
 
     public function gettagnews($id, $slug)
@@ -45,8 +52,9 @@ class FrontController extends Controller
         $blogs = Blog::latest()->where('status', 1)->where('draft', 0)->whereJsonContains('tag', $id)->simplePaginate(5);
         $latesttags = BlogTag::latest()->take(10)->get();
         $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
+        $partners = Partner::latest()->get();
 
-        return view('frontend.tagnews', compact('blogs', 'latesttags', 'selectedtag', 'latestblogs'));
+        return view('frontend.tagnews', compact('blogs', 'latesttags', 'selectedtag', 'latestblogs', 'partners'));
     }
 
     public function getauthornews($name)
@@ -54,8 +62,9 @@ class FrontController extends Controller
         $blogs = Blog::latest()->where('status', 1)->where('authorname', $name)->simplePaginate(5);
         $latesttags = BlogTag::latest()->take(10)->get();
         $latestblogs = Blog::latest()->where('status', 1)->take(16)->get();
+        $partners = Partner::latest()->get();
 
-        return view('frontend.authornews', compact('blogs', 'latesttags', 'name', 'latestblogs'));
+        return view('frontend.authornews', compact('blogs', 'latesttags', 'name', 'latestblogs', 'partners'));
     }
 
     public function newsdetails($id, $slug)
@@ -81,8 +90,8 @@ class FrontController extends Controller
         {
             $othercomments = "None";
         }
-
-        return view('frontend.news-details', compact('selectedblog', 'latesttags', 'previousblog', 'nextblog', 'latestblogs', 'noofcomments', 'comments', 'othercomments'));
+        $partners = Partner::latest()->get();
+        return view('frontend.news-details', compact('selectedblog', 'latesttags', 'previousblog', 'nextblog', 'latestblogs', 'noofcomments', 'comments', 'othercomments', 'partners'));
     }
 
     public function pageSearch(Request $request)
@@ -101,14 +110,19 @@ class FrontController extends Controller
 
         $latesttags = BlogTag::latest()->take(10)->get();
         $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
+        $partners = Partner::latest()->get();
 
-        return view('frontend.searchednews', compact('blogs', 'latesttags', 'searchword', 'latestblogs'));
+        return view('frontend.searchednews', compact('blogs', 'latesttags', 'searchword', 'latestblogs', 'partners'));
     }
 
     public function aboutus()
     {
         $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
-        return view('frontend.aboutus', compact('latestblogs'));
+        $partners = Partner::latest()->get();
+        $teammembers = TeamMember::latest()->where('status', 1)->with('teamposition')->get();
+        $teampositions = TeamPosition::latest()->get();
+
+        return view('frontend.aboutus', compact('latestblogs', 'partners', 'teampositions', 'teammembers'));
     }
 
     public function addComment(Request $request)
@@ -158,7 +172,8 @@ class FrontController extends Controller
         $teammembers = TeamMember::latest()->where('status', 1)->with('teamposition')->get();
         $teampositions = TeamPosition::latest()->get();
         $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
-        return view('frontend.team', compact('teammembers', 'teampositions', 'latestblogs'));
+        $partners = Partner::latest()->get();
+        return view('frontend.team', compact('teammembers', 'teampositions', 'latestblogs', 'partners'));
     }
 
 
@@ -179,7 +194,8 @@ class FrontController extends Controller
     {
         $slider = Slider::findorfail($id);
         $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
-        return view('frontend.slider', compact('slider', 'latestblogs'));
+        $partners = Partner::latest()->get();
+        return view('frontend.slider', compact('slider', 'latestblogs', 'partners'));
     }
 
     public function viewmerch()
@@ -209,7 +225,8 @@ class FrontController extends Controller
         {
             $matches = MatchDetail::latest()->with('team1', 'team2', 'matchtype', 'stadium')->simplePaginate(4);
         }
-        return view('frontend.matches', compact('latestblogs', 'matches'));
+        $partners = Partner::latest()->get();
+        return view('frontend.matches', compact('latestblogs', 'matches', 'partners'));
     }
 
     public function viewStandings()
@@ -224,9 +241,10 @@ class FrontController extends Controller
         {
             $matchtype = MatchType::first();
         }
+        $partners = Partner::latest()->get();
         $standings = MatchStanding::where('matchtype_id', $matchtype->id)->with('team', 'matchtype')->get();
 
-        return view('frontend.standings', compact('latestblogs', 'standings', 'matchtype', 'matchtypes'));
+        return view('frontend.standings', compact('latestblogs', 'standings', 'matchtype', 'matchtypes', 'partners'));
     }
 
     public function viewPartners()
