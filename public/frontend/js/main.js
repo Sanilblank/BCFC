@@ -356,7 +356,7 @@ var siteCarousel = function () {
             autoplay: true,
             smartSpeed: 1000,
             items: 3,
-            nav: true,
+            nav: false,
             navText: [
                 '<span class="icon-keyboard_backspace"></span>',
                 '<span class="icon-keyboard_backspace"></span>',

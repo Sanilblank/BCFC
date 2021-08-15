@@ -619,9 +619,15 @@
       <div class="site-section pb-2">
         <div class="container-fluid">
           <div class="row pb-5">
-            <div class="widget-title2 text-black">
-              <h3 class="text-black">LATEST NEWS/BLOGS</h3>
-            </div>
+          <div class="widget-title3 text-center">
+              <span class="tbg">Latest</span>
+              <h4 class="">Let's Update</h4>
+              <h3 class="text-black">News</h3>
+              <p>
+                Fight Defend Win Fight Defend Win Fight Defend Win Fight Defend
+                Win Fight Defend Win
+              </p>
+          </div>
           </div>
 
           <!-- Slider News -->

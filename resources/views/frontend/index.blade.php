@@ -6,11 +6,11 @@
 @section('content')
 
   <div class="site-wrap">
-  <div class="icon-bar">
+  <!-- <div class="icon-bar">
   <a href="#" class="facebook"><i class="fab fa-facebook"></i></a>
   <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
   <a href="#" class="google"><i class="fab fa-google"></i></a>
-</div>
+</div> -->
 
 
     <div class="slide-one-item home-slider owl-carousel">
@@ -31,70 +31,8 @@
             @endforeach
         @endif
 
-
-      {{-- <div class="site-blocks-cover overlay" style="background-image: url(frontend/images/hero_bg_4.jpg);" data-aos="fade"
-        data-stellar-background-ratio="0.5">
-        <div class="container">
-          <div class="row align-items-center justify-content-start">
-            <div class="col-md-6 text-center text-md-left" data-aos="fade-up" data-aos-delay="400">
-              <p><a href="#" class="btn btn-primary btn-sm rounded-0 px-3">Hero Section</a></p>
-              <h1 class="">Player of the Week</h1>
-              <p><a href="#" class="border-bottom border-primary" style="color:white;">Read More</a></p>
-            </div>
-          </div>
-        </div>
-      </div> --}}
-
-      {{-- <div class="site-blocks-cover overlay" style="background-image: url(frontend/images/hero_bg_3.jpg);" data-aos="fade"
-        data-stellar-background-ratio="0.5">
-        <div class="container">
-          <div class="row align-items-center justify-content-start">
-            <div class="col-md-6 text-center text-md-left" data-aos="fade-up" data-aos-delay="400">
-              <p><a href="#" class="btn btn-primary btn-sm rounded-0 px-3">Hero Section</a></p>
-              <h1 class="">Player of the Week</h1>
-              <p><a href="#" class="border-bottom border-primary" style="color:white;">Read More</a></p>
-            </div>
-          </div>
-        </div>
-      </div> --}}
     </div>
 
-
-    <div class="site-section pt-0 feature-blocks-1" data-aos="fade" data-aos-delay="100">
-      <div class="container-fluid d-flex justify-content-end">
-        <div class="row">
-
-          <!-- <div class="col-md-6 col-lg-4" >
-            </div> -->
-          {{-- <div class="col-md-6 col-lg-6">
-            <div class="custom-media d-flex">
-              <div class="img mr-4">
-                <img src="{{asset('frontend/images/img_2.jpg')}}" alt="Image" class="img-fluid">
-              </div>
-              <div class="text">
-                <span class="meta">May 20, 2020</span>
-                <h3 class="mb-4"><a href="#">Romolu to stay at Real Nadrid?</a></h3>
-
-                <p><a href="#">Read more</a></p>
-              </div>
-            </div>
-          </div> --}}
-          {{-- <div class="col-md-6 col-lg-6">
-            <div class="custom-media d-flex">
-              <div class="img mr-4">
-                <img src="{{asset('frontend/images/img_1.jpg')}}" alt="Image" class="img-fluid">
-              </div>
-              <div class="text">
-                <span class="meta">May 20, 2020</span>
-                <h3 class="mb-4"><a href="#">Romolu to stay at Real Nadrid?</a></h3>
-
-                <p><a href="#">Read more</a></p>
-              </div>
-            </div>
-          </div> --}}
-        </div>
-      </div>
-    </div>
 
 
     <div class="bg-blue">
@@ -183,7 +121,7 @@
           </div>
           <div class="col-lg-4">
 
-            <div class="widget-next-match"  style="max-height: 500px; padding: 100px 50px;line-height:1;">
+            <div class="widget-next-match league-table" >
               <table class="table custom-table">
                 <thead>
                   <tr>
@@ -255,8 +193,15 @@
 
         </div>
 
+
+
+        <div class="widget-view text-center">
+          <a class="boxed-btn">View More</a></div>
+   
+
       </div>
     </div>
+
 
 
 
@@ -318,7 +263,7 @@
     <div class="content-wrapper">
       <div class="container-fluid">
         <div class="row">
-        <div class="widget-title3 text-center">
+          <div class="widget-title3 text-center">
               <span class="tbg">Latest</span>
               <h4 class="">Let's Update</h4>
               <h3 class="text-black">News</h3>
@@ -326,7 +271,7 @@
                 Fight Defend Win Fight Defend Win Fight Defend Win Fight Defend
                 Win Fight Defend Win
               </p>
-            </div>
+          </div>
         </div>
         <div class="row section-padding">
           <div class="col-md-6 col-lg-7">
@@ -399,18 +344,7 @@
             </div>
 
           </div>
-          <!-- <div class="col-md-6 col-lg-4">
-            <div class="post-entry">
-              <div class="image">
-                <img src="{{asset('frontend/images/img_3.jpg')}}" alt="Image" class="img-fluid">
-              </div>
-              <div class="text p-4">
-                <h2 class="h5 text-black"><a href="#">RealMad vs Striker Who Will Win?</a></h2>
-                <span class="text-uppercase date d-block mb-3"><small>By Colorlib &bullet; Sep 25, 2018</small></span>
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat beatae doloremque, ex corrupti perspiciatis.</p>
-              </div>
-            </div>
-          </div> -->
+
         </div>
 
         <!-- Slider News -->
@@ -440,6 +374,13 @@
           </div>
         </div>
 
+        <div class="widget-view text-center">
+          <a class="boxed-btn">View More</a></div>
+   
+
+     
+     
+     
       </div>
     </div>
 
@@ -456,7 +397,7 @@
         Fight Defend Win
       </p>
     </div>
-</div>
+  </div>
 
 <div class="row no-gutters section-padding pb-0">
   <div class="col-9 bg-blue">
@@ -481,10 +422,9 @@
 </div>
 
 
+<div class="widget-view text-center">
+          <a class="boxed-btn">View More</a></div>
   </div>
-
-
-
 </div>
 
 
@@ -494,11 +434,30 @@
 
     <!-- this is the Sponsor Section -->
 
+    <div class="content-wrapper pt-0">
+<div class="container-fluid px-0">
+  <div class="row">
+    <div class="widget-title3 text-center">
+      <span class="tbg">Gallery</span>
+      <h4 class="">All of us candid</h4>
+      <h3 class="text-black">Gallery</h3>
+      <p>
+        Fight Defend Win Fight Defend Win Fight Defend Win Fight Defend Win
+        Fight Defend Win
+      </p>
+    </div>
+  </div>
+                      </div>
+                      </div>
+
+
+
 
     <div class="site-section block-13 bg-primary fixed overlay-primary bg-image"
       style="background-image: url('frontend/images/hero_bg_3.jpg');" data-stellar-background-ratio="0.5">
 
       <div class="container-fluid">
+        
 
         <div class="row px-5">
           <!-- Partner Logo Section Begin -->
@@ -514,27 +473,6 @@
                   @endforeach
               @endif
 
-            {{-- <div class="logo-item">
-              <div class="tablecell-inner">
-                <img src="{{asset('frontend/images/logo-carousel/logo-2.png')}}" alt="">
-              </div>
-            </div>
-            <div class="logo-item">
-              <div class="tablecell-inner">
-                <img src="{{asset('frontend/images/logo-carousel/logo-3.png')}}" alt="">
-              </div>
-            </div>
-            <div class="logo-item">
-              <div class="tablecell-inner">
-                <img src="{{asset('frontend/images/logo-carousel/logo-4.png')}}" alt="">
-              </div>
-            </div>
-            <div class="logo-item">
-              <div class="tablecell-inner">
-                <img src="{{asset('frontend/images/logo-carousel/logo-5.png')}}" alt="">
-              </div>
-            </div> --}}
-          </div>
           <!-- Partner Logo Section End -->
 
 

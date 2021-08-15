@@ -4706,3 +4706,44 @@ height: 100px;
   position: relative;
   overflow: hidden;
 }
+
+.league-table{
+  max-height: 500px; padding: 100px 50px;line-height:1;
+}
+
+@media (max-width: 600px) {
+  .league-table{
+   padding: 100px 25px;
+  }
+}
+
+
+.widget-view{
+  
+  margin: 0 auto;
+  margin-top:40px
+ 
+}
+
+.widget-view .boxed-btn{
+  color: #4c4c4c !important;
+  background:none;
+  display: inline-block;
+  padding: 8px 25px;
+  font-size: 14px;
+  font-family: 'Bebas Neue',cursive;
+  font-weight: 600;
+  border: 0;
+  border: 1px solid #000000;
+  letter-spacing: 3px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+
+.widget-view .boxed-btn:hover{    background: #d2242a;
+  color: #fff !important;
+  border: 1px solid #d2242a;}
+
+
