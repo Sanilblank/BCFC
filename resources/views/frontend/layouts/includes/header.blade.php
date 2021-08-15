@@ -51,6 +51,7 @@
 
           </li>
           <li><a href="{{route('getmatches')}}">Matches</a></li>
+          <li><a href="{{route('viewStandings')}}">Standings</a></li>
           <li><a href="{{route('teaminfo')}}">Team</a></li>
           <li><a href="{{route('viewalbums')}}">Albums</a></li>
           <li><a href="{{route('viewmerch')}}">Merch</a></li>

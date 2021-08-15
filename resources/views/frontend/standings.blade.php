@@ -27,86 +27,58 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="widget-next-match">
+                <div class="col-12 title-section d-flex justify-content-between">
+                    <h2 class="heading">{{$matchtype->name}}</h2>
+                  <div>
+                    <!-- <i class="fa fa-calendar" aria-hidden="true"></i> -->
+                    <form action="{{route('viewStandings')}}" method="GET">
+                        <select name="matchtype_id" id="matchtype_id" class="btn btn-primary">
+                            @foreach ($matchtypes as $item)
+                                <option value="{{$item->id}}" {{$matchtype->id == $item->id?'selected':''}}>{{$item->name}}</option>
+                            @endforeach
+                        </select>
+                        <input type="submit" id="submit" style="display: none">
+                    </form>
+                  </div>
+                </div>
+                @if (count($standings) > 0)
                 <table class="table custom-table">
-                  <thead>
-                    <tr>
-                      <th>Pos</th>
-                      <th>Team</th>
-                      <th>P</th>
-                      <th>W</th>
-                      <th>D</th>
-                      <th>L</th>
-                      <th>GF</th>
-                      <th>GA</th>
-                      <th>GD</th>
-                      <th>PTS</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>
-                        <!-- <div class="team-2 text-center d-flex">
-                          <img
-                            src="images/logo_2.png"
-                            alt="Image"
-                            style="height: 50px"
-                          />
-                        </div> -->
-                        <strong class="text-white">Football League</strong>
-                      </td>
-                      <td>22</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>140</td>
-                      <td>140</td>
-                      <td>140</td>
-                      <td>140</td>
-                      <td>140</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td><strong class="text-white">Soccer</strong></td>
-                      <td>22</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>140</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td><strong class="text-white">Juvendo</strong></td>
-                      <td>22</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>2</td>
-                      <td>2</td>
-                      <td>2</td>
-                      <td>2</td>
-                      <td>140</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>
-                        <strong class="text-white"
-                          >French Football League</strong
-                        >
-                      </td>
-                      <td>22</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>2</td>
-                      <td>2</td>
-                      <td>2</td>
-                      <td>2</td>
-                      <td>140</td>
-                    </tr>
-                    \
-                  </tbody>
-                </table>
+                    <thead>
+                      <tr>
+                        <th>Pos</th>
+                        <th>Team</th>
+                        <th>P</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>GF</th>
+                        <th>GA</th>
+                        <th>GD</th>
+                        <th>PTS</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($standings as $standing)
+                        <tr>
+                          <td>{{$loop->iteration}}</td>
+                          <td><strong class="text-white">{{$standing->team->name}}</strong></td>
+                          <td>{{$standing->played}}</td>
+                          <td>{{$standing->win}}</td>
+                          <td>{{$standing->draw}}</td>
+                          <td>{{$standing->loss}}</td>
+                          <td>{{$standing->goalsscored}}</td>
+                          <td>{{$standing->goalsagainst}}</td>
+                          <td>{{$standing->goaldifferential}}</td>
+                          <td>{{$standing->points}}</td>
+                        </tr>
+                        @endforeach
+
+                    </tbody>
+                  </table>
+                @else
+                  <p>No Data Available as of now.</p>
+                @endif
+
               </div>
             </div>
           </div>
@@ -545,5 +517,12 @@
 
 @endsection
 @push('scripts')
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#matchtype_id').on('change', function() {
+            var $form = $(this).closest('form');
+            $form.find('input[type=submit]').click();
+        });
+    });
+</script>
 @endpush

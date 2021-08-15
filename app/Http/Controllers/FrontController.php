@@ -6,6 +6,10 @@ use App\Models\Album;
 use App\Models\Blog;
 use App\Models\BlogTag;
 use App\Models\Comment;
+use App\Models\MatchDetail;
+use App\Models\MatchStanding;
+use App\Models\MatchType;
+use App\Models\Partner;
 use App\Models\Photo;
 use App\Models\Reply;
 use App\Models\Slider;
@@ -186,19 +190,50 @@ class FrontController extends Controller
     public function getmatches()
     {
         $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
-        return view('frontend.matches', compact('latestblogs'));
+        if(request()->has('match'))
+        {
+            if(request()->get('match') == "Upcoming")
+            {
+                $matches = MatchDetail::latest()->with('team1', 'team2', 'matchtype', 'stadium')->where('completed', 0)->simplePaginate(4);
+            }
+            elseif(request()->get('match') == "Completed")
+            {
+                $matches = MatchDetail::latest()->with('team1', 'team2', 'matchtype', 'stadium')->where('completed', 1)->simplePaginate(4);
+            }
+            elseif(request()->get('match') == "All")
+            {
+                $matches = MatchDetail::latest()->with('team1', 'team2', 'matchtype', 'stadium')->simplePaginate(4);
+            }
+        }
+        else
+        {
+            $matches = MatchDetail::latest()->with('team1', 'team2', 'matchtype', 'stadium')->simplePaginate(4);
+        }
+        return view('frontend.matches', compact('latestblogs', 'matches'));
     }
 
     public function viewStandings()
     {
         $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
-        return view('frontend.standings', compact('latestblogs'));
+        $matchtypes = MatchType::orderBy('name', 'asc')->where('status', 1)->get();
+        if(request()->has('matchtype_id'))
+        {
+            $matchtype = MatchType::where('id', request()->get('matchtype_id'))->first();
+        }
+        else
+        {
+            $matchtype = MatchType::first();
+        }
+        $standings = MatchStanding::where('matchtype_id', $matchtype->id)->with('team', 'matchtype')->get();
+
+        return view('frontend.standings', compact('latestblogs', 'standings', 'matchtype', 'matchtypes'));
     }
 
     public function viewPartners()
     {
         $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
-        return view('frontend.partners', compact('latestblogs'));
+        $partners = Partner::latest()->get();
+        return view('frontend.partners', compact('latestblogs', 'partners'));
     }
 
     public function contactus()

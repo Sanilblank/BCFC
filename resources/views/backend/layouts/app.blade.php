@@ -119,6 +119,11 @@
               <div class="menu_section">
                 <h3>Others</h3>
                 <ul class="nav side-menu">
+                    <li class="nav-item">
+                        <a href="{{route('partner.index')}}" class="nav-link">
+                            <i class="fa fa-user nav-icon"></i> Partners
+                        </a>
+                    </li>
                     <li><a><i class="fa fa-cog"></i> Settings <span
                         class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">

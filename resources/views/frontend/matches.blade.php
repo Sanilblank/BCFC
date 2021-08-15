@@ -25,171 +25,80 @@
         <div class="container">
           <div class="row">
             <div class="col-12 title-section d-flex justify-content-between">
-              <h2 class="heading">Upcoming Match</h2>
+                @if (request()->has('match'))
+                    @if (request()->get('match') == "Upcoming")
+                        <h2 class="heading">Upcoming Matches</h2>
+                    @elseif (request()->get('match') == "Completed")
+                        <h2 class="heading">Completed Matches</h2>
+                    @elseif (request()->get('match') == "All")
+                        <h2 class="heading">All Matches</h2>
+                    @endif
+                @else
+                    <h2 class="heading">All Matches</h2>
+                @endif
               <div>
                 <!-- <i class="fa fa-calendar" aria-hidden="true"></i> -->
+                <form action="{{route('getmatches')}}" method="GET">
+                    <select name="match" id="match" class="btn btn-primary">
+                        @if (request()->has('match'))
+                            <option value="All" {{request()->get('match') == "All"?'selected':''}}>All</option>
+                            <option value="Upcoming" {{request()->get('match') == "Upcoming"?'selected':''}}>Upcoming</option>
+                            <option value="Completed" {{request()->get('match') == "Completed"?'selected':''}}>Completed</option>
+                        @else
+                            <option value="All">All</option>
+                            <option value="Upcoming">Upcoming</option>
+                            <option value="Completed">Completed</option>
+                        @endif
 
-                <select name="cars" id="cars" class="btn btn-primary">
-                  <option value="volvo">All</option>
-                  <option value="saab">August</option>
-                  <option value="mercedes">September</option>
-                  <option value="audi">October</option>
-                </select>
+                    </select>
+                    <input type="submit" id="submit" style="display: none">
+                </form>
               </div>
             </div>
+            @foreach ($matches as $match)
             <div class="col-lg-12 mb-4">
-              <div class="bg-light p-4 rounded">
-                <div class="widget-body">
-                  <div class="widget-vs-2">
-                    <div
-                      class="
-                        d-flex
-                        align-items-center
-                        justify-content-around justify-content-between
-                        w-100
-                      "
-                    >
-                      <div class="team-1 text-center">
-                        <img src="{{asset('frontend/images/logo_1.png')}}" alt="Image" />
-                        <h3>Football League</h3>
-                      </div>
-                      <div>
-                        <span class="vs"><span>VS</span></span>
-                      </div>
-                      <div class="team-2 text-center">
-                        <img src="{{asset('frontend/images/logo_2.png')}}" alt="Image" />
-                        <h3>Soccer</h3>
+                <div class="bg-light p-4 rounded">
+                  <div class="widget-body">
+                    <div class="widget-vs-2">
+                      <div
+                        class="
+                          d-flex
+                          align-items-center
+                          justify-content-around justify-content-between
+                          w-100
+                        "
+                      >
+                        <div class="team-1 text-center">
+                          <img src="{{Storage::disk('uploads')->url($match->team1->logo)}}" alt="Image" />
+                          <h3>{{$match->team1->name}}</h3>
+                        </div>
+                        <div>
+                          <span class="vs"><span>VS</span></span>
+                        </div>
+                        <div class="team-2 text-center">
+                          <img src="{{Storage::disk('uploads')->url($match->team2->logo)}}" alt="Image" />
+                          <h3>{{$match->team2->name}}</h3>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="text-center widget-vs-2-contents mb-4">
-                  <h4>World Cup League</h4>
-                  <p class="">
-                    <span class="d-block">December 20th, 2020</span>
-                    <span class="d-block">9:30 AM GMT+0</span>
-                    <strong class="text-primary">New Euro Arena</strong>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-12 mb-4">
-              <div class="bg-light p-4 rounded">
-                <div class="widget-body">
-                  <div class="widget-vs-2">
-                    <div
-                      class="
-                        d-flex
-                        align-items-center
-                        justify-content-around justify-content-between
-                        w-100
-                      "
-                    >
-                      <div class="team-1 text-center">
-                        <img src="{{asset('frontend/images/logo_3.png')}}" alt="Image" />
-                        <h3>Football League</h3>
-                      </div>
-                      <div>
-                        <span class="vs"><span>VS</span></span>
-                      </div>
-                      <div class="team-2 text-center">
-                        <img src="{{asset('frontend/images/logo_4.png')}}" alt="Image" />
-                        <h3>Soccer</h3>
-                      </div>
-                    </div>
+                  <div class="text-center widget-vs-2-contents mb-4">
+                    <h4>{{$match->matchtype->name}}</h4>
+                    <p class="">
+                      <span class="d-block">{{date('M d, Y', strtotime($match->datetime))}}</span>
+                      <span class="d-block">{{date('h:m a', strtotime($match->datetime))}}</span>
+                      <strong class="text-primary">{{$match->stadium->name}}</strong>
+                    </p>
                   </div>
                 </div>
-
-                <div class="text-center widget-vs-2-contents mb-4">
-                  <h4>World Cup League</h4>
-                  <p class="">
-                    <span class="d-block">December 20th, 2020</span>
-                    <span class="d-block">9:30 AM GMT+0</span>
-                    <strong class="text-primary">New Euro Arena</strong>
-                  </p>
-                </div>
               </div>
-            </div>
+            @endforeach
 
-            <div class="col-lg-12 mb-4">
-              <div class="bg-light p-4 rounded">
-                <div class="widget-body">
-                  <div class="widget-vs-2">
-                    <div
-                      class="
-                        d-flex
-                        align-items-center
-                        justify-content-around justify-content-between
-                        w-100
-                      "
-                    >
-                      <div class="team-1 text-center">
-                        <img src="{{asset('frontend/images/logo_1.png')}}" alt="Image" />
-                        <h3>Football League</h3>
-                      </div>
-                      <div>
-                        <span class="vs"><span>VS</span></span>
-                      </div>
-                      <div class="team-2 text-center">
-                        <img src="{{asset('frontend/images/logo_2.png')}}" alt="Image" />
-                        <h3>Soccer</h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="text-center widget-vs-2-contents mb-4">
-                  <h4>World Cup League</h4>
-                  <p class="">
-                    <span class="d-block">December 20th, 2020</span>
-                    <span class="d-block">9:30 AM GMT+0</span>
-                    <strong class="text-primary">New Euro Arena</strong>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-12 mb-4">
-              <div class="bg-light p-4 rounded">
-                <div class="widget-body">
-                  <div class="widget-vs-2">
-                    <div
-                      class="
-                        d-flex
-                        align-items-center
-                        justify-content-around justify-content-between
-                        w-100
-                      "
-                    >
-                      <div class="team-1 text-center">
-                        <img src="{{asset('frontend/images/logo_3.png')}}" alt="Image" />
-                        <h3>Football League</h3>
-                      </div>
-                      <div>
-                        <span class="vs"><span>VS</span></span>
-                      </div>
-                      <div class="team-2 text-center">
-                        <img src="{{asset('frontend/images/logo_4.png')}}" alt="Image" />
-                        <h3>Soccer</h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="text-center widget-vs-2-contents mb-4">
-                  <h4>World Cup League</h4>
-                  <p class="">
-                    <span class="d-block">December 20th, 2020</span>
-                    <span class="d-block">9:30 AM GMT+0</span>
-                    <strong class="text-primary">New Euro Arena</strong>
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <nav class="blog-pagination justify-content-center d-flex">
-          <ul class="pagination">
+          {{-- <ul class="pagination">
             <li class="page-item">
               <a href="#" class="page-link" aria-label="Previous">
                 <i class="fa fa-angle-left"></i>
@@ -206,7 +115,8 @@
                 <i class="fa fa-angle-right"></i>
               </a>
             </li>
-          </ul>
+          </ul> --}}
+          {{$matches->links()}}
         </nav>
       </section>
 
@@ -296,5 +206,12 @@
 
 @endsection
 @push('scripts')
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#match').on('change', function() {
+            var $form = $(this).closest('form');
+            $form.find('input[type=submit]').click();
+        });
+    });
+</script>
 @endpush

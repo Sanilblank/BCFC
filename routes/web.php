@@ -9,6 +9,7 @@ use App\Http\Controllers\MatchDetailController;
 use App\Http\Controllers\MatchStadiumController;
 use App\Http\Controllers\MatchStandingController;
 use App\Http\Controllers\MatchTypeController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProductController;
@@ -119,5 +120,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::delete('standing/delete/{id}', [MatchStandingController::class, 'destroy'])->name('standing.destroy');
     Route::delete('standing/deleteall/{id}', [MatchStandingController::class, 'destroyall'])->name('standing.destroyall');
 
+    //Partners
+    Route::resource('partner', PartnerController::class);
 });
 
