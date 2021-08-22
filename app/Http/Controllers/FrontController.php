@@ -33,8 +33,8 @@ class FrontController extends Controller
         $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->skip(3)->take(16)->get();
         $teammembers = TeamMember::latest()->where('status', 1)->with('teamposition')->get();
         $sliders = Slider::latest()->get();
-        $nextmatch = MatchDetail::where('completed', 0)->orderBy('datetime', 'asc')->with('team1', 'team2', 'matchtype', 'stadium')->first();
-        $lastmatch = MatchDetail::where('completed', 1)->orderBy('datetime', 'desc')->with('team1', 'team2', 'matchtype', 'stadium')->first();
+        $nextmatch = MatchDetail::where('completed', 0)->orderBy('datetime', 'asc')->with('team1', 'team2', 'matchtype', 'stadium', 'matchresult')->first();
+        $lastmatch = MatchDetail::where('completed', 1)->orderBy('datetime', 'desc')->with('team1', 'team2', 'matchtype', 'stadium', 'matchresult')->first();
         $matchtype = MatchType::first();
         $standings = MatchStanding::where('matchtype_id', $matchtype->id)->with('team', 'matchtype')->get();
         $pictures = Photo::with('album')->inRandomOrder()->limit(6)->get();

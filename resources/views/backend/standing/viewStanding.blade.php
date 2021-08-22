@@ -52,7 +52,7 @@
         </div>
     </div>
     <h1 class="mt-3">Standings => {{$reqmatchtype->name}}
-
+        <a href="{{route('standing.create', $reqmatchtype->id)}}" class="btn btn-primary btn-sm"> <i class="fa fa-plus" aria-hidden="true"></i> Add New Team Standing</a>
         @if (!$standing)
         <form action="{{route('standing.initialize')}}" method="POST" style="display: inline;">
             @csrf
@@ -61,7 +61,6 @@
             <button class="btn btn-success btn-sm" type="submit"> <i class="fa fa-plus" aria-hidden="true"></i> Initialize Standings</button>
         </form>
         @else
-            <a href="{{route('standing.create', $reqmatchtype->id)}}" class="btn btn-primary btn-sm"> <i class="fa fa-plus" aria-hidden="true"></i> Add New Team Standing</a>
             <form action="{{route('standing.destroyall', $reqmatchtype->id)}}" method="POST" style="display: inline;">
                 @csrf
                 @method('DELETE')

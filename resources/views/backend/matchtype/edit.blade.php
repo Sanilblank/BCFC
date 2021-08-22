@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 @push('styles')
-
+<link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
 @endpush
 @section('content')
     <div class="right_col" role="main">
@@ -34,8 +34,21 @@
                                         </div>
 
                                     </div>
-
-
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="team">Choose Teams who will play in the matchtype: </label>
+                                                <select class="form-control chosen-select" data-placeholder="Type Team names..." multiple name="team[]">
+                                                    @foreach ($teams as $team)
+                                                        <option value="{{$team->id}}" {{in_array($team->id, $array_teammatchtypes)? 'selected' : ''}}>{{$team->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('team')
+                                                    <p class="text-danger">{{$message}}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row mt-3 mb-3">
                                         <div class="col-md-4">
                                             <div class="form-check">
@@ -56,5 +69,11 @@
 
 @endsection
 @push('scripts')
+<script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
 
+    <script>
+        $(".chosen-select").chosen({
+            no_results_text: "Oops, nothing found!"
+        });
+    </script>
 @endpush

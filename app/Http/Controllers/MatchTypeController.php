@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\MatchDetail;
 use App\Models\MatchType;
+use App\Models\Team;
+use App\Models\TeamMatchType;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -35,6 +37,15 @@ class MatchTypeController extends Controller
 
                         return $status;
                     })
+                    ->addColumn('teammatchtype', function($row){
+                        $teammatchtypes = TeamMatchType::where('matchtype_id', $row->id)->with('team')->get();
+                        $teams = '';
+                        foreach($teammatchtypes as $teammatchtype)
+                        {
+                            $teams .= '<span class="badge bg-green">' . $teammatchtype->team->name . '</span>' . ' ';
+                        }
+                        return $teams;
+                    })
                     ->addColumn('action', function($row){
 
                         $editurl = route('matchtype.edit', $row->id);
@@ -51,7 +62,7 @@ class MatchTypeController extends Controller
 
                                 return $btn;
                     })
-                    ->rawColumns(['status', 'action'])
+                    ->rawColumns(['status', 'teammatchtype', 'action'])
                     ->make(true);
             }
             return view('backend.matchtype.index');
@@ -69,7 +80,8 @@ class MatchTypeController extends Controller
     {
         //
         if($request->user()->can('manage-match')){
-            return view('backend.matchtype.create');
+            $teams = Team::orderBy('name', 'asc')->get();
+            return view('backend.matchtype.create', compact('teams'));
         }else{
             return view('backend.permission.permission');
         }
@@ -86,6 +98,7 @@ class MatchTypeController extends Controller
         //
         $data = $this->validate($request, [
             'name' => 'required|unique:match_types,name',
+            'team' => 'required',
         ]);
 
         if($request['status'] == null)
@@ -104,6 +117,15 @@ class MatchTypeController extends Controller
         ]);
 
         $matchtype->save();
+
+        foreach($data['team'] as $team_id)
+        {
+            $teammatchtype = TeamMatchType::create([
+                'team_id' => $team_id,
+                'matchtype_id' => $matchtype->id,
+            ]);
+            $teammatchtype->save();
+        }
 
         return redirect()->route('matchtype.index')->with('success', 'Matchtype Added Successfully');
     }
@@ -130,7 +152,14 @@ class MatchTypeController extends Controller
         //
         if($request->user()->can('manage-match')){
             $matchtype = MatchType::findorfail($id);
-            return view('backend.matchtype.edit', compact('matchtype'));
+            $teams = Team::orderBy('name', 'asc')->get();
+            $selectedteams = TeamMatchType::where('matchtype_id', $id)->get();
+            $array_teammatchtypes = array();
+            foreach($selectedteams as $selectedteam)
+            {
+                $array_teammatchtypes[] = $selectedteam->team_id;
+            }
+            return view('backend.matchtype.edit', compact('matchtype', 'array_teammatchtypes', 'teams'));
         }else{
             return view('backend.permission.permission');
         }
@@ -149,6 +178,7 @@ class MatchTypeController extends Controller
         $matchtype = MatchType::findorfail($id);
         $data = $this->validate($request, [
             'name' => 'required|unique:match_types,name,' . $id,
+            'team' => 'required',
         ]);
 
         if($request['status'] == null)
@@ -168,6 +198,21 @@ class MatchTypeController extends Controller
 
         $matchtype->save();
 
+        $teammatchtypes = TeamMatchType::where('matchtype_id', $matchtype->id)->get();
+        foreach($teammatchtypes as $teammatchtype)
+        {
+            $teammatchtype->delete();
+        }
+
+        foreach($data['team'] as $team_id)
+        {
+            $teamtype = TeamMatchType::create([
+                'team_id' => $team_id,
+                'matchtype_id' => $matchtype->id,
+            ]);
+            $teamtype->save();
+        }
+
         return redirect()->route('matchtype.index')->with('success', 'Matchtype Updated Successfully');
     }
 
@@ -186,6 +231,11 @@ class MatchTypeController extends Controller
             if($matchdetail)
             {
                 return redirect()->back()->with('failure', 'Match Type is being used in matches');
+            }
+            $teammatchtypes = TeamMatchType::where('matchtype_id', $matchtype->id)->get();
+            foreach($teammatchtypes as $teammatchtype)
+            {
+                $teammatchtype->delete();
             }
             $matchtype->delete();
             return redirect()->back()->with('success', 'Match Type Deleted Successfully');

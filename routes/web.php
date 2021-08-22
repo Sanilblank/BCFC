@@ -59,7 +59,6 @@ Route::get('/contactus', [FrontController::class, 'contactus'])->name('contactus
 Route::get('/contactMail', [FrontController::class, 'contactMail'])->name('contactMail');
 
 //Subscriber
-//Subscriber
 Route::post('registerSubscriber', [FrontController::class, 'registerSubscriber'])->name('registerSubscriber');
 Route::get('/subscriberconfirm',[FrontController::class, 'subscriberconfirm'])->name('subscriberconfirm');
 

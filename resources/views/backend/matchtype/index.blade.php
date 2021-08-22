@@ -36,6 +36,7 @@
                     <tr>
                         <th class="text-center">No</th>
                         <th class="text-center">Name</th>
+                        <th class="text-center">Teams</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">Action</th>
                     </tr>
@@ -62,6 +63,7 @@
           columns: [
               {data: 'DT_RowIndex', name: 'DT_RowIndex'},
               {data: 'name', name: 'name'},
+              {data: 'teammatchtype', name: 'teammatchtype'},
               {data: 'status', name: 'status'},
               {
                   data: 'action',

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\TeamMember;
+use App\Models\TeamMemberDescImage;
 use App\Models\TeamPosition;
 use Illuminate\Http\Request;
 use DataTables;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -81,7 +83,8 @@ class TeamMemberController extends Controller
         //
         if($request->user()->can('manage-team')){
             $positions = TeamPosition::latest()->get();
-            return view('backend.teammember.create', compact('positions'));
+            $images = TeamMemberDescImage::where('user_id', Auth::user()->id)->where('teammember_id',0)->get();
+            return view('backend.teammember.create', compact('positions', 'images'));
         }else{
             return view('backend.permission.permission');
         }
@@ -96,6 +99,23 @@ class TeamMemberController extends Controller
     public function store(Request $request)
     {
         //
+        if ($request->ajax()) {
+            $this->validate($request,[
+                'file'=>'required|max:500'
+            ]);
+
+            $name = $request->file->store('teammemberdescription_images','uploads');
+
+            $i = new TeamMemberDescImage;
+            $i->location = $name;
+            $i->teammember_id = 0;
+            $i->user_id = Auth::user()->id;
+            $i->title = '';
+            $i->save();
+
+            return response()->json(['url'=>Storage::disk('uploads')->url($name),'id'=>$i->id]);
+        };
+
         $data = $this->validate($request, [
             'name' => 'required',
             'photo' => 'required|mimes:png,jpg,jpeg',
@@ -128,9 +148,17 @@ class TeamMemberController extends Controller
             'teamposition_id' => $data['teamposition_id'],
             'slug' => Str::slug($data['name']),
             'status' => $status,
+            'description' => $request['description'],
         ]);
 
         $teammember->save();
+
+        $images = TeamMemberDescImage::where('user_id',Auth::user()->id)->where('teammember_id',0)->get();
+                foreach($images as $image){
+                    $image->title = $data['name'];
+                    $image->teammember_id = $teammember->id;
+                    $image->save();
+                }
 
         return redirect()->route('teammember.index')->with('success', 'Member Added Successfully');
 
@@ -175,6 +203,23 @@ class TeamMemberController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if ($request->ajax()) {
+            $this->validate($request,[
+                'file'=>'required|max:500'
+            ]);
+
+            $name = $request->file->store('teammemberdescription_images','uploads');
+
+            $i = new TeamMemberDescImage;
+            $i->location = $name;
+            $i->teammember_id = 0;
+            $i->user_id = Auth::user()->id;
+            $i->title = '';
+            $i->save();
+
+            return response()->json(['url'=>Storage::disk('uploads')->url($name),'id'=>$i->id]);
+        };
+
         $teammember = TeamMember::findorfail($id);
         $data = $this->validate($request, [
             'name' => 'required',
@@ -213,7 +258,15 @@ class TeamMemberController extends Controller
             'teamposition_id' => $data['teamposition_id'],
             'slug' => Str::slug($data['name']),
             'status' => $status,
+            'description' => $request['description'],
         ]);
+
+        $images = TeamMemberDescImage::where('user_id',Auth::user()->id)->where('teammember_id',0)->get();
+                foreach($images as $image){
+                    $image->title = $data['name'];
+                    $image->teammember_id = $teammember->id;
+                    $image->save();
+                }
 
         return redirect()->route('teammember.index')->with('success', 'Member Updated Successfully');
     }
@@ -229,6 +282,15 @@ class TeamMemberController extends Controller
         //
         if($request->user()->can('manage-team')){
             $teammember = TeamMember::findorfail($id);
+            $teammemberimages = TeamMemberDescImage::where('teammember_id', $teammember->id)->get();
+            if(count($teammemberimages) > 0)
+            {
+                foreach($teammemberimages as $teammemberimage)
+                {
+                    Storage::disk('uploads')->delete($teammemberimage->location);
+                    $teammemberimage->delete();
+                }
+            }
             Storage::disk('uploads')->delete($teammember->photo);
             $teammember->delete();
             return redirect()->back()->with('success', 'Member Deleted Successfully');

@@ -25,6 +25,7 @@ class CreateTeamMembersTable extends Migration
                   ->onDelete('cascade');
             $table->string('slug');
             $table->boolean('status');
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

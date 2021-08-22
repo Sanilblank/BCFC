@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\MatchDetail;
+use App\Models\MatchType;
 use App\Models\Team;
+use App\Models\TeamMatchType;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Storage;
@@ -29,6 +31,15 @@ class TeamController extends Controller
                         $image = "<img src='$src' style='max-height:100px'>";
                         return $image;
                     })
+                    ->addColumn('teammatchtype', function($row){
+                        $teammatchtypes = TeamMatchType::where('team_id', $row->id)->with('matchtype')->get();
+                        $matchtypes = '';
+                        foreach($teammatchtypes as $teammatchtype)
+                        {
+                            $matchtypes .= '<span class="badge bg-green">' . $teammatchtype->matchtype->name . '</span>' . ' ';
+                        }
+                        return $matchtypes;
+                    })
 
                     ->addColumn('action', function($row){
                         $editurl = route('team.edit', $row->id);
@@ -45,7 +56,7 @@ class TeamController extends Controller
 
                                 return $btn;
                     })
-                    ->rawColumns(['logo', 'action'])
+                    ->rawColumns(['logo', 'teammatchtype', 'action'])
                     ->make(true);
             }
             return view('backend.team.index');
@@ -63,7 +74,8 @@ class TeamController extends Controller
     {
         //
         if($request->user()->can('manage-team')){
-            return view('backend.team.create');
+            $matchtypes = MatchType::orderBy('name', 'asc')->get();
+            return view('backend.team.create', compact('matchtypes'));
         }else{
             return view('backend.permission.permission');
         }
@@ -81,6 +93,7 @@ class TeamController extends Controller
         $data = $this->validate($request, [
             'name' => 'required|unique:teams,name',
             'logo' => 'required|mimes:png,jpg,jpeg',
+            'matchtype' => 'required',
         ]);
 
         $teamlogoimage = '';
@@ -94,8 +107,16 @@ class TeamController extends Controller
             'name' => $data['name'],
             'logo' => $teamlogoimage,
         ]);
-
         $team->save();
+
+        foreach($data['matchtype'] as $matchtype_id)
+        {
+            $teammatchtype = TeamMatchType::create([
+                'team_id' => $team->id,
+                'matchtype_id' => $matchtype_id,
+            ]);
+            $teammatchtype->save();
+        }
 
         return redirect()->route('team.index')->with('success', 'Team Created Successfully');
     }
@@ -122,7 +143,14 @@ class TeamController extends Controller
         //
         if($request->user()->can('manage-team')){
             $team = Team::findorfail($id);
-            return view('backend.team.edit', compact('team'));
+            $matchtypes = MatchType::orderBy('name', 'asc')->get();
+            $selectedmatchtypes = TeamMatchType::where('team_id', $id)->get();
+            $array_teammatchtypes = array();
+            foreach($selectedmatchtypes as $selectedmatchtype)
+            {
+                $array_teammatchtypes[] = $selectedmatchtype->matchtype_id;
+            }
+            return view('backend.team.edit', compact('team', 'matchtypes', 'array_teammatchtypes'));
         }else{
             return view('backend.permission.permission');
         }
@@ -142,6 +170,7 @@ class TeamController extends Controller
         $data = $this->validate($request, [
             'name' => 'required|unique:teams,name,' . $id,
             'logo' => 'mimes:png,jpg,jpeg',
+            'matchtype' => 'required',
         ]);
 
         $teamlogoimage = '';
@@ -163,6 +192,21 @@ class TeamController extends Controller
 
         $team->save();
 
+        $teammatchtypes = TeamMatchType::where('team_id', $team->id)->get();
+        foreach($teammatchtypes as $teammatchtype)
+        {
+            $teammatchtype->delete();
+        }
+
+        foreach($data['matchtype'] as $matchtype_id)
+        {
+            $matchtype = TeamMatchType::create([
+                'team_id' => $team->id,
+                'matchtype_id' => $matchtype_id,
+            ]);
+            $matchtype->save();
+        }
+
         return redirect()->route('team.index')->with('success', 'Team Updated Successfully');
     }
 
@@ -181,6 +225,14 @@ class TeamController extends Controller
             if($matchdetail)
             {
                 return redirect()->back()->with('failure', 'Team is involved in matches');
+            }
+            $teammatchtypes = TeamMatchType::where('team_id', $team->id)->get();
+            if(count($teammatchtypes) > 0)
+            {
+                foreach($teammatchtypes as $teammatchtype)
+                {
+                    $teammatchtype->delete();
+                }
             }
             Storage::disk('uploads')->delete($team->logo);
             $team->delete();

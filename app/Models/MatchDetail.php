@@ -32,4 +32,9 @@ class MatchDetail extends Model
     {
         return $this->belongsTo(MatchStadium::class, 'stadium_id', 'id');
     }
+
+    public function matchresult()
+    {
+        return $this->hasOne(MatchResult::class, 'matchdetail_id', 'id');
+    }
 }

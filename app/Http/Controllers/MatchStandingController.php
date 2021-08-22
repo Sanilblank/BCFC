@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MatchStanding;
 use App\Models\MatchType;
 use App\Models\Team;
+use App\Models\TeamMatchType;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Storage;
@@ -31,7 +32,7 @@ class MatchStandingController extends Controller
             $reqmatchtype = MatchType::where('id',request()->get('matchtype_id'))->first();
             $standing = MatchStanding::latest()->where('matchtype_id', request()->get('matchtype_id'))->first();
             if ($request->ajax()) {
-                $data = MatchStanding::where('matchtype_id', request()->get('matchtype_id'))->get();
+                $data = MatchStanding::where('matchtype_id', request()->get('matchtype_id'))->orderBy('points', 'desc')->get();
                 return Datatables::of($data)
                     ->addIndexColumn()
 
@@ -73,14 +74,14 @@ class MatchStandingController extends Controller
             'matchtype_id' =>'required',
         ]);
 
-        $teams = Team::orderBy('name', 'asc')->get();
-        if(count($teams) > 0)
+        $teammatchtypes = TeamMatchType::where('matchtype_id', $data['matchtype_id'])->get();
+        if(count($teammatchtypes) > 0)
         {
-            foreach($teams as $team)
+            foreach($teammatchtypes as $teammatchtype)
             {
                 $standing = MatchStanding::create([
                     'matchtype_id' => $data['matchtype_id'],
-                    'team_id' => $team->id,
+                    'team_id' => $teammatchtype->team_id,
                     'played' => 0,
                     'win' => 0,
                     'draw' => 0,
@@ -105,9 +106,9 @@ class MatchStandingController extends Controller
     public function create(Request $request, $id)
     {
         if($request->user()->can('manage-match')){
-            $teams = Team::orderBy('name', 'asc')->get();
             $reqmatchtype = MatchType::findorfail($id);
-            return view('backend.standing.create', compact('teams', 'reqmatchtype'));
+            $teammatchtypes = TeamMatchType::where('matchtype_id', $id)->get();
+            return view('backend.standing.create', compact('teammatchtypes', 'reqmatchtype'));
         }else{
             return view('backend.permission.permission');
         }
@@ -124,8 +125,6 @@ class MatchStandingController extends Controller
             'loss' => 'required|integer',
             'goalsscored' => 'required|integer',
             'goalsagainst' => 'required|integer',
-            'goaldifferential' => 'required|integer',
-            'points' => 'required|integer',
         ]);
 
         $exists = MatchStanding::where('matchtype_id', $data['matchtype_id'])->where('team_id', $data['team_id'])->first();
@@ -134,6 +133,12 @@ class MatchStandingController extends Controller
             return redirect()->back()->with('failure', 'Standings for the selected team already exists. Please update the standings.');
         }
 
+        if($data['played'] != ($data['win'] + $data['draw'] + $data['loss']))
+        {
+            return redirect()->back()->with('failure', 'No of played matches is incorrect.');
+        }
+        $goaldifferential = $data['goalsscored'] - $data['goalsagainst'];
+        $points = $data['win'] * 3 + $data['draw'];
         $standing = MatchStanding::create([
             'matchtype_id' => $data['matchtype_id'],
             'team_id' => $data['team_id'],
@@ -143,8 +148,8 @@ class MatchStandingController extends Controller
             'loss' => $data['loss'],
             'goalsscored' => $data['goalsscored'],
             'goalsagainst' => $data['goalsagainst'],
-            'goaldifferential' => $data['goaldifferential'],
-            'points' => $data['points'],
+            'goaldifferential' => $goaldifferential,
+            'points' => $points,
         ]);
         $standing->save();
 
@@ -174,9 +179,14 @@ class MatchStandingController extends Controller
             'loss' => 'required|integer',
             'goalsscored' => 'required|integer',
             'goalsagainst' => 'required|integer',
-            'goaldifferential' => 'required|integer',
-            'points' => 'required|integer',
         ]);
+
+        if($data['played'] != ($data['win'] + $data['draw'] + $data['loss']))
+        {
+            return redirect()->back()->with('failure', 'No of played matches is incorrect.');
+        }
+        $goaldifferential = $data['goalsscored'] - $data['goalsagainst'];
+        $points = $data['win'] * 3 + $data['draw'];
 
         $standing->update([
             'matchtype_id' => $data['matchtype_id'],
@@ -187,8 +197,8 @@ class MatchStandingController extends Controller
             'loss' => $data['loss'],
             'goalsscored' => $data['goalsscored'],
             'goalsagainst' => $data['goalsagainst'],
-            'goaldifferential' => $data['goaldifferential'],
-            'points' => $data['points'],
+            'goaldifferential' => $goaldifferential,
+            'points' => $points,
         ]);
 
         return redirect()->to(route('standing.viewStanding') . '?matchtype_id=' . $data['matchtype_id'])->with('success', 'Standings for the team updated successfully');

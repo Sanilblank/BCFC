@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\MatchDetail;
 use App\Models\MatchResult;
+use App\Models\MatchScoreDetail;
 use App\Models\MatchStadium;
 use App\Models\MatchType;
 use App\Models\Team;
+use App\Models\TeamMatchType;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Storage;
@@ -167,6 +169,18 @@ class MatchDetailController extends Controller
             'stadium_id' => 'required',
         ]);
 
+        $canbemade = TeamMatchType::where('team_id', $data['team1_id'])->where('matchtype_id', $data['matchtype_id'])->first();
+        if(!$canbemade)
+        {
+            return redirect()->back()->with('failure', 'Selected Team cannot play in selected matchtype. Please update from teams or matchtype page first.');
+        }
+
+        $canbemade2 = TeamMatchType::where('team_id', $data['team2_id'])->where('matchtype_id', $data['matchtype_id'])->first();
+        if(!$canbemade2)
+        {
+            return redirect()->back()->with('failure', 'Selected Team cannot play in selected matchtype. Please update from teams or matchtype page first.');
+        }
+
         $matchdetail = MatchDetail::create([
             'team1_id' => $data['team1_id'],
             'team2_id' => $data['team2_id'],
@@ -230,6 +244,18 @@ class MatchDetailController extends Controller
             'stadium_id' => 'required',
         ]);
 
+        $canbemade = TeamMatchType::where('team_id', $data['team1_id'])->where('matchtype_id', $data['matchtype_id'])->first();
+        if(!$canbemade)
+        {
+            return redirect()->back()->with('failure', 'Selected Team cannot play in selected matchtype. Please update from teams or matchtype page first.');
+        }
+
+        $canbemade2 = TeamMatchType::where('team_id', $data['team2_id'])->where('matchtype_id', $data['matchtype_id'])->first();
+        if(!$canbemade2)
+        {
+            return redirect()->back()->with('failure', 'Selected Team cannot play in selected matchtype. Please update from teams or matchtype page first.');
+        }
+
         $matchdetail->update([
             'team1_id' => $data['team1_id'],
             'team2_id' => $data['team2_id'],
@@ -274,17 +300,75 @@ class MatchDetailController extends Controller
     public function storeresult(Request $request)
     {
         if($request->user()->can('manage-match')){
+
             $data = $this->validate($request, [
                 'matchdetail_id' => 'required',
                 'team1_score' => 'required|integer',
                 'team2_score' => 'required|integer',
             ]);
+            $playernamecount1 = count($request['playername']);
+            $timecount1 = count($request['time']);
+            $playernamecount2 = count($request['playername2']);
+            $timecount2 = count($request['time2']);
 
             $existresult = MatchResult::where('matchdetail_id', $data['matchdetail_id'])->first();
             if($existresult)
             {
                 return redirect()->back()->with('failure', 'Something went wrong');
             }
+
+            if($data['team1_score'] > 0)
+            {
+                if($playernamecount1 != $data['team1_score'] || $timecount1 != $data['team1_score'])
+                {
+                    return redirect()->back()->with('failure', 'No of goals made and details given do not match for team1');
+                }
+            }
+
+            if($data['team2_score'] > 0)
+            {
+                if($playernamecount2 != $data['team2_score'] || $timecount2 != $data['team2_score'])
+                {
+                    return redirect()->back()->with('failure', 'No of goals made and details given do not match for team2');
+                }
+            }
+
+            if($data['team1_score'] > 0)
+            {
+                for($i=0;$i<$playernamecount1;$i++)
+                {
+                    if($request['playername'][$i] == null)
+                    {
+                        return redirect()->back()->with('failure', 'Field cannot be empty');
+                    }
+                }
+                for($i=0;$i<$timecount1;$i++)
+                {
+                    if($request['time'][$i] == null)
+                    {
+                        return redirect()->back()->with('failure', 'Field cannot be empty');
+                    }
+                }
+            }
+
+            if($data['team2_score'] > 0)
+            {
+                for($i=0;$i<$playernamecount2;$i++)
+                {
+                    if($request['playername2'][$i] == null)
+                    {
+                        return redirect()->back()->with('failure', 'Field cannot be empty');
+                    }
+                }
+                for($i=0;$i<$timecount2;$i++)
+                {
+                    if($request['time2'][$i] == null)
+                    {
+                        return redirect()->back()->with('failure', 'Field cannot be empty');
+                    }
+                }
+            }
+
             $matchresult = MatchResult::create([
                 'matchdetail_id' => $data['matchdetail_id'],
                 'team1_score' => $data['team1_score'],
@@ -292,6 +376,33 @@ class MatchDetailController extends Controller
             ]);
             $matchresult->save();
 
+            if($data['team1_score'] > 0)
+            {
+                for($i=0;$i<$playernamecount1;$i++)
+                {
+                    $team1scoredetails = MatchScoreDetail::create([
+                        'matchdetail_id' => $data['matchdetail_id'],
+                        'team' => 1,
+                        'name' => $request['playername'][$i],
+                        'time' => $request['time'][$i],
+                    ]);
+                    $team1scoredetails->save();
+                }
+            }
+
+            if($data['team2_score'] > 0)
+            {
+                for($i=0;$i<$playernamecount2;$i++)
+                {
+                    $team2scoredetails = MatchScoreDetail::create([
+                        'matchdetail_id' => $data['matchdetail_id'],
+                        'team' => 2,
+                        'name' => $request['playername2'][$i],
+                        'time' => $request['time2'][$i],
+                    ]);
+                    $team2scoredetails->save();
+                }
+            }
             $matchdetail = MatchDetail::findorfail($data['matchdetail_id']);
             $matchdetail->update([
                 'completed' => 1,
@@ -308,7 +419,9 @@ class MatchDetailController extends Controller
         if($request->user()->can('manage-match')){
             $matchdetail = MatchDetail::where('id', $id)->with('team1', 'team2', 'matchtype', 'stadium')->first();
             $matchresult = MatchResult::where('matchdetail_id', $id)->first();
-            return view('backend.matchdetails.editresult', compact('matchdetail', 'matchresult'));
+            $team1scoredetails = MatchScoreDetail::where('matchdetail_id', $id)->where('team', 1)->orderBy('time', 'asc')->get();
+            $team2scoredetails = MatchScoreDetail::where('matchdetail_id', $id)->where('team', 2)->orderBy('time', 'asc')->get();
+            return view('backend.matchdetails.editresult', compact('matchdetail', 'matchresult', 'team1scoredetails', 'team2scoredetails'));
         }else{
             return view('backend.permission.permission');
         }
@@ -320,6 +433,14 @@ class MatchDetailController extends Controller
         if($request['check'] == 1)
         {
             $matchresult = MatchResult::where('matchdetail_id', $matchdetail->id)->first();
+            $teamscoredetails = MatchScoreDetail::where('matchdetail_id', $matchdetail->id)->get();
+            if(count($teamscoredetails) > 0)
+            {
+                foreach($teamscoredetails as $teamscoredetail)
+                {
+                    $teamscoredetail->delete();
+                }
+            }
             $matchresult->delete();
             $matchdetail->update([
                 'completed' => 0,
@@ -334,6 +455,123 @@ class MatchDetailController extends Controller
                 'team1_score' => 'required|integer',
                 'team2_score' => 'required|integer',
             ]);
+
+            if(($data['team1_score'] != $matchresult->team1_score && $request['team1scorereset'] != 1) || ($data['team2_score'] != $matchresult->team2_score && $request['team2scorereset'] != 1))
+            {
+                return redirect()->back()->with('failure', 'You need to reset the score result if you want to change no of goals.');
+            }
+
+            if($request['team1scorereset'] == 1)
+            {
+                $playernamecount1 = count($request['playername']);
+                $timecount1 = count($request['time']);
+
+                if($data['team1_score'] > 0)
+                {
+                    if($playernamecount1 != $data['team1_score'] || $timecount1 != $data['team1_score'])
+                    {
+                        return redirect()->back()->with('failure', 'No of goals made and details given do not match for team1');
+                    }
+                }
+
+                if($data['team1_score'] > 0)
+                {
+                    for($i=0;$i<$playernamecount1;$i++)
+                    {
+                        if($request['playername'][$i] == null)
+                        {
+                            return redirect()->back()->with('failure', 'Field cannot be empty');
+                        }
+                    }
+                    for($i=0;$i<$timecount1;$i++)
+                    {
+                        if($request['time'][$i] == null)
+                        {
+                            return redirect()->back()->with('failure', 'Field cannot be empty');
+                        }
+                    }
+                }
+
+                $team1scoredetails = MatchScoreDetail::where('matchdetail_id', $matchdetail->id)->where('team', 1)->get();
+                if(count($team1scoredetails) > 0)
+                {
+                    foreach($team1scoredetails as $team1scoredetail)
+                    {
+                        $team1scoredetail->delete();
+                    }
+                }
+
+                if($data['team1_score'] > 0)
+                {
+                    for($i=0;$i<$playernamecount1;$i++)
+                    {
+                        $team1scoredetails = MatchScoreDetail::create([
+                            'matchdetail_id' => $matchdetail->id,
+                            'team' => 1,
+                            'name' => $request['playername'][$i],
+                            'time' => $request['time'][$i],
+                        ]);
+                        $team1scoredetails->save();
+                    }
+                }
+
+            }
+
+            if($request['team2scorereset'] == 1)
+            {
+                $playernamecount2 = count($request['playername2']);
+                $timecount2 = count($request['time2']);
+
+                if($data['team2_score'] > 0)
+                {
+                    if($playernamecount2 != $data['team2_score'] || $timecount2 != $data['team2_score'])
+                    {
+                        return redirect()->back()->with('failure', 'No of goals made and details given do not match for team2');
+                    }
+                }
+
+                if($data['team2_score'] > 0)
+                {
+                    for($i=0;$i<$playernamecount2;$i++)
+                    {
+                        if($request['playername2'][$i] == null)
+                        {
+                            return redirect()->back()->with('failure', 'Field cannot be empty');
+                        }
+                    }
+                    for($i=0;$i<$timecount2;$i++)
+                    {
+                        if($request['time2'][$i] == null)
+                        {
+                            return redirect()->back()->with('failure', 'Field cannot be empty');
+                        }
+                    }
+                }
+
+                $team2scoredetails = MatchScoreDetail::where('matchdetail_id', $matchdetail->id)->where('team', 2)->get();
+                if(count($team2scoredetails) > 0)
+                {
+                    foreach($team2scoredetails as $team2scoredetail)
+                    {
+                        $team2scoredetail->delete();
+                    }
+                }
+
+                if($data['team2_score'] > 0)
+                {
+                    for($i=0;$i<$playernamecount2;$i++)
+                    {
+                        $team2scoredetails = MatchScoreDetail::create([
+                            'matchdetail_id' => $matchdetail->id,
+                            'team' => 1,
+                            'name' => $request['playername2'][$i],
+                            'time' => $request['time2'][$i],
+                        ]);
+                        $team2scoredetails->save();
+                    }
+                }
+
+            }
 
             $matchresult->update([
                 'team1_score' => $data['team1_score'],

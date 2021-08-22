@@ -159,7 +159,7 @@
                       <h3>{{$lastmatch->team1->name}}</h3>
                     </div>
                     <div>
-                      <span class="vs"><span>4-4</span></span>
+                      <span class="vs"><span>{{$lastmatch->matchresult->team1_score}}-{{$lastmatch->matchresult->team2_score}}</span></span>
                     </div>
                     <div class="team-2 text-center">
                       <img src="{{Storage::disk('uploads')->url($lastmatch->team2->logo)}}" alt="Image" style="max-width: 70px">
@@ -170,7 +170,7 @@
               </div>
 
               <div class="text-center widget-vs-contents ">
-                <h4>Nepal Cup League</h4>
+                <h4>{{$lastmatch->matchtype->name}}</h4>
                 <p class="mb-5">
                     <span class="d-block">{{date('M d, Y', strtotime($lastmatch->datetime))}}</span>
                     <span class="d-block">{{date('h:m a', strtotime($lastmatch->datetime))}}</span>
