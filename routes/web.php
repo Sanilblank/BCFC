@@ -18,6 +18,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StadiumController;
 use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamMemberController;
 use App\Http\Controllers\TeamPositionController;
@@ -55,6 +56,13 @@ Route::get('/getmatches', [FrontController::class, 'getmatches'])->name('getmatc
 Route::get('/viewStandings', [FrontController::class, 'viewStandings'])->name('viewStandings');
 Route::get('/viewPartners', [FrontController::class, 'viewPartners'])->name('viewPartners');
 Route::get('/contactus', [FrontController::class, 'contactus'])->name('contactus');
+Route::get('/contactMail', [FrontController::class, 'contactMail'])->name('contactMail');
+
+//Subscriber
+//Subscriber
+Route::post('registerSubscriber', [FrontController::class, 'registerSubscriber'])->name('registerSubscriber');
+Route::get('/subscriberconfirm',[FrontController::class, 'subscriberconfirm'])->name('subscriberconfirm');
+
 
 Auth::routes();
 
@@ -122,5 +130,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
     //Partners
     Route::resource('partner', PartnerController::class);
+
+    //Subscribers
+    Route::resource('subscriber', SubscriberController::class);
 });
 

@@ -292,14 +292,20 @@
             </div>
             <div class="col-md-12 col-lg-9 text-center mb-4 mb-lg-0 px-5">
               <div class="">
-                <form action="#" method="post">
+                <form action="{{route('registerSubscriber')}}" method="POST">
+                    @csrf
+                    @method('POST')
                   <div class="input-group mb-3 d-flex align-items-center w-75">
-                    <input type="text" class="form-control " placeholder="Enter Email" aria-label="Enter Email"
-                      aria-describedby="button-addon2">
+                    <input type="email" class="form-control " placeholder="Enter Email" aria-label="Enter Email"
+                      aria-describedby="button-addon2" name="email">
+
                     <div class="input-group-append" style="height:51px">
-                      <button class="btn btn-primary py-2" type="button" id="button-addon2">Subscribe</button>
+                      <button class="btn btn-primary py-2" type="submit" id="button-addon2">Subscribe</button>
                     </div>
                   </div>
+                  @error('email')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </form>
 
               </div>

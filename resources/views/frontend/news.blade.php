@@ -192,14 +192,16 @@
                   <h4 class="widget_title" style="color: #2d2d2d">
                     Newsletter
                   </h4>
-                  <form action="#">
+                  <form action="{{route('registerSubscriber')}}" method="POST">
+                    @csrf
+                    @method('POST')
                     <div class="form-group">
                       <input
                         type="email"
                         class="form-control"
                         onfocus="this.placeholder = ''"
                         onblur="this.placeholder = 'Enter email'"
-                        placeholder="Enter email"
+                        placeholder="Enter email" name="email"
                         required
                       />
                     </div>
