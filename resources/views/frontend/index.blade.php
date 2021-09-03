@@ -265,7 +265,7 @@
     </div>
 
 
-
+<!-- Old NEws -->
     <div class="content-wrapper">
       <div class="container-fluid">
         <div class="row">
@@ -389,6 +389,213 @@
      
       </div>
     </div>
+
+
+
+
+          <!-- New News -->
+          <div class="content-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="widget-title3 text-center">
+              <span class="tbg">Latest</span>
+              <h4 class="">Let's Update</h4>
+              <h3 class="text-black">News</h3>
+              <p>
+                Fight Defend Win Fight Defend Win Fight Defend Win Fight Defend
+                Win Fight Defend Win
+              </p>
+            </div>
+          </div>
+
+          <div class="row section-padding">
+            <div class="band">
+              <div class="item-1">
+                <a
+                  href="https://design.tutsplus.com/articles/international-artist-feature-malaysia--cms-26852"
+                  class="card"
+                >
+                  <div
+                    class="thumb"
+                    style="
+                      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/flex-1.jpg);
+                    "
+                  ></div>
+                  <article>
+                    <h6 class="text-danger">
+                      <i class="fa fa-globe"></i> World
+                    </h6>
+                    <h1>International Artist Feature: Malaysia</h1>
+                    <span>Mary Winkler</span>
+                    <span>2021.09.04</span>
+                  </article>
+                </a>
+              </div>
+              <div class="item-2">
+                <a
+                  href="https://webdesign.tutsplus.com/articles/how-to-conduct-remote-usability-testing--cms-27045"
+                  class="card"
+                >
+                  <div
+                    class="thumb"
+                    style="
+                      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/users-2.png);
+                    "
+                  ></div>
+                  <article>
+                    <h6 class="text-danger">
+                      <i class="fa fa-globe"></i> World
+                    </h6>
+                    <h1>How to Conduct Remote Usability Testing</h1>
+                    <span>Harry Brignull</span>
+                    <span>2021.09.03</span>
+                  </article>
+                </a>
+              </div>
+              <div class="item-3">
+                <a
+                  href="https://design.tutsplus.com/articles/envato-tuts-community-challenge-created-by-you-july-edition--cms-26724"
+                  class="card"
+                >
+                  <div
+                    class="thumb"
+                    style="
+                      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/flex-5.jpg);
+                    "
+                  ></div>
+                  <article>
+                    <h6 class="text-danger">
+                      <i class="fa fa-globe"></i> World
+                      <i class="fa fa-globe"></i> World
+                    </h6>
+                    <h1>Created by You, July Edition</h1>
+                    <p>
+                      Welcome to our monthly feature of fantastic tutorial
+                      results created by you, the Envato Tuts+ community!
+                    </p>
+                    <span>Melody Nieves</span>
+                    <span>2021.2.4</span>
+                  </article>
+                </a>
+              </div>
+              <div class="item-4">
+                <a
+                  href="https://webdesign.tutsplus.com/tutorials/how-to-code-a-scrolling-alien-lander-website--cms-26826"
+                  class="card"
+                >
+                  <div
+                    class="thumb"
+                    style="
+                      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/landing.png);
+                    "
+                  ></div>
+                  <article>
+                    <h1>How to Code a Scrolling “Alien Lander” Website</h1>
+                    <p>
+                      We’ll be putting things together so that as you scroll
+                      down from the top of the page you’ll see an “Alien Lander”
+                      making its way to touch down.
+                    </p>
+                    <span>Kezz Bracey</span>
+                  </article>
+                </a>
+              </div>
+              <div class="item-5">
+                <a
+                  href="https://design.tutsplus.com/tutorials/stranger-things-inspired-text-effect--cms-27139"
+                  class="card"
+                >
+                  <div
+                    class="thumb"
+                    style="
+                      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/strange.jpg);
+                    "
+                  ></div>
+                  <article>
+                    <h1>
+                      How to Create a “Stranger Things” Text Effect in Adobe
+                      Photoshop
+                    </h1>
+                    <span>Rose</span>
+                  </article>
+                </a>
+              </div>
+              <div class="item-6">
+                <a
+                  href="https://photography.tutsplus.com/articles/5-inspirational-business-portraits-and-how-to-make-your-own--cms-27338"
+                  class="card"
+                >
+                  <div
+                    class="thumb"
+                    style="
+                      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/flor.jpg);
+                    "
+                  ></div>
+                  <article>
+                    <h1>
+                      5 Inspirational Business Portraits and How to Make Your
+                      Own
+                    </h1>
+
+                    <span>Marie Gardiner</span>
+                  </article>
+                </a>
+              </div>
+              <div class="item-7">
+                <a
+                  href="https://webdesign.tutsplus.com/articles/notes-from-behind-the-firewall-the-state-of-web-design-in-china--cms-22281"
+                  class="card"
+                >
+                  <div
+                    class="thumb"
+                    style="
+                      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/china.png);
+                    "
+                  ></div>
+                  <article>
+                    <h1>
+                      Notes From Behind the Firewall: The State of Web Design in
+                      China
+                    </h1>
+                    <span>Kendra Schaefer</span>
+                  </article>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slider News -->
+
+          <div class="row pt-5 px-3">
+            <div class="nonloop-block-13 owl-carousel">
+              <div class="item">
+                <!-- uses .block-12 -->
+                <div class="block-12">
+                  <figure>
+                    <img src="images/img_1.jpg" alt="Image" class="img-fluid" />
+                  </figure>
+                  <div class="text">
+                    <span class="meta">May 20th 2018</span>
+                    <div class="text-inner">
+                      <h2 class="heading mb-3">
+                        <a href="#" class="text-black"
+                          >Nepal Cup Championship</a
+                        >
+                      </h2>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Ad culpa, consectetur! Eligendi illo, repellat
+                        repudiandae cumque fugiat optio!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
       <!-- gallery one -->
       <div class="content-wrapper pt-0">
