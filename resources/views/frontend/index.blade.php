@@ -488,6 +488,63 @@
             </div>
           </div>
 
+
+
+          
+      <!-- Matches -->
+      <div class="content-wrapper pt-0">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="widget-title3 text-center">
+              <span class="tbg">Matches</span>
+              <h4 class="">Win lose draw wait</h4>
+              <h3 class="text-black">Matches</h3>
+              <p>BCFC Plays</p>
+            </div>
+          </div>
+
+          <div class="row py-5 px-3" style="text-align: -webkit-center">
+            <div class="nonloop-block-13 owl-carousel">
+              <div class="item">
+                <div class="match-box">
+                  <div class="text-center widget-vs-3-contents mb-4">
+                    <h4>Nepal Super League</h4>
+                    <p class="">
+                      <span class="d-block">December 20th, 2020</span>
+                      <span class="d-block">9:30 AM, Dashrath Rangasala</span>
+                    </p>
+                  </div>
+                  <div class="widget-body">
+                    <div class="widget-vs-3">
+                      <div
+                        class="
+                          d-flex
+                          align-items-center
+                          justify-content-around justify-content-between
+                          w-100
+                        "
+                      >
+                        <div class="team-1 text-center">
+                          <img src="images/logo_1.png" alt="Image" />
+                        </div>
+                        <div>
+                          <span class="vs"><span>4-4</span></span>
+                        </div>
+                        <div class="team-2 text-center">
+                          <img src="images/logo_2.png" alt="Image" />
+                        </div>
+                      </div>
+                      <h3 class="text-center">BCFC vs LFC</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
           <div class="widget-view text-center">
             <a class="boxed-btn">Shop Now</a>
           </div>
