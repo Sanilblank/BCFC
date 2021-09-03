@@ -53,14 +53,19 @@
             <h3 class="footer-heading mb-2">Subscribe Newsletter</h3>
             <p>Get the latest updates by Email.</p>
 
-            <form action="#" method="post">
+            <form action="{{route('registerSubscriber')}}" method="post">
+                @csrf
+                @method('POST')
               <div class="input-group mb-3">
-                <input type="text" class="form-control border-secondary text-white bg-transparent"
-                  placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
+                <input type="email" class="form-control border-secondary text-white bg-transparent"
+                  placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2" name="email">
                 <div class="input-group-append">
-                  <button class="btn btn-primary" type="button" id="button-addon2">Send</button>
+                  <button class="btn btn-primary" type="submit" id="button-addon2">Send</button>
                 </div>
               </div>
+              @error('email')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
             </form>
 
           </div>

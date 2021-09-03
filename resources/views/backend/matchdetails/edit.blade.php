@@ -15,7 +15,7 @@
             </div>
         @endif
         <h1 class="mt-3">Edit Match => {{$matchdetail->id}} <a href="{{ route('match.index') }}" class="btn btn-primary btn-sm"> <i
-                    class="fa fa-eye" aria-hidden="true"></i> View All Members</a></h1>
+                    class="fa fa-eye" aria-hidden="true"></i> View All Upcoming Matches</a></h1>
                             <div class="card mt-3">
                                 <form action="{{route('match.update', $matchdetail->id)}}" method="POST" class="bg-light p-3" enctype="multipart/form-data">
                                     @csrf

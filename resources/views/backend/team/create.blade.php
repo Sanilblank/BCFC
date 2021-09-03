@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 @push('styles')
-
+<link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
 @endpush
 @section('content')
     <div class="right_col" role="main">
@@ -44,6 +44,21 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="matchtype">Choose Matchtypes in which the team will play: </label>
+                                                <select class="form-control chosen-select" data-placeholder="Type Matchtype names..." multiple name="matchtype[]">
+                                                    @foreach ($matchtypes as $matchtype)
+                                                        <option value="{{$matchtype->id}}">{{$matchtype->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('matchtype')
+                                                    <p class="text-danger">{{$message}}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </form>
@@ -58,5 +73,11 @@
 
 @endsection
 @push('scripts')
+<script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
 
+    <script>
+        $(".chosen-select").chosen({
+            no_results_text: "Oops, nothing found!"
+        });
+    </script>
 @endpush

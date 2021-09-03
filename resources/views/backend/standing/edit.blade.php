@@ -28,7 +28,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="played">Played(P): </label>
-                                                <input type="text" name="played" class="form-control" value="{{@old('played')?@old('played'):$standing->played}}">
+                                                <input type="number" name="played" class="form-control" value="{{@old('played')?@old('played'):$standing->played}}">
                                                 @error('played')
                                                     <p class="text-danger">{{$message}}</p>
                                                 @enderror
@@ -37,7 +37,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="win">No of Wins(W): </label>
-                                                <input type="text" name="win" class="form-control" value="{{@old('win')?@old('win'):$standing->win}}">
+                                                <input type="number" name="win" class="form-control" value="{{@old('win')?@old('win'):$standing->win}}">
                                                 @error('win')
                                                     <p class="text-danger">{{$message}}</p>
                                                 @enderror
@@ -45,7 +45,7 @@
                                         </div><div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="draw">No of Draws(D): </label>
-                                                <input type="text" name="draw" class="form-control" value="{{@old('draw')?@old('draw'):$standing->draw}}">
+                                                <input type="number" name="draw" class="form-control" value="{{@old('draw')?@old('draw'):$standing->draw}}">
                                                 @error('draw')
                                                     <p class="text-danger">{{$message}}</p>
                                                 @enderror
@@ -53,7 +53,7 @@
                                         </div><div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="loss">No of Loss(L): </label>
-                                                <input type="text" name="loss" class="form-control" value="{{@old('loss')?@old('loss'):$standing->loss}}">
+                                                <input type="number" name="loss" class="form-control" value="{{@old('loss')?@old('loss'):$standing->loss}}">
                                                 @error('loss')
                                                     <p class="text-danger">{{$message}}</p>
                                                 @enderror
@@ -61,7 +61,7 @@
                                         </div><div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="goalsscored">Goals For(GF): </label>
-                                                <input type="text" name="goalsscored" class="form-control" value="{{@old('goalsscored')?@old('goalsscored'):$standing->goalsscored}}">
+                                                <input type="number" name="goalsscored" class="form-control" value="{{@old('goalsscored')?@old('goalsscored'):$standing->goalsscored}}">
                                                 @error('goalsscored')
                                                     <p class="text-danger">{{$message}}</p>
                                                 @enderror
@@ -69,27 +69,34 @@
                                         </div><div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="goalsagainst">Goals Against(GA): </label>
-                                                <input type="text" name="goalsagainst" class="form-control" value="{{@old('goalsagainst')?@old('goalsagainst'):$standing->goalsagainst}}">
+                                                <input type="number" name="goalsagainst" class="form-control" value="{{@old('goalsagainst')?@old('goalsagainst'):$standing->goalsagainst}}">
                                                 @error('goalsagainst')
                                                     <p class="text-danger">{{$message}}</p>
                                                 @enderror
                                             </div>
-                                        </div><div class="col-md-2">
+                                        </div>
+                                        {{-- <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="goaldifferential">Goal Differential(GD): </label>
-                                                <input type="text" name="goaldifferential" class="form-control" value="{{@old('goaldifferential')?@old('goaldifferential'):$standing->goaldifferential}}">
+                                                <input type="number" name="goaldifferential" class="form-control" value="{{@old('goaldifferential')?@old('goaldifferential'):$standing->goaldifferential}}">
                                                 @error('goaldifferential')
                                                     <p class="text-danger">{{$message}}</p>
                                                 @enderror
                                             </div>
-                                        </div><div class="col-md-2">
+                                        </div>
+                                        <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="points">Points(PTS): </label>
-                                                <input type="text" name="points" class="form-control" value="{{@old('points')?@old('points'):$standing->points}}">
+                                                <input type="number" name="points" class="form-control" value="{{@old('points')?@old('points'):$standing->points}}">
                                                 @error('points')
                                                     <p class="text-danger">{{$message}}</p>
                                                 @enderror
                                             </div>
+                                        </div> --}}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p style="color: red; font-size: 12px;">Note*:Goal Differential(GD) and Points(P) will be calculated automatically.</p>
                                         </div>
                                     </div>
 

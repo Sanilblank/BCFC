@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 @push('styles')
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.css" integrity="sha256-n3YISYddrZmGqrUgvpa3xzwZwcvvyaZco0PdOyUKA18=" crossorigin="anonymous" />
 @endpush
 @section('content')
     <div class="right_col" role="main">
@@ -74,6 +74,18 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="description">Description(If Any):</label><br>
+                                                <textarea name="description" class="form-control" id="description" cols="30" rows="10" placeholder="Description of the player">{{$teammember->description}}</textarea>
+                                                @error('description')
+                                                    <p class="text-danger">{{$message}}</p>
+                                                @enderror
+
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="row mt-3 mb-3">
                                         <div class="col-md-4">
@@ -92,5 +104,65 @@
 
 @endsection
 @push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<script>
 
+    // $('#summernote').summernote({
+    //     height: 200,
+    //     placeholder: 'Blog Contents here'
+
+    // });
+
+    $(function () {
+
+        $('#description').summernote({
+            placeholder: "Any Extra Details about the team member.",
+            height: 300,
+            callbacks: {
+                onImageUpload: function(files) {
+                    console.log(files);
+                    for(var i=0; i < files.length; i++) {
+                        $.upload(files[i]);
+                    }
+                }
+            }
+
+        });
+
+        $.upload = function (file) {
+
+            let out = new FormData();
+            out.append('file', file, file.name);
+            console.log("outform is ",out);
+            $.ajax({
+                method: 'POST',
+                url: '{{ route('teammember.store')}}',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: 'JSON',
+                data: out,
+                success: function (r) {
+                    console.log(typeof r);
+                    $('#description').summernote('insertImage', r.url);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error(textStatus + " " + errorThrown);
+                }
+            });
+        };
+        $(".description").summernote({
+            callbacks : {
+                onMediaDelete : function ($target, $editable) {
+                    console.log($target.attr('src'));   // get image url
+                }
+            }
+        });
+
+
+    });
+
+
+</script>
 @endpush

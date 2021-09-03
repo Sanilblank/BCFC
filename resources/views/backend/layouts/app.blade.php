@@ -136,6 +136,8 @@
                             <i class="fa fa-comments nav-icon"></i> Comments
                         </a>
                     </li>
+                    <li><a href="{{route('subscriber.index')}}"><i class="fa fa-male"></i> Subscribers</a></li>
+
 
                 </ul>
               </div>
@@ -160,12 +162,12 @@
                     <img src="{{asset('backend/images/img.jpg')}}" alt="">{{ Auth::user()->name }}
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="javascript:;"> Profile</a>
+                    {{-- <a class="dropdown-item"  href="javascript:;"> Profile</a>
                       <a class="dropdown-item"  href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>
                         <span>Settings</span>
-                      </a>
-                  <a class="dropdown-item"  href="javascript:;">Help</a>
+                      </a> --}}
+                  {{-- <a class="dropdown-item"  href="javascript:;">Help</a> --}}
                     <a class="dropdown-item"  href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
@@ -177,67 +179,32 @@
                 </li>
 
                 <li role="presentation" class="nav-item dropdown open">
+                    @php
+                        $newsubscriber = DB::table('notifications')->where('type', 'App\Notifications\NewSubscriberNotification')->where('is_read', 0)->count();
+                    @endphp
                   <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
+                    <i class="fa fa-bell-o"></i>
+                    <span class="badge bg-green">{{$newsubscriber}}</span>
                   </a>
                   <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                    <li class="nav-item">
-                      <a class="dropdown-item">
-                        <span class="image"><img src="{{asset('backend/images/img.jpg')}}" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="dropdown-item">
-                        <span class="image"><img src="{{asset('backend/images/img.jpg')}}" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="dropdown-item">
-                        <span class="image"><img src="{{asset('backend/images/img.jpg')}}" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="dropdown-item">
-                        <span class="image"><img src="{{asset('backend/images/img.jpg')}}" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <div class="text-center">
-                        <a class="dropdown-item">
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
+                    @if ($newsubscriber > 0)
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="{{route('subscriber.index')}}">
+                                <span>
+                                    <i class="fa fa-user"></i><span style="font-size: 15px;"> &nbsp;<b>{{$newsubscriber}}</b> new subscriber.</span>
+                                </span>
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <div class="text-center">
+                                <a class="dropdown-item">
+                                    <strong>No new notifications</strong>
+
+                                </a>
+                            </div>
+                        </li>
+                    @endif
                   </ul>
                 </li>
               </ul>

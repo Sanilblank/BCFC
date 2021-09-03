@@ -17,6 +17,7 @@ class TeamMember extends Model
         'teamposition_id',
         'slug',
         'status',
+        'description',
     ];
 
     public function teamposition()

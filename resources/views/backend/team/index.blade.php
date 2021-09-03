@@ -37,6 +37,7 @@
                         <th class="text-center">No</th>
                         <th class="text-center">Name</th>
                         <th class="text-center">Logo</th>
+                        <th class="text-center">Matchtypes</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -63,6 +64,7 @@
               {data: 'DT_RowIndex', name: 'DT_RowIndex'},
               {data: 'name', name: 'name'},
               {data: 'logo', name: 'logo'},
+              {data: 'teammatchtype', name: 'teammatchtype'},
               {
                   data: 'action',
                   name: 'action',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendSubscriberMail;
 use App\Models\Blog;
 use App\Models\BlogImage;
 use App\Models\BlogTag;
@@ -330,6 +331,7 @@ class BlogController extends Controller
 
                 if($draft == 0)
                 {
+                    SendSubscriberMail::dispatch($blog->id);
                     return redirect()->route('blog.index')->with('success', 'Created Successfully');
                 }
                 else

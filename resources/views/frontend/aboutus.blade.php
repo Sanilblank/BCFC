@@ -29,7 +29,7 @@
               <div class="about-content">
                 <h2>Biratnager City FC</h2>
                 <p>
-                  {{ $setting->aboutus }}
+                  {!! $setting->aboutus !!}
                 </p>
               </div>
             </div>

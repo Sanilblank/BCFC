@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendSubscriberMail;
+use App\Mail\ContactMail;
+use App\Mail\RegisterSubscriber;
 use App\Models\Album;
 use App\Models\Blog;
 use App\Models\BlogTag;
@@ -13,9 +16,12 @@ use App\Models\Partner;
 use App\Models\Photo;
 use App\Models\Reply;
 use App\Models\Slider;
+use App\Models\Subscriber;
 use App\Models\TeamMember;
 use App\Models\TeamPosition;
+use App\Notifications\NewSubscriberNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class FrontController extends Controller
 {
@@ -27,8 +33,8 @@ class FrontController extends Controller
         $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->skip(3)->take(16)->get();
         $teammembers = TeamMember::latest()->where('status', 1)->with('teamposition')->get();
         $sliders = Slider::latest()->get();
-        $nextmatch = MatchDetail::where('completed', 0)->orderBy('datetime', 'asc')->with('team1', 'team2', 'matchtype', 'stadium')->first();
-        $lastmatch = MatchDetail::where('completed', 1)->orderBy('datetime', 'desc')->with('team1', 'team2', 'matchtype', 'stadium')->first();
+        $nextmatch = MatchDetail::where('completed', 0)->orderBy('datetime', 'asc')->with('team1', 'team2', 'matchtype', 'stadium', 'matchresult')->first();
+        $lastmatch = MatchDetail::where('completed', 1)->orderBy('datetime', 'desc')->with('team1', 'team2', 'matchtype', 'stadium', 'matchresult')->first();
         $matchtype = MatchType::first();
         $standings = MatchStanding::where('matchtype_id', $matchtype->id)->with('team', 'matchtype')->get();
         $pictures = Photo::with('album')->inRandomOrder()->limit(6)->get();
@@ -258,5 +264,68 @@ class FrontController extends Controller
     {
         $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->take(16)->get();
         return view('frontend.contact', compact('latestblogs'));
+    }
+
+    public function contactMail(Request $request)
+    {
+        $email = "blancmanandhar@gmail.com";
+        $data = $this->validate($request, [
+            'fullname'=>'required',
+            'email'=>'required',
+            'message'=>'required',
+            'subject' => 'required',
+        ]);
+
+        $mailData = [
+            'fullname' => $request['fullname'],
+            'email' => $request['email'],
+            'message' => $request['message'],
+            'subject' => $request['subject']
+        ];
+
+        Mail::to($email)->send(new ContactMail($mailData));
+
+        return redirect()->back()->with('success', 'Thank you for messaging us. We will get back to you soon.');
+    }
+
+    public function registerSubscriber(Request $request)
+    {
+        $data = $this->validate($request, [
+            'email'=>'required|email',
+        ]);
+
+        $exsitingsubscriber = Subscriber::where('email', $data['email'])->first();
+        if($exsitingsubscriber)
+        {
+            return redirect()->route('index')->with('success', 'You have already subscribed. Thank you!!');
+        }
+        else{
+            $subscriber = Subscriber::create([
+                'email'=>$data['email'],
+                'is_verified'=>0,
+                'verification_code'=>sha1(time())
+            ]);
+            $subscriber->save();
+            $mailData = [
+                'verification_code' => $subscriber->verification_code,
+            ];
+            Mail::to($data['email'])->send(new RegisterSubscriber($mailData));
+
+            return redirect()->route('index')->with('success', 'We have sent a confirmation code to your email account for subscription. Please Check your email.');
+        }
+    }
+
+    public function subscriberconfirm()
+    {
+        $verification_code = \Illuminate\Support\Facades\Request::get('code');
+        $subscriber = Subscriber::where('verification_code', $verification_code)->first();
+        if( $subscriber != null)
+        {
+            $subscriber->is_verified = 1;
+            $subscriber->save();
+            $subscriber->notify(new NewSubscriberNotification($subscriber));
+            return redirect()->route('index')->with('success', 'Thank you for subscribing.');
+        }
+        return redirect()->route('index')->with('failure', 'Sorry, Your subscribtion is not confirmed. Please try again!');
     }
 }
