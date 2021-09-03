@@ -438,6 +438,69 @@
 
 
 
+      <!-- Merch -->
+      <div class="content-wrapper pt-0">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="widget-title3 text-center">
+              <span class="tbg">Merchandise</span>
+              <h4 class="">Cool Designs</h4>
+              <h3 class="text-black">Merchandise</h3>
+              <p>Shop Now</p>
+            </div>
+          </div>
+
+          <!-- merch carousel -->
+
+          <div class="row py-5 px-3" style="text-align: -webkit-center">
+            <div class="nonloop-block-13 owl-carousel">
+              <div class="item">
+                <div class="product-item">
+                  <div class="pi-pic">
+                    <img src="images/football_player_PNG122.png" alt="" />
+                    <!-- <div class="sale pp-sale">Sale</div> -->
+                    <div class="icon">
+                      <i class="icon_heart_alt"></i>
+                    </div>
+                  </div>
+                  <div class="pi-text">
+                    <a href="#">
+                      <h5>Home Kit</h5>
+                    </a>
+                    <div class="product-price">$14.00</div>
+                    <button
+                      class="
+                        button
+                        rounded-3
+                        primary-bg
+                        text-white
+                        btn_1
+                        boxed-btn
+                        p-1
+                      "
+                      type="submit"
+                    >
+                      <i class="fas fa-shopping-cart"></i>Buy
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="widget-view text-center">
+            <a class="boxed-btn">Shop Now</a>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
     <!-- this is the Sponsor Section -->
 
     <div class="content-wrapper pt-0">
