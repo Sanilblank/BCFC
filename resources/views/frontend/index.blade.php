@@ -612,8 +612,8 @@
     </div>
   </div>
 
-<div class="row no-gutters section-padding pb-0">
-  <div class="col-9 bg-blue">
+<div class="row section-padding pb-0">
+  <div class="col-12">
     <div class="gallery2">
       <!-- maximum 6 images> randomize the images -->
       @foreach ($pictures as $picture)
@@ -628,10 +628,6 @@
   </div>
 
 
-  <!-- this is for ad-section -->
-  <div class="col-3 bg-primary">
-    <div class="img-ad"><img src="https://images.unsplash.com/photo-1517747614396-d21a78b850e8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1482&q=80" alt="" /></div>
-  </div>
 </div>
 
 

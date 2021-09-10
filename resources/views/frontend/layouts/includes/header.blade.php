@@ -34,7 +34,7 @@
     <nav class="site-navigation position-relative text-right text-md-right" role="navigation">
       <div class="container position-relative">
         <div class="site-logo">
-          <a href="{{route('index')}}"><img src="{{asset('frontend/images/logo.png')}}" alt="" style="max-height: 135px;"></a>
+          <a href="{{route('index')}}"><img src="{{asset('frontend/images/logo.png')}}" alt="" style="max-height: 100px;"></a>
         </div>
 
         <div class="d-inline-block d-md-none ml-md-0 mr-auto py-3"><a href="#"
