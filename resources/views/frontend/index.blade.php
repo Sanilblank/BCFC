@@ -159,7 +159,7 @@
     <div class="site-blocks-cover content-wrapper" style="background-image: url(frontend/images/hero2.jpg); ">
       <div class="container-fluid">
       <div class="widget-title2 text-center">
-            <span class="tbg">Players</span>
+            <!-- <span class="tbg">Players</span> -->
             <h4 class="">Meet the Super Team</h4>
             <h3 class="text-black">Players</h3>
             <p>
@@ -270,7 +270,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="widget-title3 text-center">
-              <span class="tbg">Latest</span>
+              <!-- <span class="tbg">Latest</span> -->
               <h4 class="">Let's Update</h4>
               <h3 class="text-black">News</h3>
               <p>
@@ -398,7 +398,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="widget-title3 text-center">
-              <span class="tbg">Latest</span>
+              <!-- <span class="tbg">Latest</span> -->
               <h4 class="">Let's Update</h4>
               <h3 class="text-black">News</h3>
               <p>
@@ -602,7 +602,7 @@
 <div class="container-fluid px-0">
   <div class="row">
     <div class="widget-title3 text-center">
-      <span class="tbg">Gallery</span>
+      <!-- <span class="tbg">Gallery</span> -->
       <h4 class="">All of us candid</h4>
       <h3 class="text-black">Gallery</h3>
       <p>
@@ -650,7 +650,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="widget-title3 text-center">
-              <span class="tbg">Merchandise</span>
+              <!-- <span class="tbg">Merchandise</span> -->
               <h4 class="">Cool Designs</h4>
               <h3 class="text-black">Merchandise</h3>
               <p>Shop Now</p>
@@ -703,7 +703,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="widget-title3 text-center">
-              <span class="tbg">Matches</span>
+              <!-- <span class="tbg">Matches</span> -->
               <h4 class="">Win lose draw wait</h4>
               <h3 class="text-black">Matches</h3>
               <p>BCFC Plays</p>
@@ -771,7 +771,7 @@
 <div class="container-fluid px-0">
   <div class="row">
     <div class="widget-title3 text-center">
-      <span class="tbg">Gallery</span>
+      <!-- <span class="tbg">Gallery</span> -->
       <h4 class="">All of us candid</h4>
       <h3 class="text-black">Gallery</h3>
       <p>
