@@ -768,8 +768,8 @@
   <div class="row">
     <div class="widget-title3 text-center">
       <!-- <span class="tbg">Gallery</span> -->
-      <h4 class="">All of us candid</h4>
-      <h3 class="text-black">Gallery</h3>
+      <h4 class="">Supporting us since 2020</h4>
+      <h3 class="text-black">Partners</h3>
       <p>
         Fight Defend Win Fight Defend Win Fight Defend Win Fight Defend Win
         Fight Defend Win
@@ -782,8 +782,8 @@
 
 
 
-    <div class="site-section block-13 bg-primary fixed overlay-primary bg-image"
-      style="background-image: url('frontend/images/hero_bg_3.jpg');" data-stellar-background-ratio="0.5">
+    <div class="site-section block-13"
+      >
 
       <div class="container-fluid">
         
@@ -791,7 +791,7 @@
         <div class="row px-5">
           <!-- Partner Logo Section Begin -->
 
-          <div class="logo-carousel owl-carousel">
+          <div class="logo-carousel1">
               @if (count($partners) > 0)
                   @foreach ($partners as $partner)
                   <div class="logo-item">

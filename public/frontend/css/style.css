@@ -1880,6 +1880,28 @@ letter-spacing: 0.6em;
   vertical-align: middle;
 }
 
+.logo-carousel1 {
+  margin: 0 auto;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+
+}
+.logo-carousel1 .logo-item {
+  display: inline-block;
+  padding: 0px 16px;
+  float: left;
+}
+
+.logo-carousel1 .logo-item .tablecell-inner {
+  /* display: table-cell;
+  height: 50px;
+  vertical-align: middle; */
+  display:flex;
+  height:100px;
+}
+
+
 /* .owl-carousel .owl-item img {
   display: block;
   width: auto;
