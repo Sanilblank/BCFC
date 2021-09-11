@@ -135,6 +135,50 @@
 
 
               
+              <div class="club-people">
+                <div class="club-item">
+                  <div class="club-content">
+                    <img
+                      src="https://images.unsplash.com/photo-1543132220-3ec99c6094dc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=334&q=80"
+                      alt=""
+                    />
+                    <div class="text-center">
+                      <h3>Director</h3>
+                      <h2>Aman Bista</h2>
+                    </div>
+                  </div>
+                </div>
+            
+                <div class="club-item">
+                  <div class="club-content">
+                    <img
+                      src="https://images.unsplash.com/photo-1543132220-3ec99c6094dc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=334&q=80"
+                      alt=""
+                    />
+                    <div class="text-center">
+                      <h3>Director</h3>
+                      <h2>Aman Bista</h2>
+                    </div>
+                  </div>
+                </div>
+            
+                <div class="club-item">
+                  <div class="club-content">
+                    <img
+                      src="https://images.unsplash.com/photo-1543132220-3ec99c6094dc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=334&q=80"
+                      alt=""
+                    />
+                    <div class="text-center">
+                      <h3>Director</h3>
+                      <h2>Aman Bista</h2>
+                    </div>
+                  </div>
+                </div>
+            
+              </div>
+
+
+              
             </div>
           </div>
         </div>

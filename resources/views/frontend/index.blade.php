@@ -689,7 +689,12 @@
                 </div>
               </div>
             </div>
-          </div>
+            <div class="widget-view text-center">
+          <a class="boxed-btn">View More</a>
+        </div>
+
+
+      </div>
 
 
 
@@ -745,12 +750,12 @@
             </div>
           </div>
         </div>
+        <div class="widget-view text-center">
+          <a class="boxed-btn">View More</a>
+        </div>
       </div>
 
 
-          <div class="widget-view text-center">
-            <a class="boxed-btn">Shop Now</a>
-          </div>
         </div>
       </div>
 
