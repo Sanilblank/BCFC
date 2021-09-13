@@ -46,7 +46,7 @@
             <a href="{{route('index')}}">Home</a>
 
           </li>
-          <li class="has-children">
+          <li>
             <a href="{{route('getnews')}}">News</a>
 
           </li>

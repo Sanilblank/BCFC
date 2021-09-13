@@ -22,9 +22,9 @@
       </div>
       <!-- Hero End -->
 
-      <div class="bg-white">
-        <div class="container-fluid">
-          <div class="row no-gutters">
+      <div class="bg-white section-padding">
+        <div class="container">
+          <div class="row">
             <div class="col-lg-6 align-self-center">
               <div class="about-content">
                 <h2>Biratnager City FC</h2>
@@ -33,7 +33,7 @@
                 </p>
               </div>
             </div>
-            <div class="col-lg-6 p-5">
+            <div class="col-lg-6">
               <div class="about-content-img">
                 <img src="{{Storage::disk('uploads')->url($setting->headerImage)}}" alt="" />
               </div>
@@ -41,15 +41,15 @@
           </div>
         </div>
       </div>
-      <div class="bg-blue">
-        <div class="container-fluid">
-          <div class="row no-gutters">
+      <div class="bg-blue section-padding">
+        <div class="container">
+          <div class="row">
             <div class="col-lg-6">
-              <div class="about-content-img text-white pl-5">
+              <div class="about-content-img text-white">
                 <img src="{{Storage::disk('uploads')->url($setting->ourvaluesimage)}}" alt="" class="img-fluid" />
               </div>
             </div>
-            <div class="col-lg-6 align-self-center" style="padding-left: 50px">
+            <div class="col-lg-6 align-self-center">
               <div class="about-content text-white">
                 <h2>Our Values</h2>
 
@@ -62,11 +62,10 @@
       </div>
 
       <!-- NewsLetter or Ad section -->
-      <div class="site-blocks-vs bg-blue">
+      <div class="site-blocks-vs bg-red">
         <div class="container-fluid p-0">
           <div
-            class="bg-image overlay-success rounded py-4"
-            style="background-image: url('frontend/images/hero_bg_1.jpg')"
+            class="rounded py-4"
             data-stellar-background-ratio="0.5"
           >
             <div class="row align-items-center no-gutters px-5">
@@ -109,7 +108,7 @@
                       />
                       <div class="input-group-append" style="height: 51px">
                         <button
-                          class="btn btn-primary py-2"
+                          class="btn btn-dark py-2"
                           type="button"
                           id="button-addon2"
                         >
@@ -125,9 +124,9 @@
         </div>
       </div>
 
-      <div class="bg-blue pb-5">
-        <div class="container-fluid px-0">
-          <div class="row no-gutters">
+      <div class="bg-blue section-padding">
+        <div class="container">
+          <div class="row">
             <div class="col-lg-12 align-self-center">
               <div class="about-content text-white">
                 <h2>Club Management</h2>
@@ -184,9 +183,9 @@
         </div>
       </div>
 
-      <div class="bg-white">
-        <div class="container-fluid px-0">
-          <div class="row no-gutters">
+      <div class="bg-white section-padding">
+        <div class="container">
+          <div class="row">
             <div class="col-lg-6 align-self-center">
               <div class="about-content">
                 <h2>Words from the Coach</h2>
@@ -202,11 +201,11 @@
         </div>
       </div>
 
-      <div class="site-section pb-2">
+      <div class="section-padding">
         <div class="container-fluid">
           <div class="row pb-5">
-            <div class="widget-title2 text-black">
-              <h3 class="text-black">LATEST NEWS</h3>
+            <div class="widget-title3">
+              <h3>LATEST NEWS</h3>
             </div>
           </div>
 
@@ -245,15 +244,13 @@
 
       <!-- this is the Sponsor Section -->
 
-      <div class="site-section block-13 bg-primary fixed overlay-primary bg-image"
-      style="background-image: url('frontend/images/hero_bg_3.jpg');" data-stellar-background-ratio="0.5">
-
+      <div class="section-padding block-13 bg-primary fixed"
+     >
       <div class="container-fluid">
-
         <div class="row px-5">
           <!-- Partner Logo Section Begin -->
 
-          <div class="logo-carousel owl-carousel">
+          <div class="logo-carousel1">
               @if (count($partners) > 0)
                   @foreach ($partners as $partner)
                   <div class="logo-item">
@@ -264,27 +261,7 @@
                   @endforeach
               @endif
 
-            {{-- <div class="logo-item">
-              <div class="tablecell-inner">
-                <img src="{{asset('frontend/images/logo-carousel/logo-2.png')}}" alt="">
-              </div>
-            </div>
-            <div class="logo-item">
-              <div class="tablecell-inner">
-                <img src="{{asset('frontend/images/logo-carousel/logo-3.png')}}" alt="">
-              </div>
-            </div>
-            <div class="logo-item">
-              <div class="tablecell-inner">
-                <img src="{{asset('frontend/images/logo-carousel/logo-4.png')}}" alt="">
-              </div>
-            </div>
-            <div class="logo-item">
-              <div class="tablecell-inner">
-                <img src="{{asset('frontend/images/logo-carousel/logo-5.png')}}" alt="">
-              </div>
-            </div> --}}
-          </div>
+        
           <!-- Partner Logo Section End -->
 
 

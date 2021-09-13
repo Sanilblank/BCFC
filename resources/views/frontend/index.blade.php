@@ -221,7 +221,7 @@
     <div class="site-blocks-vs bg-blue">
       <div class="container-fluid p-0">
 
-        <div class="bg-image overlay-success rounded py-4" style="background-image: url('frontend/images/hero_bg_1.jpg');"
+        <div class="bg-image overlay-success rounded py-4"
           data-stellar-background-ratio="0.5">
 
           <div class="row align-items-center no-gutters px-5">
