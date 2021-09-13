@@ -37,6 +37,10 @@ a:hover {
   margin-right: 0px;
 }
 
+.site-wrap{
+  overflow:hidden;
+}
+
 .site-wrap:before {
   -webkit-transition: 0.3s all ease-in-out;
   -o-transition: 0.3s all ease-in-out;
@@ -1524,7 +1528,7 @@ letter-spacing: 0.6em;
   font-family: 'Bebas Neue',cursive;
 }
 .widget-title3 h3 {
-  font-size:90px;
+  font-size:11vw;
 	letter-spacing:0.2em;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 1px;
@@ -1535,7 +1539,7 @@ letter-spacing: 0.6em;
             font-style: italic;
 }
 .widget-title3 h4 {
-  font-size: 21px;
+  font-size: 2vw;
   letter-spacing: 0.4em;
   color: #000000c9;
   font-family: 'Barlow Condensed', sans-serif;
@@ -1543,7 +1547,7 @@ letter-spacing: 0.6em;
 
 }
 .widget-title3 p {
-  font-size: 17px;
+  font-size: 2vw;
   font-family: 'Barlow Condensed', sans-serif;
   margin: 0 auto;
   color: #000000e8;
@@ -1888,7 +1892,7 @@ letter-spacing: 0.6em;
 
 }
 .logo-carousel1 .logo-item {
-  display: inline-block;
+  display: block;
   padding: 0px 16px;
   float: left;
 }
@@ -3169,9 +3173,6 @@ height: 100px;
 .about-area .whats-news-caption .single-what-news,
 .contact-section .whats-news-caption .single-what-news {
   position: relative;
-  box-shadow:
-  -50px -50px 0 -44px #d2232a,
-  50px 50px 0 -44px #d2232a;
 }
 .whats-news-area .whats-news-caption .single-what-news .what-img img,
 .about-area .whats-news-caption .single-what-news .what-img img,
@@ -3184,7 +3185,6 @@ height: 100px;
 .contact-section .whats-news-caption .single-what-news .what-cap {
   padding: 20px;
   background: #fff;
-  /* border-radius: 0 7px 0 0; */
   -webkit-transition: all 0.4s ease-out 0s;
   -moz-transition: all 0.4s ease-out 0s;
   -ms-transition: all 0.4s ease-out 0s;
@@ -4272,12 +4272,10 @@ height: 100px;
 
 
 .product-item {
-	margin-bottom: 26px;
-  max-width:285px;
+  max-width: 285px;
   height: 400px;
   background-color: white;
-  padding-bottom: 20px;
-    box-shadow: 1px 6px 14px -10px #425c6d;
+  box-shadow: 1px 6px 14px -10px #425c6d;
 }
 
 .product-item:hover .pi-pic .icon {
@@ -4290,13 +4288,15 @@ height: 100px;
 }
 
 .product-item .pi-pic {
-	overflow: hidden;
-	position: relative;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  object-fit: contain;
 }
 
 .product-item .pi-pic img {
-	min-width: 100%;
-  max-height: 400px;
+  height: 235px;
+  object-fit: contain;
 }
 
 .product-item .pi-pic .sale {
@@ -4359,7 +4359,7 @@ height: 100px;
 
 .product-item .pi-text {
 	text-align: center;
-	padding-top: 26px;
+	padding: 20px;
 }
 
 .product-item .pi-text .catagory-name {
@@ -4617,7 +4617,7 @@ height: 100px;
 
 
 .content-wrapper {
-  background-color: #e6e7e8;
+  background-color: #ffffff;
   padding: 120px 0;
 }
 
@@ -4807,6 +4807,7 @@ height: 100px;
 
 .match-box{
   max-width:290px;
+  height:400px;
   padding: 60px 0;
   border-radius: 0.25rem;
   background-color: white;
