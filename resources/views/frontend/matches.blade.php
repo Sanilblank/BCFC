@@ -85,7 +85,8 @@
                         </div>
                         @if ($match->completed == 1)
                             <div>
-                                {{$match->matchresult->team1_score}}
+
+                                <span class="vs"><span> {{$match->matchresult->team1_score}}</span></span>
                             </div>
                         @endif
                         <div>
@@ -93,7 +94,8 @@
                         </div>
                         @if ($match->completed == 1)
                             <div>
-                                {{$match->matchresult->team2_score}}
+                            <span class="vs"><span>
+                                {{$match->matchresult->team2_score}}</span></span>
                             </div>
                         @endif
                         <div class="team-2 text-center">

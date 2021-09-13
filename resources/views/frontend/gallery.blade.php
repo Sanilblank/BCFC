@@ -25,7 +25,7 @@
       <!-- Hero End -->
 
       <div class="main-content pt-5 bg-blue">
-        <div class="container-fluid">
+        <div class="container">
           <section class="row align-items-stretch photos" id="section-photos">
             <div class="col-12">
               <div class="row align-items-stretch">

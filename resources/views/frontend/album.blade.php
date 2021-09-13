@@ -23,7 +23,7 @@
       <!-- Hero End -->
 
       <div class="main-album pt-5 bg-blue">
-        <div class="container-fluid">
+        <div class="container">
           <section class="row align-items-stretch photos">
             <div class="col-12">
               <div class="row align-items-stretch">

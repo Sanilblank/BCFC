@@ -1441,11 +1441,15 @@ a:hover {
 .widget-vs-2 .vs > span {
   display: inline-block;
   font-size: 32px;
-
   padding: 5px 20px;
   border-radius: 30px;
   color: rgb(0, 0, 0);
   font-weight: 700;
+}
+
+.widget-vs-2 p{
+  width: 80%;
+  margin: 0 auto;
 }
 
 .widget-vs-2-contents {
@@ -1484,7 +1488,7 @@ a:hover {
   font-family: 'Bebas Neue',cursive;
 }
 .widget-title2 h3 {
-  font-size:90px;
+  font-size:11vw;
 	letter-spacing:0.2em;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 1px;
@@ -1495,7 +1499,7 @@ a:hover {
             font-style: italic;
 }
 .widget-title2 h4 {
-  font-size: 21px;
+  font-size: 2vw;
   letter-spacing: 0.4em;
   color: #ffffffc9;
   font-family: 'Barlow Condensed', sans-serif;
@@ -1503,7 +1507,7 @@ a:hover {
 
 }
 .widget-title2 p {
-  font-size: 17px;
+  font-size: 2vw;
   font-family: 'Barlow Condensed', sans-serif;
   margin: 0 auto;
   color: #ffffffe8;

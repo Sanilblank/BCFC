@@ -19,7 +19,7 @@
             <div class="site-blocks-cover overlay" style="background-image: url({{Storage::disk('uploads')->url($slider->images)}});" data-aos="fade"
                 data-stellar-background-ratio="0.5">
                 <div class="container">
-                <div class="row align-items-center justify-content-start">
+                <div class="row align-items-end justify-content-start">
                     <div class="col-md-6 text-center text-md-left" data-aos="fade-up" data-aos-delay="400">
                     <p><a href="#" class="btn btn-primary btn-sm rounded-0 px-3">{{$slider->subtitle}}</a></p>
                     <h1 class="">{{$slider->title}}</h1>
