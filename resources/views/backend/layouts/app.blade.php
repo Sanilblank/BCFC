@@ -137,8 +137,7 @@
                         </a>
                     </li>
                     <li><a href="{{route('subscriber.index')}}"><i class="fa fa-male"></i> Subscribers</a></li>
-
-
+                    <li><a href="{{route('merchandise.index')}}"><i class="fa fa-gift"></i> Merchandise</a></li>
                 </ul>
               </div>
 

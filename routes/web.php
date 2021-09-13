@@ -9,6 +9,7 @@ use App\Http\Controllers\MatchDetailController;
 use App\Http\Controllers\MatchStadiumController;
 use App\Http\Controllers\MatchStandingController;
 use App\Http\Controllers\MatchTypeController;
+use App\Http\Controllers\MerchandiseController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PhotoController;
@@ -132,5 +133,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
     //Subscribers
     Route::resource('subscriber', SubscriberController::class);
+
+    //Merchandise
+    Route::resource('merchandise', MerchandiseController::class);
 });
 

@@ -12,6 +12,7 @@ use App\Models\Comment;
 use App\Models\MatchDetail;
 use App\Models\MatchStanding;
 use App\Models\MatchType;
+use App\Models\Merchandise;
 use App\Models\Partner;
 use App\Models\Photo;
 use App\Models\Reply;
@@ -28,18 +29,19 @@ class FrontController extends Controller
     //
     public function index()
     {
-        $latestblog = Blog::latest()->where('status', 1)->where('draft', 0)->first();
-        $latestthreeblogs = Blog::latest()->where('status', 1)->where('id', '!=', $latestblog->id)->where('draft', 0)->take(2)->get();
-        $latestblogs = Blog::latest()->where('status', 1)->where('draft', 0)->skip(3)->take(16)->get();
+        $latestblog = Blog::orderBy('date', 'desc')->where('status', 1)->where('draft', 0)->first();
+        $latestblogs = Blog::orderBy('date', 'desc')->where('status', 1)->where('draft', 0)->where('id', '!=', $latestblog->id)->take(6)->get();
         $teammembers = TeamMember::latest()->where('status', 1)->with('teamposition')->get();
         $sliders = Slider::latest()->get();
         $nextmatch = MatchDetail::where('completed', 0)->orderBy('datetime', 'asc')->with('team1', 'team2', 'matchtype', 'stadium', 'matchresult')->first();
         $lastmatch = MatchDetail::where('completed', 1)->orderBy('datetime', 'desc')->with('team1', 'team2', 'matchtype', 'stadium', 'matchresult')->first();
+        $finishedmatches = MatchDetail::where('completed', 1)->orderBy('datetime', 'desc')->with('team1', 'team2', 'matchtype', 'stadium', 'matchresult')->take(8)->get();
         $matchtype = MatchType::first();
         $standings = MatchStanding::where('matchtype_id', $matchtype->id)->with('team', 'matchtype')->get();
         $pictures = Photo::with('album')->inRandomOrder()->limit(6)->get();
         $partners = Partner::latest()->get();
-        return view('frontend.index', compact('latestthreeblogs', 'latestblogs', 'latestblog', 'teammembers', 'sliders', 'nextmatch', 'lastmatch', 'standings', 'pictures', 'partners'));
+        $merchandises = Merchandise::latest()->take(8)->get();
+        return view('frontend.index', compact('latestblogs', 'latestblog', 'teammembers', 'sliders', 'nextmatch', 'lastmatch', 'standings', 'pictures', 'partners', 'finishedmatches', 'merchandises'));
     }
 
     public function getnews()
@@ -216,20 +218,20 @@ class FrontController extends Controller
         {
             if(request()->get('match') == "Upcoming")
             {
-                $matches = MatchDetail::latest()->with('team1', 'team2', 'matchtype', 'stadium')->where('completed', 0)->simplePaginate(4);
+                $matches = MatchDetail::latest()->with('team1', 'team2', 'matchtype', 'stadium', 'matchresult', 'scores')->where('completed', 0)->simplePaginate(4);
             }
             elseif(request()->get('match') == "Completed")
             {
-                $matches = MatchDetail::latest()->with('team1', 'team2', 'matchtype', 'stadium')->where('completed', 1)->simplePaginate(4);
+                $matches = MatchDetail::latest()->with('team1', 'team2', 'matchtype', 'stadium', 'matchresult', 'scores')->where('completed', 1)->simplePaginate(4);
             }
             elseif(request()->get('match') == "All")
             {
-                $matches = MatchDetail::latest()->with('team1', 'team2', 'matchtype', 'stadium')->simplePaginate(4);
+                $matches = MatchDetail::latest()->with('team1', 'team2', 'matchtype', 'stadium', 'matchresult', 'scores')->simplePaginate(4);
             }
         }
         else
         {
-            $matches = MatchDetail::latest()->with('team1', 'team2', 'matchtype', 'stadium')->simplePaginate(4);
+            $matches = MatchDetail::latest()->with('team1', 'team2', 'matchtype', 'stadium', 'matchresult', 'scores')->simplePaginate(4);
         }
         $partners = Partner::latest()->get();
         return view('frontend.matches', compact('latestblogs', 'matches', 'partners'));

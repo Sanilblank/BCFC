@@ -37,4 +37,9 @@ class MatchDetail extends Model
     {
         return $this->hasOne(MatchResult::class, 'matchdetail_id', 'id');
     }
+
+    public function scores()
+    {
+        return $this->hasMany(MatchScoreDetail::class, 'matchdetail_id', 'id');
+    }
 }

@@ -563,7 +563,7 @@ class MatchDetailController extends Controller
                     {
                         $team2scoredetails = MatchScoreDetail::create([
                             'matchdetail_id' => $matchdetail->id,
-                            'team' => 1,
+                            'team' => 2,
                             'name' => $request['playername2'][$i],
                             'time' => $request['time2'][$i],
                         ]);

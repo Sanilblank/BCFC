@@ -664,6 +664,7 @@ class BlogController extends Controller
 
                 if($draft == 0)
                 {
+                    SendSubscriberMail::dispatch($blog->id);
                     return redirect()->route('blog.index')->with('success', 'Contents Updated as non draft');
                 }
                 else

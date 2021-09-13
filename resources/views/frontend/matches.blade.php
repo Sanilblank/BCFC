@@ -71,13 +71,44 @@
                         <div class="team-1 text-center">
                           <img src="{{Storage::disk('uploads')->url($match->team1->logo)}}" alt="Image" />
                           <h3>{{$match->team1->name}}</h3>
+                          @if ($match->completed == 1 && count($match->scores) > 0)
+                            @php
+                                $matchscores = DB::table('match_score_details')->where('matchdetail_id', $match->id)->orderBy('time', 'asc')->get();
+                            @endphp
+                              @foreach ($matchscores as $score)
+                                  @if ($score->team == 1)
+                                      <p>{{$score->name}} ({{$score->time}} mins)</p>
+                                  @endif
+                              @endforeach
+                          @endif
+
                         </div>
+                        @if ($match->completed == 1)
+                            <div>
+                                {{$match->matchresult->team1_score}}
+                            </div>
+                        @endif
                         <div>
                           <span class="vs"><span>VS</span></span>
                         </div>
+                        @if ($match->completed == 1)
+                            <div>
+                                {{$match->matchresult->team2_score}}
+                            </div>
+                        @endif
                         <div class="team-2 text-center">
                           <img src="{{Storage::disk('uploads')->url($match->team2->logo)}}" alt="Image" />
                           <h3>{{$match->team2->name}}</h3>
+                          @if ($match->completed == 1 && count($match->scores) > 0)
+                            @php
+                                $matchscores = DB::table('match_score_details')->where('matchdetail_id', $match->id)->orderBy('time', 'asc')->get();
+                            @endphp
+                              @foreach ($matchscores as $score)
+                                  @if ($score->team == 2)
+                                      <p>{{$score->name}} ({{$score->time}} mins)</p>
+                                  @endif
+                              @endforeach
+                          @endif
                         </div>
                       </div>
                     </div>
